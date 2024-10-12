@@ -1,26 +1,31 @@
 package co.edu.konradlorenz.model;
 
 public class Nodo {
-    private int dato;
+    private Automovil  automovil;
     public Nodo next;
 
-    public Nodo(int dato) {
-        this.dato = dato;
+    public Nodo(Automovil automovil) {
+        this.automovil = automovil;
         this.next = null;
     }
 
-    public int getDato() {
-        return dato;
+    public Automovil getAutomovil() {
+        return automovil;
     }
 
-    public void setDato(int dato) {
-        this.dato = dato;
+    public void setAutomovil(Automovil automovil) {
+        this.automovil = automovil;
     }
 
-    @Override
-    public String toString() {
-        return "Nodo{" +
-                "dato=" + dato +
-                '}';
+    public Nodo getNext() {
+        return next;
     }
+
+    public void setNext(Nodo next) {
+        this.next = next;
+    }
+
+    
+
+   
 }

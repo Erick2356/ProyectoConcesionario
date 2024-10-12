@@ -51,12 +51,9 @@ public class Electrico extends Automovil implements Vehiculo {
 
     @Override
     public String toString() {
-        return "Electrico{" +
-                "autonomia=" + autonomia +
-                ", tipoBateria='" + tipoBateria + '\'' +
-                ", tiempoCarga=" + tiempoCarga +
-                '}';
+        return super.toString() + ", Electrico [Autonomía: " + autonomia + ", Tipo Batería: " + tipoBateria + ", Tiempo de Carga: " + tiempoCarga + "]";
     }
+    
 
     @Override
     public void encender() {

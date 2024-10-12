@@ -39,12 +39,10 @@ public class Motocicleta extends Automovil implements Vehiculo {
     }
 
     @Override
-    public String toString() {
-        return "Motocicleta{" +
-                "cilindraje=" + cilindraje +
-                ", tipoMoto='" + tipoMoto + '\'' +
-                '}';
-    }
+public String toString() {
+    return super.toString() + ", Motocicleta [Cilindraje: " + cilindraje + ", Tipo moto: " + tipoMoto + "]";
+}
+
     @Override
     public void encender() {
         this.encendido = true;

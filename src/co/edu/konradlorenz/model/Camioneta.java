@@ -36,14 +36,11 @@ public class Camioneta extends Automovil implements Vehiculo {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
     @Override
     public String toString() {
-        return "Camioneta{" +
-                "capacidadCarga=" + capacidadCarga +
-                ", tipo='" + tipo + '\'' +
-                '}';
+        return super.toString() + ", Camioneta [Capacidad carga: " + capacidadCarga + ", Tipo: " + tipo + "]";
     }
+    
 
 
     @Override

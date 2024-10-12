@@ -27,18 +27,19 @@ public class Controller {
                 case 5:
 
 
-                       
+                case 6:
 
 
+                case 7:
 
 
-
-
-
-
-
-
-
+                case 8:
+                       View.mostrarMensaje("Saliendo del programa...");
+                       running = false;
+                       break;
+                default:
+                       View.mostrarMensaje("Opción no válida");
+                       break;
 
             }
         }

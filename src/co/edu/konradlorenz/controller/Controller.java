@@ -19,13 +19,19 @@ public class Controller {
                        eliminarAutomovil();
                        break;
                 case 3:
-
+                       View.mostrarMensaje("Introduzca el id del automovil a modificar");
+                       int id = View.pedirEntero();
+                       modificarAutomovil(id);
+                       break;
 
                 case 4:
                        mostrarAutomovil();
                        break;
                 case 5:
-
+                       View.mostrarMensaje("Introduzca el año de los automoviles a buscar");
+                       int anio = View.pedirEntero();
+                       buscarAutomovilAnio(anio);
+                       break;
 
                 case 6:
 
@@ -149,6 +155,114 @@ public void eliminarAutomovil(){
     }
     actual.setNext(actual.next.next);
     View.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito");
+
+}
+
+public void modificarAutomovil(int id){
+    if (cabeza == null) {
+        View.mostrarMensaje("No hay automovil");
+        return;
+    }
+    Nodo actual = cabeza;
+    while (actual != null && actual.getAutomovil().getId() != id) {
+        actual = actual.getNext();
+
+    }
+    if (actual == null) {
+        View.mostrarMensaje("No se encontro ningun automovil con ID" + id);
+        return;
+        
+    }
+    Automovil automod = actual.getAutomovil();
+    View.mostrarMensaje("Automovil encontrado, digite los nuevos valores");
+    View.mostrarMensaje("Introduzca nuevo id");
+    int nuevoId = View.pedirEntero();
+    View.mostrarMensaje("Introduzca nuevo modelo");
+    String nuevoModelo = View.pedirString();
+    View.mostrarMensaje("Introduzca nueva marca");
+    String nuevaMarca = View.pedirString();
+    View.mostrarMensaje("Introduzca nuevo motor");
+    String nuevoMotor = View.pedirString();
+    View.mostrarMensaje("Introduzca nuevo color");
+    String nuevoColor = View.pedirString();
+    View.mostrarMensaje("Introduzca nueva cantidad de puertas");
+    int nuevaPuertas = View.pedirEntero();
+    View.mostrarMensaje("Introduzca nuevo año");
+    int nuevoAnio = View.pedirEntero();
+    View.mostrarMensaje("Introduzca nuevo precio");
+    double nuevoPrecio = View.pedirDouble();
+
+    automod.setId(nuevoId);
+    automod.setModelo(nuevoModelo);
+    automod.setMarca(nuevaMarca);
+    automod.setMotor(nuevoMotor);
+    automod.setColor(nuevoColor);
+    automod.setCantidadPuertas(nuevaPuertas);
+    automod.setAnio(nuevoAnio);
+    automod.setPrecio(nuevoPrecio);
+
+    if (automod instanceof Camioneta) {
+        Camioneta camioneta = (Camioneta) automod;
+        View.mostrarMensaje("Introduzca nueva capacidad de carga");
+        int nuevaCapacidad = View.pedirEntero();
+        View.mostrarMensaje("Introduzca nuevo tipo (tracción)");
+        String nuevoTipo = View.pedirString();
+        camioneta.setCapacidadCarga(nuevaCapacidad);
+        camioneta.setTipo(nuevoTipo);
+        
+    }
+
+    if (automod instanceof Electrico) {
+        Electrico electrico = (Electrico) automod;
+        View.mostrarMensaje("Introduzca nueva autonomia");
+        int nuevaAutonomia = View.pedirEntero();
+        View.mostrarMensaje("Introduzca nuevo tipo de bateria");
+        String nuevoTipoBateria = View.pedirString();
+        View.mostrarMensaje("Introduzca nuevo tiempo de carga");
+        int nuevoTiempoCarga = View.pedirEntero();
+        electrico.setAutonomia(nuevaAutonomia);
+        electrico.setTipoBateria(nuevoTipoBateria);
+        electrico.setTiempoCarga(nuevoTiempoCarga);
+        
+    }
+
+    if (automod instanceof Motocicleta) {
+        Motocicleta motocicleta = (Motocicleta) automod;
+        View.mostrarMensaje("Introduzca nuevo cilindraje");
+        int nuevoCilindraje = View.pedirEntero();
+        View.mostrarMensaje("Introduzca nuevo tipo de motocicleta");
+        String nuevoTipo = View.pedirString();
+        motocicleta.setCilindraje(nuevoCilindraje);
+        motocicleta.setTipoMoto(nuevoTipo);
+        
+    }
+    View.mostrarMensaje("Automovil modificato exitosamente");
+
+
+}
+
+public void buscarAutomovilAnio(int anio){
+    if (cabeza == null) {
+        View.mostrarMensaje("No hay automoviles");
+        return;
+    }
+    boolean e = false;
+    Nodo actual = cabeza;
+    while (actual != null) {
+        Automovil automovil = actual.getAutomovil();
+        if (automovil.getAnio() == anio) {
+            View.mostrarMensaje(automovil.toString());
+            e = true;
+
+        }
+        actual = actual.getNext();
+        
+    }
+    if (!e) {
+        View.mostrarMensaje("No se encontro ningun automovil del año" + anio);
+
+        
+    }
 
 }
 }

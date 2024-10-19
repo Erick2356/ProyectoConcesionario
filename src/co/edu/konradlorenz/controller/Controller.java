@@ -34,8 +34,8 @@ public class Controller {
                        break;
 
                 case 6:
-
-
+                       registrarVenta();
+                       break; 
                 case 7:
 
 
@@ -132,7 +132,38 @@ public void mostrarAutomovil(){
             }
 }
 }
+public void registrarVenta(){
+	
+    Nodo actual = cabeza;
+    if (cabeza == null) {
+        View.mostrarMensaje("No hay automoviles");
+        return;
+}
+    View.mostrarMensaje("Ingrese id del automovil:");
+    int idd = View.pedirEntero();
+    int gurdar;
+    if (cabeza.getAutomovil().getId() == idd) {
+         View.mostrarMensaje("El vehiculo a vender es: " + cabeza.getAutomovil().toString());
+         View.mostrarMensaje("Ingrese la forma de pago: ");
+        int forma = View.pedirForma();
+        switch (forma){
+            case 1:
+              View.mostrarMensaje("El precio a pagar: " + cabeza.getAutomovil().getPrecio());
+              gurdar = cabeza.getAutomovil().getId();
+              eliminarAutomovilDeVenta(idd);
+              View.mostrarMensaje("Venta Exita.");
+             
+              break;
+            case 2:
 
+            break;
+        
+        }
+        
+    }
+       
+
+}
 public void eliminarAutomovil(){
     if (cabeza == null) {
         View.mostrarMensaje("No hay automoviles");
@@ -155,6 +186,30 @@ public void eliminarAutomovil(){
     }
     actual.setNext(actual.next.next);
     View.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito");
+
+}
+public void eliminarAutomovilDeVenta(int ob){
+    if (cabeza == null) {
+        View.mostrarMensaje("No hay automoviles");
+        return;
+    }
+    View.mostrarMensaje("Ingrese id del automovil a eliminar");
+    int idd = ob;
+    if (cabeza.getAutomovil().getId()== idd) {
+        cabeza = cabeza.next;
+        return;
+          
+}
+    Nodo actual = cabeza;
+    while (actual.next != null && actual.next.getAutomovil().getId() != idd) {
+        actual = actual.next;
+    }
+    if (actual.next == null) {
+        View.mostrarMensaje("No se encontro ningun automovil con ID" + idd);
+        return;
+    }
+    actual.setNext(actual.next.next);
+    View.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito de la lsita despues de venderse ");
 
 }
 

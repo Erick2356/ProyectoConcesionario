@@ -11,6 +11,11 @@ public class View {
         sc.nextLine();
         return opcion;
     }
+    
+    public static int pedirForma(){
+        System.out.println("\n1 De Contado \n2 A Credito");
+        return sc.nextInt();
+       }
 
     public static int pedirTipoAutomovil(){
         System.out.println("\n1 Camioneta \n2 Electrico \n3 Motocicleta");

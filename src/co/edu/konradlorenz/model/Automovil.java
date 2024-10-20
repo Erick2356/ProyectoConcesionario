@@ -1,6 +1,6 @@
 package co.edu.konradlorenz.model;
 
-public  abstract class Automovil {
+public  abstract class Automovil implements Interes {
     private int id;
     private String modelo;
     private String marca;

@@ -45,6 +45,7 @@ public class View {
         sc.nextLine();
         return dou;
     }
+    
 
 
 }

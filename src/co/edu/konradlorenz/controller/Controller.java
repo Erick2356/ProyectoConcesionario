@@ -149,13 +149,18 @@ public void registrarVenta(){
         switch (forma){
             case 1:
               View.mostrarMensaje("El precio a pagar: " + cabeza.getAutomovil().getPrecio());
-              gurdar = cabeza.getAutomovil().getId();
               eliminarAutomovilDeVenta(idd);
-              View.mostrarMensaje("Venta Exita.");
+              View.mostrarMensaje("Venta Exitosa.");
              
               break;
             case 2:
-
+              View.mostrarMensaje("Precio del Vehiculo: " + cabeza.getAutomovil().getPrecio());
+              View.mostrarMensaje("Ingrese el numero de cuotas:");
+              double cant = View.pedirDouble();
+              View.mostrarMensaje("Interes total acumulado " + cabeza.getAutomovil().calcularInterecesCredito(cabeza.getAutomovil().getPrecio(), cant));
+              View.mostrarMensaje("Valor de cuota mensual " + cabeza.getAutomovil().calcularValorDecuota(cabeza.getAutomovil().montoTotal(cabeza.getAutomovil().getPrecio(),cabeza.getAutomovil().calcularInterecesCredito(cabeza.getAutomovil().getPrecio(), cant) ), cant));
+              View.mostrarMensaje("Valor total a pagar: " + cabeza.getAutomovil().montoTotal(cabeza.getAutomovil().getPrecio(), cabeza.getAutomovil().calcularInterecesCredito(cabeza.getAutomovil().getPrecio(), cant)));
+              eliminarAutomovilDeVenta(idd);
             break;
         
         }
@@ -193,7 +198,7 @@ public void eliminarAutomovilDeVenta(int ob){
         View.mostrarMensaje("No hay automoviles");
         return;
     }
-    View.mostrarMensaje("Ingrese id del automovil a eliminar");
+    
     int idd = ob;
     if (cabeza.getAutomovil().getId()== idd) {
         cabeza = cabeza.next;
@@ -205,7 +210,7 @@ public void eliminarAutomovilDeVenta(int ob){
         actual = actual.next;
     }
     if (actual.next == null) {
-        View.mostrarMensaje("No se encontro ningun automovil con ID" + idd);
+       
         return;
     }
     actual.setNext(actual.next.next);

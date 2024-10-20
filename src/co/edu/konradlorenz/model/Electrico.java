@@ -91,4 +91,22 @@ public class Electrico extends Automovil implements Vehiculo {
     public double getVelocidadActual() {
         return velocidadActual;
     }
+    @Override
+	public double calcularInterecesCredito(double precio, double cant) {
+		// TODO Auto-generated method stub
+		return precio*(INTERECES/AÑO)*cant;
+		
+	}
+
+	@Override
+	public double montoTotal(double precio, double interes) {
+		// TODO Auto-generated method stub
+		return precio + interes;
+	}
+
+	@Override
+	public double calcularValorDecuota(double montoTotal, double cant) {
+		// TODO Auto-generated method stub
+		return montoTotal/cant;
+	}
 }

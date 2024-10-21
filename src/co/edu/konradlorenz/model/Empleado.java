@@ -12,6 +12,7 @@ public class Empleado extends Persona{
 
 	public Empleado(String nombre, String apellidos, int cedula, int codigo) {
 		super(nombre, apellidos, cedula);
+		this.codigo = codigo;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -33,7 +34,7 @@ public class Empleado extends Persona{
 
 	@Override
 	public String toString() {
-		return "Empleado [codigo=" + codigo + "]";
+		return "Empleado [codigo=" + this.codigo + " " + super.toString() + "]";
 	}
      
      

@@ -376,15 +376,16 @@ public void agregarEmpleado() {
 
 public void obtenerClientes() {
 	for (Object cliente : objLista.getLista()) {
-        if (cliente instanceof Empleado) {
-            View.mostrarMensaje("Empleado: " + cliente.toString());
+        if (cliente instanceof Cliente) {
+            View.mostrarMensaje("Cliente: " + cliente.toString());
             
         }
     }
 }
+
 public void obtenerEmpleados() {
 	for (Object empleado : objLista.getLista()) {
-        if ((empleado instanceof Cliente)) {
+        if ((empleado instanceof Empleado)) {
             View.mostrarMensaje("Empleado: " + empleado.toString());
             
         }

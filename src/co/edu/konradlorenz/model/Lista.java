@@ -20,6 +20,10 @@ public class Lista {
 		public void setListaPersona(Persona persona) {
 			this.listaPersona.add(persona);
 		}
+		public ArrayList<Persona> getLista() {
+	        return listaPersona;
+	    }
+
 
 		@Override
 		public String toString() {

@@ -10,7 +10,7 @@ public class View {
     static Scanner sc = new Scanner (System.in);
 
     public static int  mostrarMenu(){
-        System.out.println("\n1 Agregar automovil \n2 Eliminar Automovil \n3 Actualizar automovil \n4 Mostrar automoviles \n5 Buscar automoviles por año \n6 Registrar venta \n7 Ingreso total ventas \n8 Registrar Cliente \n 9.Salir");
+        System.out.println("\n1 Agregar automovil \n2 Eliminar Automovil \n3 Actualizar automovil \n4 Mostrar automoviles \n5 Buscar automoviles por año \n6 Registrar venta \n7 Ingreso total ventas \n8 Agregar Empleado \n9 Agregar Cliente \n10 Mostrar Clientes \n11 Mostrar Empleados \n12.Salir");
         int opcion= sc.nextInt();
         sc.nextLine();
         return opcion;
@@ -50,16 +50,4 @@ public class View {
         return dou;
     }
     
-    public static void mostrarEmpleado(ArrayList<Persona> lista) {
-    	System.out.println("Lista de empleados: ");
-    	for (Persona empleado : lista) {
-            if (empleado instanceof Cliente) {
-                System.out.println(empleado);
-            }
-        }
-    }
-    
-    
-
-
 }

@@ -48,17 +48,22 @@ public class Controller {
                        View.mostrarMensaje("El ingreso total de ventas es de: " + entada);
                        break;
                 case 8:
-                       //agregarCliente();
                 	   agregarEmpleado();
                 	   obtenerEmpleados();
                        break;
                 case 9:
-                	 View.mostrarMensaje("Saliendo del programa...");
-                     running = false;
-                     break;
+                	 agregarCliente();
+                       break;
                 case 10:
-                	  mostrarLista();
-                    break; 
+                	  obtenerClientes();
+                       break; 
+                case 11: 
+                	 obtenerEmpleados();
+                       break;
+                case 12:
+                	View.mostrarMensaje("Saliendo del programa...");
+                    running = false;
+                	   break;
                 default:
                        View.mostrarMensaje("Opción no válida");
                        break;
@@ -368,14 +373,22 @@ public void agregarEmpleado() {
     l = View.pedirEntero();
 	objLista.setListaPersona(new Empleado(n, f, t, l));
 }
-// Este metodo se borra despues
-public void mostrarLista() {
-	System.out.println("Lista:");
-	System.out.println(objLista);
-	
+
+public void obtenerClientes() {
+	for (Object cliente : objLista.getLista()) {
+        if (cliente instanceof Empleado) {
+            View.mostrarMensaje("Empleado: " + cliente.toString());
+            
+        }
+    }
 }
 public void obtenerEmpleados() {
-	View.mostrarEmpleado(lista);
+	for (Object empleado : objLista.getLista()) {
+        if ((empleado instanceof Cliente)) {
+            View.mostrarMensaje("Empleado: " + empleado.toString());
+            
+        }
+    }
 }
 public double totalIngresos(double imgreso) {
 	 double total = 0;

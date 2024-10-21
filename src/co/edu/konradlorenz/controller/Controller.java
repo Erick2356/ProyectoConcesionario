@@ -1,10 +1,17 @@
 package co.edu.konradlorenz.controller;
 
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import co.edu.konradlorenz.model.*;
 import co.edu.konradlorenz.view.View;
 
 public class Controller {
-
+	private ArrayList<Persona> lista = new ArrayList<>();
+	private Cliente objCliente = new Cliente();
+	private Empleado objEmpleado = new Empleado();
+	private Lista objLista = new Lista();
     private Nodo cabeza;
 
     public void run() {
@@ -37,12 +44,21 @@ public class Controller {
                        registrarVenta();
                        break; 
                 case 7:
-
-
-                case 8:
-                       View.mostrarMensaje("Saliendo del programa...");
-                       running = false;
+                	   double entada = totalIngresos(0);
+                       View.mostrarMensaje("El ingreso total de ventas es de: " + entada);
                        break;
+                case 8:
+                       //agregarCliente();
+                	   agregarEmpleado();
+                	   obtenerEmpleados();
+                       break;
+                case 9:
+                	 View.mostrarMensaje("Saliendo del programa...");
+                     running = false;
+                     break;
+                case 10:
+                	  mostrarLista();
+                    break; 
                 default:
                        View.mostrarMensaje("Opción no válida");
                        break;
@@ -149,9 +165,9 @@ public void registrarVenta(){
         switch (forma){
             case 1:
               View.mostrarMensaje("El precio a pagar: " + cabeza.getAutomovil().getPrecio());
-              eliminarAutomovilDeVenta(idd);
               View.mostrarMensaje("Venta Exitosa.");
-             
+              totalIngresos(cabeza.getAutomovil().getPrecio());
+              eliminarAutomovilDeVenta(idd);
               break;
             case 2:
               View.mostrarMensaje("Precio del Vehiculo: " + cabeza.getAutomovil().getPrecio());
@@ -160,6 +176,7 @@ public void registrarVenta(){
               View.mostrarMensaje("Interes total acumulado " + cabeza.getAutomovil().calcularInterecesCredito(cabeza.getAutomovil().getPrecio(), cant));
               View.mostrarMensaje("Valor de cuota mensual " + cabeza.getAutomovil().calcularValorDecuota(cabeza.getAutomovil().montoTotal(cabeza.getAutomovil().getPrecio(),cabeza.getAutomovil().calcularInterecesCredito(cabeza.getAutomovil().getPrecio(), cant) ), cant));
               View.mostrarMensaje("Valor total a pagar: " + cabeza.getAutomovil().montoTotal(cabeza.getAutomovil().getPrecio(), cabeza.getAutomovil().calcularInterecesCredito(cabeza.getAutomovil().getPrecio(), cant)));
+              totalIngresos(cabeza.getAutomovil().montoTotal(cabeza.getAutomovil().getPrecio(), cabeza.getAutomovil().calcularInterecesCredito(cabeza.getAutomovil().getPrecio(), cant)));
               eliminarAutomovilDeVenta(idd);
             break;
         
@@ -323,6 +340,48 @@ public void buscarAutomovilAnio(int anio){
 
         
     }
-
 }
+public void agregarCliente(){
+	View.mostrarMensaje("Ingrese los datos del cliente:");
+	String n,f;
+	int t;
+	View.mostrarMensaje("Ingrese el nombre:");
+	n = (View.pedirString());
+	View.mostrarMensaje("Ingrese el apellido: ");
+	f = (View.pedirString());
+	View.mostrarMensaje("Ingrese la cedula: ");
+	t = (View.pedirEntero());
+	objLista.setListaPersona(new Cliente(n,f,t));
+}
+
+public void agregarEmpleado() {
+	View.mostrarMensaje("Ingrese los datos del empleado: ");
+	String n,f;
+	int t, l;
+	View.mostrarMensaje("Ingrese el nombre:");
+	n = (View.pedirString());
+	View.mostrarMensaje("Ingrese el apellido: ");
+	f = (View.pedirString());
+	View.mostrarMensaje("Ingrese la cedula: ");
+	t = View.pedirEntero();
+    View.mostrarMensaje("Ingrese el codigo");
+    l = View.pedirEntero();
+	objLista.setListaPersona(new Empleado(n, f, t, l));
+}
+// Este metodo se borra despues
+public void mostrarLista() {
+	System.out.println("Lista:");
+	System.out.println(objLista);
+	
+}
+public void obtenerEmpleados() {
+	View.mostrarEmpleado(lista);
+}
+public double totalIngresos(double imgreso) {
+	 double total = 0;
+	    total += imgreso;
+     return total; 
+}
+
+
 }

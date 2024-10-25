@@ -162,7 +162,6 @@ public void registrarVenta(){
 }
     View.mostrarMensaje("Ingrese id del automovil:");
     int idd = View.pedirEntero();
-    int gurdar;
     if (cabeza.getAutomovil().getId() == idd) {
          View.mostrarMensaje("El vehiculo a vender es: " + cabeza.getAutomovil().toString());
          View.mostrarMensaje("Ingrese la forma de pago: ");

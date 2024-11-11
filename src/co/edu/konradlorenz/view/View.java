@@ -51,7 +51,7 @@ public class View {
 	}
 
 	public static String pedirString() {
-		return sc.nextLine();
+		return sc.next();
 
 	}
 

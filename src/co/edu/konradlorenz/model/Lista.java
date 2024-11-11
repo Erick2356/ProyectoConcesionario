@@ -1,7 +1,7 @@
 package co.edu.konradlorenz.model;
 import java.util.ArrayList;
 public class Lista {
-	  private ArrayList <Persona> listaPersona = new ArrayList();
+	  private ArrayList <Persona> listaPersona = new ArrayList<Persona>();
 	     
 		public Lista() {
 			

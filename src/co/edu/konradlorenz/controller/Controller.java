@@ -4,6 +4,9 @@ package co.edu.konradlorenz.controller;
 import co.edu.konradlorenz.model.*;
 import co.edu.konradlorenz.view.View;
 
+/**
+ * Clase controller (Logica del programa)
+ */
 public class Controller {
 	// private ArrayList<Persona> lista = new ArrayList<>();
 	// private Cliente objCliente = new Cliente();
@@ -12,14 +15,17 @@ public class Controller {
 	private Nodo cabeza;
 	private double total = 0;
 
+	/**
+	 * Metodo run
+	 */
 	public void run() {
 		boolean running = true;
-		while (running) {
-			switch (View.mostrarMenu()) {
+		while (running) {// Estructura while
+			switch (View.mostrarMenu()) {// estructura switch-case que controla el primer menu
 			case 1:
 				boolean gestionAutomoviles = true;
 				while (gestionAutomoviles) {
-					switch (View.mostrarMenuGestionAutomoviles()) {
+					switch (View.mostrarMenuGestionAutomoviles()) {// segundo switch-case para el segundo menu
 					case 1:
 						agregarAutomovil();
 						break;
@@ -40,7 +46,7 @@ public class Controller {
 						buscarAutomovilAnio(anio);
 						break;
 					case 6:
-						gestionAutomoviles = false; // Volver al menú principal
+						gestionAutomoviles = false; // Volver al menu principal
 						break;
 					default:
 						View.mostrarMensaje("Opción no válida en Gestión de Automóviles");
@@ -52,7 +58,7 @@ public class Controller {
 			case 2:
 				boolean gestionVentas = true;
 				while (gestionVentas) {
-					switch (View.mostrarMenuVentas()) {
+					switch (View.mostrarMenuVentas()) {// switch-case para el menuu de ventas
 					case 1:
 						registrarVenta();
 						break;
@@ -61,7 +67,7 @@ public class Controller {
 						View.mostrarMensaje("El ingreso total de ventas es de: " + entrada);
 						break;
 					case 3:
-						gestionVentas = false; // Volver al menú principal
+						gestionVentas = false; // Volver al menu principal
 						break;
 					default:
 						View.mostrarMensaje("Opción no válida en Ventas");
@@ -73,7 +79,8 @@ public class Controller {
 			case 3:
 				boolean gestionClientesEmpleados = true;
 				while (gestionClientesEmpleados) {
-					switch (View.mostrarMenuClientesEmpleados()) {
+					switch (View.mostrarMenuClientesEmpleados()) {// estructura switch-case para el menu de clientes y
+																	// empleados
 					case 1:
 						agregarEmpleado();
 						obtenerEmpleados();
@@ -88,7 +95,7 @@ public class Controller {
 						obtenerEmpleados();
 						break;
 					case 5:
-						gestionClientesEmpleados = false; // Volver al menú principal
+						gestionClientesEmpleados = false; // Volver al menu principal
 						break;
 					default:
 						View.mostrarMensaje("Opción no válida en Clientes y Empleados");
@@ -107,12 +114,18 @@ public class Controller {
 				break;
 			}
 		}
-	}
+	}// termina el metodo run
 
+	/**
+	 * Estructura de datos lista, por nodos
+	 */
 	public Controller() {
 		this.cabeza = null;
 	}
 
+	/**
+	 * Metodo que no retorna ni pide ningun parametro
+	 */
 	public void agregarAutomovil() {
 		View.mostrarMensaje("Ingrese id");
 		int id = View.pedirEntero();

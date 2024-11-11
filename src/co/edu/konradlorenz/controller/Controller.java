@@ -58,7 +58,7 @@ public class Controller {
 			case 2:
 				boolean gestionVentas = true;
 				while (gestionVentas) {
-					switch (View.mostrarMenuVentas()) {// switch-case para el menuu de ventas
+					switch (View.mostrarMenuVentas()) {// switch-case para el menu de ventas
 					case 1:
 						registrarVenta();
 						break;
@@ -144,29 +144,35 @@ public class Controller {
 		View.mostrarMensaje("Ingrese precio");
 		double precio = View.pedirDouble();
 		Automovil nAutomovil = null;
+
 		switch (View.pedirTipoAutomovil()) {
-		case 1:
+		case 1: // Si el automovil es tipo camioneta
 			View.mostrarMensaje("Ingrese capacidad de carga");
 			int capacidad = View.pedirEntero();
 			View.mostrarMensaje("Ingrese tipo de camioneta(tracción)");
 			String tipo = View.pedirString();
+			// Se crea el objeto segun el tipo de automovil
 			nAutomovil = new Camioneta(id, modelo, marca, motor, color, puertas, anio, precio, capacidad, tipo);
 			break;
-		case 2:
+
+		case 2: // Si el tipo es electrico
 			View.mostrarMensaje("Ingrese autonomia");
 			int autonomia = View.pedirEntero();
 			View.mostrarMensaje("Ingrese tipo de bateria");
 			String tipoBateria = View.pedirString();
 			View.mostrarMensaje("Ingrese tiempo de carga");
 			int tiempoCarga = View.pedirEntero();
+			// Se crea el objeto
 			nAutomovil = new Electrico(id, modelo, marca, motor, color, puertas, anio, precio, autonomia, tipoBateria,
 					tiempoCarga);
 			break;
-		case 3:
+
+		case 3: // Si es una motocicleta
 			View.mostrarMensaje("Ingrese cilindraje");
 			int cilindraje = View.pedirEntero();
 			View.mostrarMensaje("Ingrese tipo de motocicleta");
 			String tipoMotocicleta = View.pedirString();
+			// Se crea el objeto
 			nAutomovil = new Motocicleta(id, modelo, marca, motor, color, puertas, anio, precio, cilindraje,
 					tipoMotocicleta);
 			break;
@@ -175,6 +181,10 @@ public class Controller {
 			View.mostrarMensaje("Tipo de automovil invalido");
 			break;
 		}
+		/**
+		 * Se crea un objeto Nodo, para utilizar la estructura de datos lista simple, y
+		 * se agrega el automovil a la lista
+		 */
 		Nodo nuevoNodo = new Nodo(nAutomovil);
 		if (cabeza == null) {
 			cabeza = nuevoNodo;
@@ -192,6 +202,10 @@ public class Controller {
 
 	}
 
+	/**
+	 * Metodo que no retorna ni recibe parametros, este muestra la lista de todos
+	 * los automoviles añadidos al consesionario
+	 */
 	public void mostrarAutomovil() {
 		if (cabeza == null) {
 			View.mostrarMensaje("No hay automoviles");
@@ -206,8 +220,12 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * Metodo que no retorna ni recibe parametros este registra una venta de un
+	 * automovil
+	 */
 	public void registrarVenta() {
-		if (cabeza == null) {
+		if (cabeza == null) {// Verifica si la lista de automoviles esta llena
 			View.mostrarMensaje("No hay automóviles disponibles para venta.");
 			return;
 		}
@@ -220,19 +238,21 @@ public class Controller {
 			actual = actual.getNext();
 		}
 
-		if (actual == null) {
+		if (actual == null) {// Verifica si el id coincide con algun vehiculo
 			View.mostrarMensaje("Automóvil no encontrado con ID: " + id);
 			return;
 		}
 
 		View.mostrarMensaje("El vehículo a vender es: " + actual.getAutomovil().toString());
 		View.mostrarMensaje("Ingrese la forma de pago: ");
-		int forma = View.pedirForma();
+		int forma = View.pedirForma();// Pide al usuario la forma de pago, si es al contado o a credito
 
 		double precio = actual.getAutomovil().getPrecio();
-		if (forma == 1) {
+		if (forma == 1) {// Si es al contado
 			View.mostrarMensaje("El precio a pagar: " + precio);
-		} else if (forma == 2) {
+
+		} else if (forma == 2) {// si es a credito
+
 			View.mostrarMensaje("Precio del Vehículo: " + precio);
 			View.mostrarMensaje("Ingrese el número de cuotas:");
 			double cuotas = View.pedirDouble();
@@ -250,8 +270,12 @@ public class Controller {
 		View.mostrarMensaje("Venta Exitosa.");
 	}
 
+	/**
+	 * Metodo que no recibe ni retorna parametros, aqui se elimina un automovil de
+	 * la lista de automoviles
+	 */
 	public void eliminarAutomovil() {
-		if (cabeza == null) {
+		if (cabeza == null) {// Verifica si la lista esta vacia
 			View.mostrarMensaje("No hay automoviles");
 			return;
 		}
@@ -270,19 +294,25 @@ public class Controller {
 			View.mostrarMensaje("No se encontro ningun automovil con ID" + idd);
 			return;
 		}
-		actual.setNext(actual.next.next);
+		actual.setNext(actual.next.next);// Apunta el nodo al siguiente objeto de la lista para eliminarlo
 		View.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito");
 
 	}
 
+	/**
+	 * Metodo que no retorna pero si recibe un parametro de tipo entero, el id del
+	 * automovil para eliminar despues de haberlo vendido
+	 * 
+	 * @param id
+	 */
 	public void eliminarAutomovilDeVenta(int id) {
-		if (cabeza == null) {
+		if (cabeza == null) {// Verifica si existe el automovil a eliminar
 			View.mostrarMensaje("No hay automóviles para eliminar.");
 			return;
 		}
 
 		if (cabeza.getAutomovil().getId() == id) {
-			cabeza = cabeza.getNext();
+			cabeza = cabeza.getNext();// Elimina el automovil apuntando la cabeza del nodo al siguiente elemento
 			View.mostrarMensaje("Automóvil con ID " + id + " eliminado exitosamente.");
 			return;
 		}
@@ -300,8 +330,14 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * Metodo que no retorna pero si recibe un parametro de tipo entero que es el id
+	 * del automovil a modificar
+	 * 
+	 * @param id
+	 */
 	public void modificarAutomovil(int id) {
-		if (cabeza == null) {
+		if (cabeza == null) {// Verifica si la lista de automoviles esta vacia
 			View.mostrarMensaje("No hay automóviles.");
 			return;
 		}
@@ -311,7 +347,7 @@ public class Controller {
 			actual = actual.getNext();
 		}
 
-		if (actual == null) {
+		if (actual == null) {// Verifica si existe un automovil con ese id
 			View.mostrarMensaje("No se encontró ningún automóvil con ID " + id);
 			return;
 		}
@@ -333,7 +369,10 @@ public class Controller {
 		int nuevoAnio = View.pedirEntero();
 		View.mostrarMensaje("Introduzca nuevo precio");
 		double nuevoPrecio = View.pedirDouble();
-
+		/**
+		 * Se cambian los valores del automovil utilizando los metodos setter del
+		 * objeto, se le añaden los datos recibidos por consola que se encuentran arriba
+		 */
 		automod.setId(nuevoId);
 		automod.setModelo(nuevoModelo);
 		automod.setMarca(nuevaMarca);
@@ -343,33 +382,41 @@ public class Controller {
 		automod.setAnio(nuevoAnio);
 		automod.setPrecio(nuevoPrecio);
 
-		if (automod instanceof Camioneta) {
+		if (automod instanceof Camioneta) {// Si es de tipo camioneta
 			Camioneta camioneta = (Camioneta) automod;
 			View.mostrarMensaje("Introduzca nueva capacidad de carga");
-			camioneta.setCapacidadCarga(View.pedirEntero());
+			camioneta.setCapacidadCarga(View.pedirEntero());// Cambia la capacidad de carga
 			View.mostrarMensaje("Introduzca nuevo tipo (tracción)");
-			camioneta.setTipo(View.pedirString());
-		} else if (automod instanceof Electrico) {
+			camioneta.setTipo(View.pedirString());// Cambia el tipo de traccion
+
+		} else if (automod instanceof Electrico) {// SI es un automovil electrico
 			Electrico electrico = (Electrico) automod;
 			View.mostrarMensaje("Introduzca nueva autonomía");
-			electrico.setAutonomia(View.pedirEntero());
+			electrico.setAutonomia(View.pedirEntero());// Cambia la autonomia
 			View.mostrarMensaje("Introduzca nuevo tipo de batería");
-			electrico.setTipoBateria(View.pedirString());
+			electrico.setTipoBateria(View.pedirString());// Cambia el tipo de bateria
 			View.mostrarMensaje("Introduzca nuevo tiempo de carga");
-			electrico.setTiempoCarga(View.pedirEntero());
-		} else if (automod instanceof Motocicleta) {
+			electrico.setTiempoCarga(View.pedirEntero());// Cambia el tiempo de carga
+
+		} else if (automod instanceof Motocicleta) {// Si es una motocicleta
 			Motocicleta motocicleta = (Motocicleta) automod;
 			View.mostrarMensaje("Introduzca nuevo cilindraje");
-			motocicleta.setCilindraje(View.pedirEntero());
+			motocicleta.setCilindraje(View.pedirEntero());// Cambia el cilindraje
 			View.mostrarMensaje("Introduzca nuevo tipo de motocicleta");
-			motocicleta.setTipoMoto(View.pedirString());
+			motocicleta.setTipoMoto(View.pedirString());// Cambia el tipo de motocicleta
 		}
 
 		View.mostrarMensaje("Automóvil modificado exitosamente.");
 	}
 
+	/**
+	 * Metodo que no retorna pero si recibe un parametro de tipo entero que es el
+	 * año para buscar los automoviles por año
+	 * 
+	 * @param anio
+	 */
 	public void buscarAutomovilAnio(int anio) {
-		if (cabeza == null) {
+		if (cabeza == null) {// Verficia si la lista esta vacia
 			View.mostrarMensaje("No hay automóviles.");
 			return;
 		}
@@ -384,11 +431,16 @@ public class Controller {
 			}
 			actual = actual.getNext();
 		}
-		if (!encontrado) {
+		if (!encontrado) {// Verifica si existen automoviles dentro de la lista que coincidan con el año
+							// ingresado
 			View.mostrarMensaje("No se encontró ningún automóvil del año " + anio);
 		}
 	}
 
+	/**
+	 * Metodo que no recibe ni retorna parametros, este agrega un objeto de tipo
+	 * cliente a una lista
+	 */
 	public void agregarCliente() {
 		View.mostrarMensaje("Ingrese los datos del cliente:");
 		String n, f;
@@ -399,9 +451,13 @@ public class Controller {
 		f = (View.pedirString());
 		View.mostrarMensaje("Ingrese la cedula: ");
 		t = (View.pedirEntero());
-		objLista.setListaPersona(new Cliente(n, f, t));
+		objLista.setListaPersona(new Cliente(n, f, t));// Se crea el objeto cliente con las variables recibidas por
+														// teclado anteriormente
 	}
 
+	/**
+	 * Metodo que no recibe ni retorna ninguna variable, agrega un empleado
+	 */
 	public void agregarEmpleado() {
 		View.mostrarMensaje("Ingrese los datos del empleado: ");
 		String n, f;
@@ -414,11 +470,16 @@ public class Controller {
 		t = View.pedirEntero();
 		View.mostrarMensaje("Ingrese el codigo");
 		l = View.pedirEntero();
-		objLista.setListaPersona(new Empleado(n, f, t, l));
+		objLista.setListaPersona(new Empleado(n, f, t, l));// Se crea el objeto Empleado que hereda de persona con las
+															// variables pedidas por teclado anteriormente
 	}
 
+	/**
+	 * Metodo que no recibe ni retorna ninguna variable, obtiene la lista de
+	 * clientes registrados
+	 */
 	public void obtenerClientes() {
-		for (Object cliente : objLista.getLista()) {
+		for (Object cliente : objLista.getLista()) {// Por cada objeto de tipo cliente el la lista de personas
 			if (cliente instanceof Cliente) {
 				View.mostrarMensaje(cliente.toString());
 
@@ -426,8 +487,12 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * Metodo que no recibe ni retorna ninguna variable, obtiene la lista de los
+	 * empleados registrados
+	 */
 	public void obtenerEmpleados() {
-		for (Object empleado : objLista.getLista()) {
+		for (Object empleado : objLista.getLista()) {// Por cada objeto de tipo empleado en la lista de personas
 			if ((empleado instanceof Empleado)) {
 				View.mostrarMensaje(empleado.toString());
 
@@ -435,6 +500,14 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * Metodo que recibe una variable de tipo double(El ingreso) y retorna una
+	 * variable de tipo double (el total), el metodo calcula el total de ingresos en
+	 * total que tiene el consesionario
+	 * 
+	 * @param ingreso
+	 * @return
+	 */
 	public double totalIngresos(double ingreso) {
 		total += ingreso;
 		return total;

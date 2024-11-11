@@ -1,31 +1,33 @@
 package co.edu.konradlorenz.model;
 
+/**
+ * Clase nodo, aqui esta una estructura de datos de listas como enlaces.
+ */
 public class Nodo {
-    private Automovil  automovil;
-    public Nodo next;
+	private Automovil automovil;
+	public Nodo next;
 
-    public Nodo(Automovil automovil) {
-        this.automovil = automovil;
-        this.next = null;
-    }
+	// Sobrecarga de constructores, lleno y vacio
+	public Nodo(Automovil automovil) {
+		this.automovil = automovil;
+		this.next = null;
+	}
 
-    public Automovil getAutomovil() {
-        return automovil;
-    }
+	// GETTERS AND SETTERS
+	public Automovil getAutomovil() {
+		return automovil;
+	}
 
-    public void setAutomovil(Automovil automovil) {
-        this.automovil = automovil;
-    }
+	public void setAutomovil(Automovil automovil) {
+		this.automovil = automovil;
+	}
 
-    public Nodo getNext() {
-        return next;
-    }
+	public Nodo getNext() {
+		return next;
+	}
 
-    public void setNext(Nodo next) {
-        this.next = next;
-    }
+	public void setNext(Nodo next) {
+		this.next = next;
+	}
 
-    
-
-   
 }

@@ -1,5 +1,7 @@
 package co.edu.konradlorenz.controller;
 
+import co.edu.konradlorenz.view.Display;
+
 /**
  * Clase main, contiene el metodo main en donde se inicializa el objeto
  * controller y se llama al metodo run
@@ -7,6 +9,7 @@ package co.edu.konradlorenz.controller;
 public class AplMain {
 	public static void main(String[] args) {
 		Controller control = new Controller();
+		Display display = new Display();
 		control.run();
 
 	}

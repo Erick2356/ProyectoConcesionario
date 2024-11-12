@@ -30,7 +30,7 @@ public class View {
 	 */
 	public static byte mostrarMenuGestionAutomoviles() {
 		System.out.println("\n1 Agregar automovil " + "\n2 Eliminar Automovil " + "\n3 Modificar automovil "
-				+ "\n4 Mostrar automoviles " + "\n5 Buscar automoviles por año ");
+				+ "\n4 Mostrar automoviles " + "\n5 Buscar automoviles por año " + "\n6 Salir");
 		byte opcion2 = sc.nextByte();
 		return opcion2;
 	}

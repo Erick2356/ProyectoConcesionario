@@ -65,6 +65,18 @@ public class AutomovilesWindow extends JFrame {
 	     JOptionPane.showMessageDialog(this, tipoVehiculoPanel, "Selecciona el tipo de automóvil", JOptionPane.PLAIN_MESSAGE);
 	}
 
+	public int pedirInt(String mensaje) {
+
+		return Integer.parseInt(JOptionPane.showInputDialog(mensaje));
+		}
+			
+	public String pedirString(String mensaje) {
+		return JOptionPane.showInputDialog(mensaje);
+	}
+	
+	public double pedirDouble(String mensaje) {
+		return Double.parseDouble(JOptionPane.showInputDialog(mensaje));
+	}
 	private void eliminarAutomovil() {
 		// Lógica para eliminar automóvil en GUI
 		

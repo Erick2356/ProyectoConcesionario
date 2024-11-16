@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 //import java.util.ArrayList;
 import co.edu.konradlorenz.model.*;
+import co.edu.konradlorenz.view.AutomovilesWindow;
 
 /**
  * Clase controller (Logica del programa)
@@ -15,7 +16,7 @@ public class Controller {
 	private Lista objLista = new Lista();
 	private Nodo cabeza;
 	private double total = 0;
-
+    private AutomovilesWindow pedir = new AutomovilesWindow(null);
 	/**
 	 * Metodo run
 	 */
@@ -34,35 +35,35 @@ public class Controller {
 	 * Metodo que no retorna ni pide ningun parametro
 	 */
 	public void agregarAutomovil(int opcion) { 
-		
-        int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese ID:"));
-        String modelo = JOptionPane.showInputDialog("Ingrese Modelo:");
-        String marca = JOptionPane.showInputDialog("Ingrese Marca:");
-        String motor = JOptionPane.showInputDialog("Ingrese Motor:");
-        String color = JOptionPane.showInputDialog("Ingrese Color:");
-        int puertas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Cantidad de Puertas:"));
-        int anio = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Año:"));
-        double precio = Double.parseDouble(JOptionPane.showInputDialog("Ingrese Precio:"));
+//		AutomovilesWindow pedir = new AutomovilesWindow(null);
+        int id = pedir.pedirInt("Ingrese ID:");
+        String modelo = pedir.pedirString("Ingrese Modelo");
+        String marca = pedir.pedirString("Ingrese Marca");
+        String motor = pedir.pedirString("Ingrese Motor");
+        String color = pedir.pedirString("Ingrese Color");
+        int puertas = pedir.pedirInt("Ingrese Cantidad de Puertas");
+        int anio = pedir.pedirInt("Ingrese Año");
+        double precio = pedir.pedirDouble("Ingrese Precio");
         Automovil nAutomovil = null;
 		switch (opcion) {
 		case 1: // Si el automovil es tipo camioneta
-			 int capacidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Capacidad de Carga:"));
-             String traccion = JOptionPane.showInputDialog("Ingrese Tipo de Tracción:");
+			 int capacidad = pedir.pedirInt("Ingrese la Capacidad");
+             String traccion = pedir.pedirString("Ingrese Traccion");
              new Camioneta(id, modelo, marca, motor, color, puertas, anio, precio, capacidad, traccion);
              break;
 			
 
 		case 2: // Si el tipo es electrico
-    		 int autonomia = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Autonomía:"));
-            String bateria = JOptionPane.showInputDialog("Ingrese Tipo de Batería:");
-            int tiempoCarga = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Tiempo de Carga:"));
+    		 int autonomia = pedir.pedirInt("Ingrese autonomia");
+            String bateria = pedir.pedirString("Ingrese Tipo de Bateria");
+            int tiempoCarga = pedir.pedirInt("Ingrese el tiempo de Carga");
             new Electrico(id, modelo, marca, motor, color, puertas, anio, precio, autonomia, bateria, tiempoCarga);
             
 			break;
 
 		case 3: // Si es una motocicleta
-			  int cilindraje = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Cilindraje:"));
-              String tipoMoto = JOptionPane.showInputDialog("Ingrese Tipo de Motocicleta:");
+			  int cilindraje = pedir.pedirInt("Ingrese Cilindraje");
+              String tipoMoto = pedir.pedirString("Ingrese tipo de Moto");
               new Motocicleta(id, modelo, marca, motor, color, puertas, anio, precio, cilindraje, tipoMoto);
 			break;
 
@@ -120,8 +121,7 @@ public class Controller {
 		}
 
 		
-		int id = Integer.parseInt(JOptionPane.showInputDialog("Ingrese ID:"));
-
+		int id = pedir.pedirInt("Ingrese ID:");
 		Nodo actual = cabeza;
 		while (actual != null && actual.getAutomovil().getId() != id) {
 			actual = actual.getNext();
@@ -144,8 +144,8 @@ public class Controller {
 
 //			View.mostrarMensaje("Precio del Vehículo: " + precio);
 //			View.mostrarMensaje("Ingrese el número de cuotas:");
-			double cuotas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cuotas"));
-			double interes = actual.getAutomovil().calcularInterecesCredito(precio, cuotas);
+			double cuotas = pedir.pedirDouble("Ingrese El Numero de Cuotas");
+			double interes = pedir.pedirDouble("Ingrese Intereses");
 			double montoTotal = actual.getAutomovil().montoTotal(precio, interes);
 //			View.mostrarMensaje("Interés total acumulado: " + interes);
 //			View.mostrarMensaje("Valor de cuota mensual: " + actual.getAutomovil().calcularValorDecuota(montoTotal, cuotas));
@@ -168,7 +168,7 @@ public class Controller {
 			return;
 		}
 //		View.mostrarMensaje("Ingrese id del automovil a eliminar");
-		int idd =Integer.parseInt(JOptionPane.showInputDialog("Ingrese ID:"));
+		int idd = pedir.pedirInt("Ingrese ID");
 		if (cabeza.getAutomovil().getId() == idd) {
 			cabeza = cabeza.next;
 			return;
@@ -242,21 +242,21 @@ public class Controller {
 		Automovil automod = actual.getAutomovil();
 //		View.mostrarMensaje("Automovil encontrado, digite los nuevos valores");
 //		View.mostrarMensaje("Introduzca nuevo id");
-		int nuevoId = Integer.parseInt(JOptionPane.showInputDialog("Ingrese ID:"));
+		int nuevoId = pedir.pedirInt("Ingrese ID:");
 //		View.mostrarMensaje("Introduzca nuevo modelo");
-		String nuevoModelo = JOptionPane.showInputDialog("Ingrese Modelo:");
+		String nuevoModelo = pedir.pedirString("Ingrese Modelo");
 //		View.mostrarMensaje("Introduzca nueva marca");
-		String nuevaMarca =  JOptionPane.showInputDialog("Ingrese Marca:");
+		String nuevaMarca =  pedir.pedirString("Ingrese Marca");
 //		View.mostrarMensaje("Introduzca nuevo motor");
-		String nuevoMotor = JOptionPane.showInputDialog("Ingrese Motor:");
+		String nuevoMotor = pedir.pedirString("Ingrese Motor");
 //		View.mostrarMensaje("Introduzca nuevo color");
-		String nuevoColor = JOptionPane.showInputDialog("Ingrese Color:");
+		String nuevoColor = pedir.pedirString("Ingrese Color");
 //		View.mostrarMensaje("Introduzca nueva cantidad de puertas");
-		int nuevaPuertas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Numero De Puertas:"));
+		int nuevaPuertas = pedir.pedirInt("Ingrese Numero de Puertas");
 //		View.mostrarMensaje("Introduzca nuevo año");
-		int nuevoAnio = Integer.parseInt(JOptionPane.showInputDialog("Ingrese año:"));
+		int nuevoAnio = pedir.pedirInt("Ingrese Año");
 //		View.mostrarMensaje("Introduzca nuevo precio");
-		double nuevoPrecio = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Precio:"));
+		double nuevoPrecio = pedir.pedirDouble("Ingrese Precio");
 		/**
 		 * Se cambian los valores del automovil utilizando los metodos setter del
 		 * objeto, se le añaden los datos recibidos por consola que se encuentran arriba
@@ -273,25 +273,25 @@ public class Controller {
 		if (automod instanceof Camioneta) {// Si es de tipo camioneta
 			Camioneta camioneta = (Camioneta) automod;
 //			View.mostrarMensaje("Introduzca nueva capacidad de carga");
-			camioneta.setCapacidadCarga(Integer.parseInt(JOptionPane.showInputDialog("Ingrese La Capacidad de carga:")));// Cambia la capacidad de carga
+			camioneta.setCapacidadCarga(pedir.pedirInt("Ingrese Capacidad"));// Cambia la capacidad de carga
 //			View.mostrarMensaje("Introduzca nuevo tipo (tracción)");
-			camioneta.setTipo(JOptionPane.showInputDialog("Ingrese Nuevo Tipo de (Traccion):"));// Cambia el tipo de traccion
+			camioneta.setTipo(pedir.pedirString("Ingrese tipo de Traccion"));// Cambia el tipo de traccion
 
 		} else if (automod instanceof Electrico) {// SI es un automovil electrico
 			Electrico electrico = (Electrico) automod;
 //			View.mostrarMensaje("Introduzca nueva autonomía");
-			electrico.setAutonomia(Integer.parseInt(JOptionPane.showInputDialog("Ingrese La Autonomía:")));// Cambia la autonomia
+			electrico.setAutonomia(pedir.pedirInt("Ingrese Autonomia"));// Cambia la autonomia
 //			View.mostrarMensaje("Introduzca nuevo tipo de batería");
-			electrico.setTipoBateria(JOptionPane.showInputDialog("Ingrese Nuevo Tipo de Bateria:"));// Cambia el tipo de bateria
+			electrico.setTipoBateria(pedir.pedirString("Ingrese Tipo de bateria"));// Cambia el tipo de bateria
 //			View.mostrarMensaje("Introduzca nuevo tiempo de carga");
-			electrico.setTiempoCarga(Integer.parseInt(JOptionPane.showInputDialog("Ingrese El Tiempo De Carga:")));// Cambia el tiempo de carga
+			electrico.setTiempoCarga(Integer.parseInt("Ingrese Tiempo de Carga"));// Cambia el tiempo de carga
 
 		} else if (automod instanceof Motocicleta) {// Si es una motocicleta
 			Motocicleta motocicleta = (Motocicleta) automod;
 //			View.mostrarMensaje("Introduzca nuevo cilindraje");
-			motocicleta.setCilindraje(Integer.parseInt(JOptionPane.showInputDialog("Ingrese El Cilindraje:")));// Cambia el cilindraje
+			motocicleta.setCilindraje(pedir.pedirInt("Ingrese Cilindraje"));// Cambia el cilindraje
 //			View.mostrarMensaje("Introduzca nuevo tipo de motocicleta");
-			motocicleta.setTipoMoto(JOptionPane.showInputDialog("Ingrese Nuevo Tipo de Motocicleta:"));// Cambia el tipo de motocicleta
+			motocicleta.setTipoMoto(pedir.pedirString("Ingrese tipo de moto"));// Cambia el tipo de motocicleta
 		}
 
 //		View.mostrarMensaje("Automóvil modificado exitosamente.");
@@ -334,11 +334,11 @@ public class Controller {
 		String n, f;
 		int t;
 //		View.mostrarMensaje("Ingrese el nombre:");
-		n = (JOptionPane.showInputDialog("Ingrese El Nombre:"));
+		n = (pedir.pedirString("Ingrese el nombre"));
 //		View.mostrarMensaje("Ingrese el apellido: ");
-		f = JOptionPane.showInputDialog("Ingrese El Apellido:");
+		f = pedir.pedirString("Ingrese el apellido");
 //		View.mostrarMensaje("Ingrese la cedula: ");
-		t =Integer.parseInt(JOptionPane.showInputDialog("Ingrese Cedula:"));
+		t = pedir.pedirInt("Ingrese Cedula");
 		objLista.setListaPersona(new Cliente(n, f, t));// Se crea el objeto cliente con las variables recibidas por
 														// teclado anteriormente
 	}
@@ -351,13 +351,13 @@ public class Controller {
 		String n, f;
 		int t, l;
 //		View.mostrarMensaje("Ingrese el nombre:");
-		n = JOptionPane.showInputDialog("Ingrese El Nombre:");
+		n = pedir.pedirString("Ingrese Nombre");
 //		View.mostrarMensaje("Ingrese el apellido: ");
-		f = JOptionPane.showInputDialog("Ingrese El Apellido:");
+		f = pedir.pedirString("Ingrese Apellido");
 //		View.mostrarMensaje("Ingrese la cedula: ");
-		t =  Integer.parseInt(JOptionPane.showInputDialog("Ingrese La Cedula:"));
+		t =  pedir.pedirInt("Ingrese cedula");
 //		View.mostrarMensaje("Ingrese el codigo");
-		l =  Integer.parseInt(JOptionPane.showInputDialog("Ingrese El Codigo:"));
+		l =  pedir.pedirInt("Ingrese Codigo");
 		objLista.setListaPersona(new Empleado(n, f, t, l));// Se crea el objeto Empleado que hereda de persona con las
 															// variables pedidas por teclado anteriormente
 	}

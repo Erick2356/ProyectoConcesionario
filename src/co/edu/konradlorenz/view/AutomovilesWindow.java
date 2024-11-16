@@ -42,16 +42,32 @@ public class AutomovilesWindow extends JFrame {
 		btnMostrarAutomoviles.addActionListener(e -> mostrarAutomoviles());
 		btnBuscarAutomoviles.addActionListener(e -> buscarAutomoviles());
 		btnSalir.addActionListener(e -> dispose());
-
 		add(panel);
+		
+		
 	}
 
 	private void agregarAutomovil() {
 		// Lógica para agregar automóvil en GUI (puedes invocar el método en Controller)
+//		controller.agregarAutomovil();
+		JPanel tipoVehiculoPanel = new JPanel();
+	    tipoVehiculoPanel.setLayout(new GridLayout(3, 1)); // Tres botones en columna
+
+		JButton btnCamioneta = new JButton("Camioneta");
+		JButton btnElectrico = new JButton("Electrico");
+		JButton btnMotocicleta = new JButton("Moto");
+		 btnCamioneta.addActionListener(e -> controller.agregarAutomovil(1)); // Camioneta
+	     btnElectrico.addActionListener(e -> controller.agregarAutomovil(2)); // Vehículo Eléctrico
+	     btnMotocicleta.addActionListener(e -> controller.agregarAutomovil(3));
+	     tipoVehiculoPanel.add(btnCamioneta);
+	     tipoVehiculoPanel.add(btnElectrico);
+	     tipoVehiculoPanel.add(btnMotocicleta);
+	     JOptionPane.showMessageDialog(this, tipoVehiculoPanel, "Selecciona el tipo de automóvil", JOptionPane.PLAIN_MESSAGE);
 	}
 
 	private void eliminarAutomovil() {
 		// Lógica para eliminar automóvil en GUI
+		
 	}
 
 	private void modificarAutomovil() {

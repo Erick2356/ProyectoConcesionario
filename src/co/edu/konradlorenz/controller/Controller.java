@@ -1,5 +1,7 @@
 package co.edu.konradlorenz.controller;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 //import java.util.ArrayList;
@@ -49,7 +51,7 @@ public class Controller {
 		case 1: // Si el automovil es tipo camioneta
 			 int capacidad = pedir.pedirInt("Ingrese la Capacidad");
              String traccion = pedir.pedirString("Ingrese Traccion");
-             new Camioneta(id, modelo, marca, motor, color, puertas, anio, precio, capacidad, traccion);
+            nAutomovil = new Camioneta(id, modelo, marca, motor, color, puertas, anio, precio, capacidad, traccion);
              break;
 			
 
@@ -57,14 +59,14 @@ public class Controller {
     		 int autonomia = pedir.pedirInt("Ingrese autonomia");
             String bateria = pedir.pedirString("Ingrese Tipo de Bateria");
             int tiempoCarga = pedir.pedirInt("Ingrese el tiempo de Carga");
-            new Electrico(id, modelo, marca, motor, color, puertas, anio, precio, autonomia, bateria, tiempoCarga);
+          nAutomovil = new Electrico(id, modelo, marca, motor, color, puertas, anio, precio, autonomia, bateria, tiempoCarga);
             
 			break;
 
 		case 3: // Si es una motocicleta
 			  int cilindraje = pedir.pedirInt("Ingrese Cilindraje");
               String tipoMoto = pedir.pedirString("Ingrese tipo de Moto");
-              new Motocicleta(id, modelo, marca, motor, color, puertas, anio, precio, cilindraje, tipoMoto);
+             nAutomovil = new Motocicleta(id, modelo, marca, motor, color, puertas, anio, precio, cilindraje, tipoMoto);
 			break;
 
 		default:
@@ -99,14 +101,23 @@ public class Controller {
 	public void mostrarAutomovil() {
 		if (cabeza == null) {
 //			View.mostrarMensaje("No hay automoviles");
+			pedir.mostrarMensaje("No hay Auntomoviles");
 		} else {
+			ArrayList<String> listaAutomoviles = new ArrayList<>();
 			Nodo aux = cabeza;
 			while (aux != null) {
 				Automovil automovil = aux.getAutomovil();
 //				View.mostrarMensaje(automovil.toString());
+				if(automovil != null) {
+				listaAutomoviles.add(automovil.toString());
+//				En busca de mostrar los elementos de una forma mas ideal
+			}else {
+				 listaAutomoviles.add("Automóvil no definido en este nodo."); 
+			}
 				aux = aux.getNext();
 
 			}
+			pedir.mostrarLista(listaAutomoviles, "Lista de Automoviles");
 		}
 	}
 
@@ -117,6 +128,7 @@ public class Controller {
 	public void registrarVenta(int formaPago) {
 		if (cabeza == null) {// Verifica si la lista de automoviles esta llena
 			//View.mostrarMensaje("No hay automóviles disponibles para venta.");
+			pedir.mostrarMensaje("No hay automóviles disponibles para venta.");
 			return;
 		}
 
@@ -165,6 +177,7 @@ public class Controller {
 	public void eliminarAutomovil() {
 		if (cabeza == null) {// Verifica si la lista esta vacia
 //			View.mostrarMensaje("No hay automoviles");
+			pedir.mostrarMensaje("No hay automoviles en la lista");
 			return;
 		}
 //		View.mostrarMensaje("Ingrese id del automovil a eliminar");
@@ -180,10 +193,12 @@ public class Controller {
 		}
 		if (actual.next == null) {
 //			View.mostrarMensaje("No se encontro ningun automovil con ID" + idd);
+			pedir.mostrarMensaje("No se encontro ningun automovil con ID" + idd);
 			return;
 		}
 		actual.setNext(actual.next.next);// Apunta el nodo al siguiente objeto de la lista para eliminarlo
 //		View.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito");
+        pedir.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito");
 
 	}
 
@@ -196,12 +211,14 @@ public class Controller {
 	public void eliminarAutomovilDeVenta(int ventaId) {
 		if (cabeza == null) {// Verifica si existe el automovil a eliminar
 //			View.mostrarMensaje("No hay automóviles para eliminar.");
+			pedir.mostrarMensaje("No hay automóviles para eliminar.");
 			return;
 		}
 
 		if (cabeza.getAutomovil().getId() == ventaId) {
 			cabeza = cabeza.getNext();// Elimina el automovil apuntando la cabeza del nodo al siguiente elemento
 //			View.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado exitosamente.");
+			pedir.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado exitosamente.");
 			return;
 		}
 
@@ -212,9 +229,11 @@ public class Controller {
 
 		if (actual.getNext() == null) {
 //			View.mostrarMensaje("No se encontró ningún automóvil con ID " + ventaId);
+			pedir.mostrarMensaje("No se encontró ningún automóvil con ID " + ventaId);
 		} else {
 			actual.setNext(actual.getNext().getNext());
 //			View.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado después de la venta.");
+			pedir.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado después de la venta.");
 		}
 	}
 
@@ -224,12 +243,12 @@ public class Controller {
 	 * 
 	 * @param id
 	 */
-	public void modificarAutomovil(int id) {
+	public void modificarAutomovil() {
 		if (cabeza == null) {// Verifica si la lista de automoviles esta vacia
-//			View.mostrarMensaje("No hay automóviles.");
+			pedir.mostrarMensaje("No hay automoviles en la lista");
 			return;
 		}
-
+          int id = pedir.pedirInt("Ingrese El ID del vehiculo");
 		Nodo actual = cabeza;
 		while (actual != null && actual.getAutomovil().getId() != id) {
 			actual = actual.getNext();
@@ -237,6 +256,7 @@ public class Controller {
 
 		if (actual == null) {// Verifica si existe un automovil con ese id
 //			View.mostrarMensaje("No se encontró ningún automóvil con ID " + id);
+			pedir.mostrarMensaje("No se encontró ningún automóvil con ID " + id);
 			return;
 		}
 		Automovil automod = actual.getAutomovil();
@@ -293,7 +313,7 @@ public class Controller {
 //			View.mostrarMensaje("Introduzca nuevo tipo de motocicleta");
 			motocicleta.setTipoMoto(pedir.pedirString("Ingrese tipo de moto"));// Cambia el tipo de motocicleta
 		}
-
+          pedir.mostrarMensaje("Automovil modificado");
 //		View.mostrarMensaje("Automóvil modificado exitosamente.");
 	}
 
@@ -303,12 +323,14 @@ public class Controller {
 	 * 
 	 * @param anio
 	 */
-	public void buscarAutomovilAnio(int anio) {
+	public void buscarAutomovilAnio() {
+		 
 		if (cabeza == null) {// Verficia si la lista esta vacia
 //			View.mostrarMensaje("No hay automóviles.");
+			pedir.mostrarMensaje("No hay automóviles.");
 			return;
 		}
-
+		int anio = pedir.pedirInt("Ingrese el año del vehiculo");
 		boolean encontrado = false;
 		Nodo actual = cabeza;
 		while (actual != null) {
@@ -322,6 +344,7 @@ public class Controller {
 		if (!encontrado) {// Verifica si existen automoviles dentro de la lista que coincidan con el año
 							// ingresado
 //			View.mostrarMensaje("No se encontró ningún automóvil del año " + anio);
+			pedir.mostrarMensaje("No se encontró ningún automóvil del año " + anio);
 		}
 	}
 
@@ -402,8 +425,7 @@ public class Controller {
 
 
 	public String mostrarVentas() {
-		
-	}
+		return "";	}
 
 	public void registrarVenta(String clienteId, String automovilId) {
 		if (cabeza == null) {// Verifica si la lista de automoviles esta llena

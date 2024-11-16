@@ -64,8 +64,8 @@ public class VentasWindow extends JFrame {
 	}
 
 	private void calcularIngresosTotales() {
-		double ingresos = controller.calcularIngresosTotales();
-		JOptionPane.showMessageDialog(this, "Ingresos Totales: $" + ingresos, "Ingresos Totales",
-				JOptionPane.INFORMATION_MESSAGE);
+//		double ingresos = controller.calcularIngresosTotales();
+//		JOptionPane.showMessageDialog(this, "Ingresos Totales: $" + ingresos, "Ingresos Totales",
+//				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

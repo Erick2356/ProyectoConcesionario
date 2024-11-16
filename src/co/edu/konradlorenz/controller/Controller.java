@@ -2,7 +2,6 @@ package co.edu.konradlorenz.controller;
 
 //import java.util.ArrayList;
 import co.edu.konradlorenz.model.*;
-import co.edu.konradlorenz.view.View;
 
 /**
  * Clase controller (Logica del programa)
@@ -19,101 +18,7 @@ public class Controller {
 	 * Metodo run
 	 */
 	public void run() {
-		boolean running = true;
-		while (running) {// Estructura while
-			switch (View.mostrarMenu()) {// estructura switch-case que controla el primer menu
-			case 1:
-				boolean gestionAutomoviles = true;
-				while (gestionAutomoviles) {
-					switch (View.mostrarMenuGestionAutomoviles()) {// segundo switch-case para el segundo menu
-					case 1:
-						agregarAutomovil();
-						break;
-					case 2:
-						eliminarAutomovil();
-						break;
-					case 3:
-						View.mostrarMensaje("Introduzca el id del automovil a modificar");
-						int id = View.pedirEntero();
-						modificarAutomovil(id);
-						break;
-					case 4:
-						mostrarAutomovil();
-						break;
-					case 5:
-						View.mostrarMensaje("Introduzca el año de los automoviles a buscar");
-						int anio = View.pedirEntero();
-						buscarAutomovilAnio(anio);
-						break;
-					case 6:
-						gestionAutomoviles = false; // Volver al menu principal
-						break;
-					default:
-						View.mostrarMensaje("Opción no válida en Gestión de Automóviles");
-						break;
-					}
-				}
-				break;
 
-			case 2:
-				boolean gestionVentas = true;
-				while (gestionVentas) {
-					switch (View.mostrarMenuVentas()) {// switch-case para el menu de ventas
-					case 1:
-						registrarVenta();
-						break;
-					case 2:
-						double entrada = totalIngresos(0);
-						View.mostrarMensaje("El ingreso total de ventas es de: " + entrada);
-						break;
-					case 3:
-						gestionVentas = false; // Volver al menu principal
-						break;
-					default:
-						View.mostrarMensaje("Opción no válida en Ventas");
-						break;
-					}
-				}
-				break;
-
-			case 3:
-				boolean gestionClientesEmpleados = true;
-				while (gestionClientesEmpleados) {
-					switch (View.mostrarMenuClientesEmpleados()) {// estructura switch-case para el menu de clientes y
-																	// empleados
-					case 1:
-						agregarEmpleado();
-						obtenerEmpleados();
-						break;
-					case 2:
-						agregarCliente();
-						break;
-					case 3:
-						obtenerClientes();
-						break;
-					case 4:
-						obtenerEmpleados();
-						break;
-					case 5:
-						gestionClientesEmpleados = false; // Volver al menu principal
-						break;
-					default:
-						View.mostrarMensaje("Opción no válida en Clientes y Empleados");
-						break;
-					}
-				}
-				break;
-
-			case 4:
-				View.mostrarMensaje("Saliendo del programa...");
-				running = false;
-				break;
-
-			default:
-				View.mostrarMensaje("Opción no válida en el menú principal");
-				break;
-			}
-		}
 	}// termina el metodo run
 
 	/**
@@ -127,7 +32,9 @@ public class Controller {
 	 * Metodo que no retorna ni pide ningun parametro
 	 */
 	public void agregarAutomovil() {
-		View.mostrarMensaje("Ingrese id");
+		/**
+		 * View.mostrarMensaje("Ingrese id");
+		 
 		int id = View.pedirEntero();
 		View.mostrarMensaje("Ingrese modelo");
 		String modelo = View.pedirString();
@@ -144,6 +51,7 @@ public class Controller {
 		View.mostrarMensaje("Ingrese precio");
 		double precio = View.pedirDouble();
 		Automovil nAutomovil = null;
+		*/
 
 		switch (View.pedirTipoAutomovil()) {
 		case 1: // Si el automovil es tipo camioneta
@@ -226,12 +134,12 @@ public class Controller {
 	 */
 	public void registrarVenta() {
 		if (cabeza == null) {// Verifica si la lista de automoviles esta llena
-			View.mostrarMensaje("No hay automóviles disponibles para venta.");
+			//View.mostrarMensaje("No hay automóviles disponibles para venta.");
 			return;
 		}
 
-		View.mostrarMensaje("Ingrese ID del automóvil:");
-		int id = View.pedirEntero();
+		//View.mostrarMensaje("Ingrese ID del automóvil:");
+		//int id = View.pedirEntero();
 
 		Nodo actual = cabeza;
 		while (actual != null && actual.getAutomovil().getId() != id) {
@@ -303,30 +211,30 @@ public class Controller {
 	 * Metodo que no retorna pero si recibe un parametro de tipo entero, el id del
 	 * automovil para eliminar despues de haberlo vendido
 	 * 
-	 * @param id
+	 * @param ventaId
 	 */
-	public void eliminarAutomovilDeVenta(int id) {
+	public void eliminarAutomovilDeVenta(String ventaId) {
 		if (cabeza == null) {// Verifica si existe el automovil a eliminar
 			View.mostrarMensaje("No hay automóviles para eliminar.");
 			return;
 		}
 
-		if (cabeza.getAutomovil().getId() == id) {
+		if (cabeza.getAutomovil().getId() == ventaId) {
 			cabeza = cabeza.getNext();// Elimina el automovil apuntando la cabeza del nodo al siguiente elemento
-			View.mostrarMensaje("Automóvil con ID " + id + " eliminado exitosamente.");
+			View.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado exitosamente.");
 			return;
 		}
 
 		Nodo actual = cabeza;
-		while (actual.getNext() != null && actual.getNext().getAutomovil().getId() != id) {
+		while (actual.getNext() != null && actual.getNext().getAutomovil().getId() != ventaId) {
 			actual = actual.getNext();
 		}
 
 		if (actual.getNext() == null) {
-			View.mostrarMensaje("No se encontró ningún automóvil con ID " + id);
+			View.mostrarMensaje("No se encontró ningún automóvil con ID " + ventaId);
 		} else {
 			actual.setNext(actual.getNext().getNext());
-			View.mostrarMensaje("Automóvil con ID " + id + " eliminado después de la venta.");
+			View.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado después de la venta.");
 		}
 	}
 
@@ -511,6 +419,46 @@ public class Controller {
 	public double totalIngresos(double ingreso) {
 		total += ingreso;
 		return total;
+	}
+
+	public double calcularIngresosTotales() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public String mostrarVentas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void registrarVenta(String clienteId, String automovilId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void eliminarCliente(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void eliminarEmpleado(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void agregarEmpleado(String id, String nombre) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String mostrarClientes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void agregarCliente(String id, String nombre) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

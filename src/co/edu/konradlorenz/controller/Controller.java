@@ -400,33 +400,62 @@ public class Controller {
 		return total;
 	}
 
-	public double calcularIngresosTotales() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	public String mostrarVentas() {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	public void registrarVenta(String clienteId, String automovilId) {
-		// TODO Auto-generated method stub
+		if (cabeza == null) {// Verifica si la lista de automoviles esta llena
+			return;
+		}
+
+		int id = pedir.pedirInt("Ingrese ID del automóvil:");
+
+		Nodo actual = cabeza;
+		while (actual != null && actual.getAutomovil().getId() != id) {
+			actual = actual.getNext();
+		}
+
+		if (actual == null) {// Verifica si el id coincide con algun vehiculo
+			return;
+		}
+
+		
+		int forma = pedir.pedirInt("Ingrese forma de pago:");// Pide al usuario la forma de pago, si es al contado o a credito
+
+		double precio = actual.getAutomovil().getPrecio();
+		if (forma == 1) {// Si es al contado
+
+		} else if (forma == 2) {// si es a credito
+
+			double cuotas = pedir.pedirDouble("Ingrese número de cuotas");
+			double interes = actual.getAutomovil().calcularInterecesCredito(precio, cuotas);
+			double montoTotal = actual.getAutomovil().montoTotal(precio, interes);
+			precio = montoTotal;
+		}
+
+		totalIngresos(precio);
+		eliminarAutomovilDeVenta(id);
 		
 	}
 
 	public void eliminarCliente(String id) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void eliminarEmpleado(String id) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void agregarEmpleado(String id, String nombre) {
-		// TODO Auto-generated method stub
+		String n, f;
+		int t, l;
+		n = (pedir.pedirString("Ingrese nombre"));
+		f = (pedir.pedirString("Ingrese apellido"));
+		t = (int) pedir.pedirDouble("Ingrese la cedula");
+		l = pedir.pedirInt("Ingrese el código");
+		objLista.setListaPersona(new Empleado(n, f, t, l));
 		
 	}
 
@@ -436,7 +465,12 @@ public class Controller {
 	}
 
 	public void agregarCliente(String id, String nombre) {
-		// TODO Auto-generated method stub
+		String n, f;
+		int t;
+		n = (pedir.pedirString("Ingrese nombre"));
+		f = (pedir.pedirString("Ingrese apellido"));
+		t = (int) pedir.pedirDouble("Ingrese la cedula");
+		objLista.setListaPersona(new Cliente(n, f, t));
 		
 	}
 

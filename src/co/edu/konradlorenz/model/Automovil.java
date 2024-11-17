@@ -14,7 +14,8 @@ public abstract class Automovil implements Interes {
 	private int cantidadPuertas;
 	private int anio;
 	private double precio;
-	 private Cliente cliente;
+	private Cliente cliente;
+
 	/**
 	 * Constructor vacio
 	 */
@@ -119,8 +120,8 @@ public abstract class Automovil implements Interes {
 	 */
 	@Override
 	public String toString() {
-		return "Automovil{" + "id=" + id + ", modelo='" + modelo + '\'' + ", marca='" + marca + '\'' + ", motor='"
-				+ motor + '\'' + ", color='" + color + '\'' + ", cantidadPuertas=" + cantidadPuertas + ", anio=" + anio
-				+ ", precio=" + precio + '}';
+		return "Automovil (\n" + "  ID: " + id + ",\n" + "  Modelo: '" + modelo + "',\n" + "  Marca: '" + marca + "',\n"
+				+ "  Motor: '" + motor + "',\n" + "  Color: '" + color + "',\n" + "  Cantidad de puertas: "
+				+ cantidadPuertas + ",\n" + "  Año: " + anio + ",\n" + "  Precio: $" + precio + "\n" + ')';
 	}
 }

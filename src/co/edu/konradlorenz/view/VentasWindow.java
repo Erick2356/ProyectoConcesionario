@@ -14,11 +14,11 @@ public class VentasWindow extends JFrame {
 
 	private void initComponents() {
 		setTitle("Gestión de Ventas");
-		setSize(400, 300);
+		setSize(800, 500);
 		setLocationRelativeTo(null);
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(5, 1));
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 150));
 
 		JButton btnRegistrarVenta = new JButton("Registrar Venta");
 		JButton btnEliminarVenta = new JButton("Eliminar Venta");
@@ -51,9 +51,9 @@ public class VentasWindow extends JFrame {
 	}
 
 	private void eliminarVenta() {
-		int ventaId = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el ID de la venta a eliminar:"));
+		int ventaId =  Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el ID de la venta a eliminar:"));
 //		if (ventaId != null) {
-		controller.eliminarAutomovilDeVenta(ventaId);
+			controller.eliminarAutomovilDeVenta(ventaId);
 //		}
 	}
 
@@ -63,9 +63,12 @@ public class VentasWindow extends JFrame {
 		JOptionPane.showMessageDialog(this, ventas, "Ventas Registradas", JOptionPane.INFORMATION_MESSAGE);
 	}
 
-	private void calcularIngresosTotales() {
-//		double ingresos = controller.calcularIngresosTotales();
-//		JOptionPane.showMessageDialog(this, "Ingresos Totales: $" + ingresos, "Ingresos Totales",
-//				JOptionPane.INFORMATION_MESSAGE);
+
+	private void calcularIngresosTotales() {// se deja como comentario debido a que esta generando error
+		//double ingresos = controller.calcularIngresosTotales();
+		//JOptionPane.showMessageDialog(this, "Ingresos Totales: $" + ingresos, "Ingresos Totales",
+			//	JOptionPane.INFORMATION_MESSAGE);
+
+	
 	}
 }

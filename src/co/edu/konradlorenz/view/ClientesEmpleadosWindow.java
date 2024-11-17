@@ -14,18 +14,31 @@ public class ClientesEmpleadosWindow extends JFrame {
 
 	private void initComponents() {
 		setTitle("Gestión de Clientes y Empleados");
-		setSize(400, 300);
+		setSize(800, 500);
 		setLocationRelativeTo(null);
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(6, 1));
+		panel.setLayout(null);
+		
+		
+		
+		
+		
 
 		JButton btnAgregarCliente = new JButton("Agregar Cliente");
+		
+		btnAgregarCliente.setBounds(50, 100, 200, 40);
 		JButton btnEliminarCliente = new JButton("Eliminar Cliente");
+		btnEliminarCliente.setBounds(300, 100, 200, 40);
 		JButton btnMostrarClientes = new JButton("Mostrar Clientes");
+		btnMostrarClientes.setBounds(550, 100, 200, 40);
 		JButton btnAgregarEmpleado = new JButton("Agregar Empleado");
+		btnAgregarEmpleado.setBounds(100, 190, 200, 40);
+		
 		JButton btnEliminarEmpleado = new JButton("Eliminar Empleado");
+		btnEliminarEmpleado.setBounds(450, 190, 200, 40);
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.setBounds(340, 290, 100, 40);
 
 		panel.add(btnAgregarCliente);
 		panel.add(btnEliminarCliente);
@@ -40,6 +53,7 @@ public class ClientesEmpleadosWindow extends JFrame {
 		btnAgregarEmpleado.addActionListener(e -> agregarEmpleado());
 		btnEliminarEmpleado.addActionListener(e -> eliminarEmpleado());
 		btnSalir.addActionListener(e -> dispose());
+		panel.setBackground(Color.black);
 
 		add(panel);
 	}

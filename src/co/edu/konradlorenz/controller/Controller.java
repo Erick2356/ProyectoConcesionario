@@ -1,6 +1,7 @@
 package co.edu.konradlorenz.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -23,6 +24,7 @@ public class Controller {
     private AutomovilesWindow pedir = new AutomovilesWindow(null);
     private VentasWindow ventas = new VentasWindow(null);
     private ClientesEmpleadosWindow persona = new ClientesEmpleadosWindow(null);
+    
 	/**
 	 * Metodo run
 	 */
@@ -554,9 +556,18 @@ public class Controller {
 		
 	}
 
-	public String mostrarClientes() {
-		return null;
-		 
+	public void mostrarClientes() {
+		if (!objLista.getLista().isEmpty()) { 
+	        persona.mostrarMensaje("Clientes registrados:");
+	        for (Object obj : objLista.getLista()) {
+	            if (obj instanceof Cliente) { 
+	                Cliente cliente = (Cliente) obj;
+	                persona.mostrarMensaje(cliente.toString()); 
+	            }
+	        }
+	    } else {
+	        persona.mostrarMensaje("No hay clientes registrados.");
+	    }
 	  
 		
 	}
@@ -572,8 +583,14 @@ public class Controller {
 	}
 
 	public int calcularIngresosTotales() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		if (total == 0) { 
+	        persona.mostrarMensaje("No se han registrado ventas");
+	        return 0; 
+	    }
+	    return (int) total;
+	
+		
 	}
 
 	

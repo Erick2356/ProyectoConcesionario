@@ -76,7 +76,7 @@ public class Controller {
 			break;
 
 		default:
-//			View.mostrarMensaje("Tipo de automovil invalido");
+			pedir.mostrarMensaje("Tipo de automovil invalido");
 			break;
 		}
 		/**
@@ -348,6 +348,7 @@ public class Controller {
 			Automovil automovil = actual.getAutomovil();
 			if (automovil.getAnio() == anio) {
 //				View.mostrarMensaje(automovil.toString());
+				pedir.mostrarMensaje(automovil.toString());
 				encontrado = true;
 			}
 			actual = actual.getNext();

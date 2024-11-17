@@ -80,19 +80,21 @@ public class AutomovilesWindow extends JFrame {
 	}
 
 	private void agregarAutomovil() {
-		// Lógica para agregar automóvil en GUI (puedes invocar el método en Controller)
-//		controller.agregarAutomovil();
-		JPanel tipoVehiculoPanel = new JPanel();
-		tipoVehiculoPanel.setLayout(new GridLayout(3, 1)); // Tres botones en columna
-		JButton btnCamioneta = new JButton("Camioneta");
-		JButton btnElectrico = new JButton("Electrico");
-		JButton btnMotocicleta = new JButton("Moto");
+		JPanel tipoVehiculoPanel = new JPanel(new GridLayout(3, 1, 10, 10)); // Tres botones en columna con espacio
+		tipoVehiculoPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+		JButton btnCamioneta = createStyledButton("Camioneta");
+		JButton btnElectrico = createStyledButton("Eléctrico");
+		JButton btnMotocicleta = createStyledButton("Moto");
+
 		btnCamioneta.addActionListener(e -> controller.agregarAutomovil(1)); // Camioneta
 		btnElectrico.addActionListener(e -> controller.agregarAutomovil(2)); // Vehículo Eléctrico
-		btnMotocicleta.addActionListener(e -> controller.agregarAutomovil(3));
+		btnMotocicleta.addActionListener(e -> controller.agregarAutomovil(3)); // Motocicleta
+
 		tipoVehiculoPanel.add(btnCamioneta);
 		tipoVehiculoPanel.add(btnElectrico);
 		tipoVehiculoPanel.add(btnMotocicleta);
+
 		JOptionPane.showMessageDialog(this, tipoVehiculoPanel, "Selecciona el tipo de automóvil",
 				JOptionPane.PLAIN_MESSAGE);
 	}
@@ -114,27 +116,19 @@ public class AutomovilesWindow extends JFrame {
 	}
 
 	public void mostrarLista(ArrayList<String> listaAutomoviles, String mensaje) {
-		// Crear un nuevo JFrame para la lista
 		JFrame frame = new JFrame(mensaje);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Cerrar solo esta ventana
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(400, 300);
 		frame.setLocationRelativeTo(this);
 
-		// Obtener datos desde el controlador
 		String[] datos = listaAutomoviles.toArray(new String[0]);
 
-		// Crear la lista
 		JList<String> lista = new JList<>(datos);
 		lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		// Agregar la lista a un JScrollPane
 		JScrollPane scrollPane = new JScrollPane(lista);
-
-		// Agregar el JScrollPane al frame
 		frame.add(scrollPane, BorderLayout.CENTER);
 
-		// Mostrar el frame
 		frame.setVisible(true);
-
 	}
 }

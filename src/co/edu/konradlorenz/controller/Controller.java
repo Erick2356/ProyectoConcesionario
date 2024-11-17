@@ -7,18 +7,22 @@ import javax.swing.JOptionPane;
 //import java.util.ArrayList;
 import co.edu.konradlorenz.model.*;
 import co.edu.konradlorenz.view.AutomovilesWindow;
+import co.edu.konradlorenz.view.ClientesEmpleadosWindow;
+import co.edu.konradlorenz.view.VentasWindow;
 
 /**
  * Clase controller (Logica del programa)
  */
 public class Controller {
-	// private ArrayList<Persona> lista = new ArrayList<>();
+	 private ArrayList<Persona> lista = new ArrayList<>();
 	// private Cliente objCliente = new Cliente();
 	// private Empleado objEmpleado = new Empleado();
 	private Lista objLista = new Lista();
 	private Nodo cabeza;
 	private double total = 0;
     private AutomovilesWindow pedir = new AutomovilesWindow(null);
+    private VentasWindow ventas = new VentasWindow(null);
+    private ClientesEmpleadosWindow persona = new ClientesEmpleadosWindow(null);
 	/**
 	 * Metodo run
 	 */
@@ -125,7 +129,7 @@ public class Controller {
 	 * Metodo que no retorna ni recibe parametros este registra una venta de un
 	 * automovil
 	 */
-	public void registrarVenta(int formaPago) {
+	public void registrarVenta() {
 		if (cabeza == null) {// Verifica si la lista de automoviles esta llena
 			//View.mostrarMensaje("No hay automóviles disponibles para venta.");
 			pedir.mostrarMensaje("No hay automóviles disponibles para venta.");
@@ -141,12 +145,14 @@ public class Controller {
 
 		if (actual == null) {// Verifica si el id coincide con algun vehiculo
 //			View.mostrarMensaje("Automóvil no encontrado con ID: " + id);
+			ventas.mostrarMensaje("Automóvil no encontrado con ID:" + id);
 			return;
 		}
 
 //		View.mostrarMensaje("El vehículo a vender es: " + actual.getAutomovil().toString());
 //		View.mostrarMensaje("Ingrese la forma de pago: ");
-		int forma = formaPago;
+		ventas.mostrarMensaje("El vehículo a vender es: " + actual.getAutomovil().toString());
+		int forma = ventas.pedirInt("ingrese la forma de pago:");
 
 		double precio = actual.getAutomovil().getPrecio();
 		if (forma == 1) {// Si es al contado
@@ -168,6 +174,7 @@ public class Controller {
 		totalIngresos(precio);
 		eliminarAutomovilDeVenta(id);
 //		View.mostrarMensaje("Venta Exitosa.");
+		ventas.mostrarMensaje("Venta Exitosa.");
 	}
 
 	/**
@@ -209,12 +216,13 @@ public class Controller {
 	 * @param ventaId
 	 */
 	public void eliminarAutomovilDeVenta(int ventaId) {
+		
 		if (cabeza == null) {// Verifica si existe el automovil a eliminar
 //			View.mostrarMensaje("No hay automóviles para eliminar.");
 			pedir.mostrarMensaje("No hay automóviles para eliminar.");
 			return;
 		}
-
+//           int ventaId = ventas.pedirInt("Ingrese el ID del Vehiculo:");
 		if (cabeza.getAutomovil().getId() == ventaId) {
 			cabeza = cabeza.getNext();// Elimina el automovil apuntando la cabeza del nodo al siguiente elemento
 //			View.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado exitosamente.");
@@ -243,6 +251,7 @@ public class Controller {
 	 * 
 	 * @param id
 	 */
+	
 	public void modificarAutomovil() {
 		if (cabeza == null) {// Verifica si la lista de automoviles esta vacia
 			pedir.mostrarMensaje("No hay automoviles en la lista");
@@ -357,11 +366,11 @@ public class Controller {
 		String n, f;
 		int t;
 //		View.mostrarMensaje("Ingrese el nombre:");
-		n = (pedir.pedirString("Ingrese el nombre"));
+		n = (persona.pedirString("Ingrese el nombre"));
 //		View.mostrarMensaje("Ingrese el apellido: ");
-		f = pedir.pedirString("Ingrese el apellido");
+		f = persona.pedirString("Ingrese el apellido");
 //		View.mostrarMensaje("Ingrese la cedula: ");
-		t = pedir.pedirInt("Ingrese Cedula");
+		t = persona.pedirInt("Ingrese Cedula");
 		objLista.setListaPersona(new Cliente(n, f, t));// Se crea el objeto cliente con las variables recibidas por
 														// teclado anteriormente
 	}
@@ -374,13 +383,13 @@ public class Controller {
 		String n, f;
 		int t, l;
 //		View.mostrarMensaje("Ingrese el nombre:");
-		n = pedir.pedirString("Ingrese Nombre");
+		n = persona.pedirString("Ingrese Nombre");
 //		View.mostrarMensaje("Ingrese el apellido: ");
-		f = pedir.pedirString("Ingrese Apellido");
+		f = persona.pedirString("Ingrese Apellido");
 //		View.mostrarMensaje("Ingrese la cedula: ");
-		t =  pedir.pedirInt("Ingrese cedula");
+		t =  persona.pedirInt("Ingrese cedula");
 //		View.mostrarMensaje("Ingrese el codigo");
-		l =  pedir.pedirInt("Ingrese Codigo");
+		l =  persona.pedirInt("Ingrese Codigo");
 		objLista.setListaPersona(new Empleado(n, f, t, l));// Se crea el objeto Empleado que hereda de persona con las
 															// variables pedidas por teclado anteriormente
 	}
@@ -464,11 +473,11 @@ public class Controller {
 		
 	}
 
-	public void eliminarCliente(String id) {
+	public void eliminarCliente() {
 		
 	}
 
-	public void eliminarEmpleado(String id) {
+	public void eliminarEmpleado() {
 		
 	}
 
@@ -477,7 +486,7 @@ public class Controller {
 		int t, l;
 		n = (pedir.pedirString("Ingrese nombre"));
 		f = (pedir.pedirString("Ingrese apellido"));
-		t = (int) pedir.pedirDouble("Ingrese la cedula");
+		t =  pedir.pedirInt("Ingrese la cedula");
 		l = pedir.pedirInt("Ingrese el código");
 		objLista.setListaPersona(new Empleado(n, f, t, l));
 		
@@ -491,11 +500,18 @@ public class Controller {
 	public void agregarCliente(String id, String nombre) {
 		String n, f;
 		int t;
-		n = (pedir.pedirString("Ingrese nombre"));
-		f = (pedir.pedirString("Ingrese apellido"));
-		t = (int) pedir.pedirDouble("Ingrese la cedula");
+		n = (persona.pedirString("Ingrese nombre"));
+		f = (persona.pedirString("Ingrese apellido"));
+		t = persona.pedirInt("Ingrese la cedula");
 		objLista.setListaPersona(new Cliente(n, f, t));
 		
 	}
+
+	public int calcularIngresosTotales() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 
 }

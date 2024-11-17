@@ -26,6 +26,7 @@ public class VentasWindow extends JFrame {
 		titulo.setForeground(Color.WHITE);
 		panelHeader.add(titulo);
 
+<<<<<<< Updated upstream
 		// Buttons Panel
 		JPanel panelButtons = new JPanel();
 		panelButtons.setLayout(new GridLayout(3, 2, 20, 20));
@@ -43,11 +44,24 @@ public class VentasWindow extends JFrame {
 		panelButtons.add(btnMostrarVentas);
 		panelButtons.add(btnIngresosTotales);
 		panelButtons.add(btnSalir);
+=======
+		JButton btnRegistrarVenta = new JButton("Registrar Venta");
+//		JButton btnEliminarVenta = new JButton("Eliminar Venta");
+		JButton btnMostrarVentas = new JButton("Mostrar Todas las Ventas");
+		JButton btnIngresosTotales = new JButton("Calcular Ingresos Totales");
+		JButton btnSalir = new JButton("Salir");
 
-		btnRegistrarVenta.addActionListener(e -> registrarVenta());
-		btnEliminarVenta.addActionListener(e -> eliminarVenta());
-		btnMostrarVentas.addActionListener(e -> mostrarVentas());
-		btnIngresosTotales.addActionListener(e -> calcularIngresosTotales());
+		panel.add(btnRegistrarVenta);
+//		panel.add(btnEliminarVenta);
+		panel.add(btnMostrarVentas);
+		panel.add(btnIngresosTotales);
+		panel.add(btnSalir);
+>>>>>>> Stashed changes
+
+		btnRegistrarVenta.addActionListener(e -> controller.registrarVenta());
+//		btnEliminarVenta.addActionListener(e -> controller.eliminarVenta());
+		btnMostrarVentas.addActionListener(e -> controller.mostrarVentas());
+		btnIngresosTotales.addActionListener(e -> controller.calcularIngresosTotales());
 		btnSalir.addActionListener(e -> dispose());
 
 		add(panelHeader, BorderLayout.NORTH);
@@ -63,6 +77,7 @@ public class VentasWindow extends JFrame {
 		return button;
 	}
 
+<<<<<<< Updated upstream
 	private void registrarVenta() {
 		String clienteId = JOptionPane.showInputDialog(this, "Ingrese el ID del cliente:");
 		String automovilId = JOptionPane.showInputDialog(this, "Ingrese el ID del automóvil:");
@@ -85,3 +100,22 @@ public class VentasWindow extends JFrame {
 		// Código comentado en tu clase original por errores.
 	}
 }
+=======
+	
+	public int pedirInt(String mensaje) {
+		return Integer.parseInt(JOptionPane.showInputDialog(mensaje));
+		}
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(null,mensaje);
+	}
+	public String pedirString(String mensaje) {
+		return JOptionPane.showInputDialog(mensaje);
+	}
+	
+	public double pedirDouble(String mensaje) {
+		return Double.parseDouble(JOptionPane.showInputDialog(mensaje));
+	}
+	
+	
+}
+>>>>>>> Stashed changes

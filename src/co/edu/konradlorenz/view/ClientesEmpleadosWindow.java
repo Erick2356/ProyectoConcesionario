@@ -39,6 +39,7 @@ public class ClientesEmpleadosWindow extends JFrame {
         JButton btnEliminarEmpleado = createStyledButton("Eliminar Empleado");
         JButton btnSalir = createStyledButton("Salir");
 
+<<<<<<< Updated upstream
         panelButtons.add(btnAgregarCliente);
         panelButtons.add(btnEliminarCliente);
         panelButtons.add(btnMostrarClientes);
@@ -56,6 +57,36 @@ public class ClientesEmpleadosWindow extends JFrame {
         add(panelHeader, BorderLayout.NORTH);
         add(panelButtons, BorderLayout.CENTER);
     }
+=======
+		btnAgregarCliente.addActionListener(e -> controller.agregarCliente());
+		btnEliminarCliente.addActionListener(e -> controller.eliminarCliente());
+		btnMostrarClientes.addActionListener(e -> controller.mostrarClientes());
+		btnAgregarEmpleado.addActionListener(e -> controller.agregarEmpleado());
+		btnEliminarEmpleado.addActionListener(e -> controller.eliminarEmpleado());
+		btnSalir.addActionListener(e -> dispose());
+		panel.setBackground(Color.black);
+
+		add(panel);
+	}
+	public int pedirInt(String mensaje) {
+		return Integer.parseInt(JOptionPane.showInputDialog(mensaje));
+		}
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(null,mensaje);
+	}
+	public String pedirString(String mensaje) {
+		return JOptionPane.showInputDialog(mensaje);
+	}
+	
+/**
+	private void agregarCliente() {
+		String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del cliente:");
+		String id = JOptionPane.showInputDialog(this, "Ingrese el ID del cliente:");
+		if (nombre != null && id != null) {
+			controller.agregarCliente(id, nombre);
+		}
+	}
+>>>>>>> Stashed changes
 
     private JButton createStyledButton(String text) {
         JButton button = new JButton(text);
@@ -81,6 +112,7 @@ public class ClientesEmpleadosWindow extends JFrame {
         }
     }
 
+<<<<<<< Updated upstream
     private void mostrarClientes() {
         String clientes = controller.mostrarClientes();
         JOptionPane.showMessageDialog(this, clientes, "Lista de Clientes", JOptionPane.INFORMATION_MESSAGE);
@@ -101,3 +133,13 @@ public class ClientesEmpleadosWindow extends JFrame {
         }
     }
 }
+=======
+	private void eliminarEmpleado() {
+		String id = JOptionPane.showInputDialog(this, "Ingrese el ID del empleado a eliminar:");
+		if (id != null) {
+			controller.eliminarEmpleado(id);
+		}
+	}
+	*/
+}
+>>>>>>> Stashed changes

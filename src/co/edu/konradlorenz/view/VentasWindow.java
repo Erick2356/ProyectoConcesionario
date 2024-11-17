@@ -51,9 +51,9 @@ public class VentasWindow extends JFrame {
 	}
 
 	private void eliminarVenta() {
-		int ventaId =  Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el ID de la venta a eliminar:"));
+		int ventaId = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el ID de la venta a eliminar:"));
 //		if (ventaId != null) {
-			controller.eliminarAutomovilDeVenta(ventaId);
+		controller.eliminarAutomovilDeVenta(ventaId);
 //		}
 	}
 

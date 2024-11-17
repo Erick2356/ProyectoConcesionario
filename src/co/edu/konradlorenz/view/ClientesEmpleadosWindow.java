@@ -19,14 +19,9 @@ public class ClientesEmpleadosWindow extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		
-		
-		
-		
-		
 
 		JButton btnAgregarCliente = new JButton("Agregar Cliente");
-		
+
 		btnAgregarCliente.setBounds(50, 100, 200, 40);
 		JButton btnEliminarCliente = new JButton("Eliminar Cliente");
 		btnEliminarCliente.setBounds(300, 100, 200, 40);
@@ -34,7 +29,7 @@ public class ClientesEmpleadosWindow extends JFrame {
 		btnMostrarClientes.setBounds(550, 100, 200, 40);
 		JButton btnAgregarEmpleado = new JButton("Agregar Empleado");
 		btnAgregarEmpleado.setBounds(100, 190, 200, 40);
-		
+
 		JButton btnEliminarEmpleado = new JButton("Eliminar Empleado");
 		btnEliminarEmpleado.setBounds(450, 190, 200, 40);
 		JButton btnSalir = new JButton("Salir");

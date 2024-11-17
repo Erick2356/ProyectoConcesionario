@@ -46,7 +46,7 @@ public class ClientesEmpleadosWindow extends JFrame {
 		panelHeader.add(l1, BorderLayout.WEST);
 
 		// Buttons Panel
-		PanelConFondo panelButtons = new PanelConFondo("/co/edu/konradlorenz/view/IMAGENES/IMAGEN FONDO 2.jpg");
+		PanelConFondo panelButtons = new PanelConFondo("/co/edu/konradlorenz/view/IMAGENES/IMAGEN FONDO AUTOMOVILES.jpg");
 		panelButtons.setLayout(new GridLayout(3, 2, 20, 20));
 		panelButtons.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 		panelButtons.setBackground(Color.WHITE);

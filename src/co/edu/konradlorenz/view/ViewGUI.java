@@ -45,12 +45,13 @@ public class ViewGUI extends JFrame {
 		// Logo
 		JLabel l1 = new JLabel();
 		l1.setSize(200, 100);
-		ImageIcon logo = new ImageIcon("C:\\yo\\TECNICAS II\\LOGO.png");
+		ImageIcon logo = new ImageIcon("C:\\yo\\TECNICAS II\\ProyectoConcesionario\\src\\co\\edu\\konradlorenz\\view\\IMAGENES\\LOGO.png");
 		l1.setIcon(new ImageIcon(logo.getImage().getScaledInstance(l1.getWidth(), l1.getHeight(), Image.SCALE_SMOOTH)));
 		panelHeader.add(l1, BorderLayout.WEST);
 
 		// Main Menu Panel
-		PanelConFondo panelMenu = new PanelConFondo("C:\\yo\\TECNICAS II\\IMAGEN FONDO.jpg");
+
+		PanelConFondo panelMenu = new PanelConFondo("/co/edu/konradlorenz/view/IMAGENES/IMAGEN FONDO.jpg");
 		panelMenu.setBackground(Color.DARK_GRAY);
 		panelMenu.setLayout(new GridLayout(5, 1, 20, 20));
 		panelMenu.setBorder(BorderFactory.createEmptyBorder(50, 200, 50, 200));

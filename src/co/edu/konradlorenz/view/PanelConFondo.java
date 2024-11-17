@@ -7,7 +7,7 @@ public class PanelConFondo extends JPanel {
 	private ImageIcon fondo;
 
 	public PanelConFondo(String rutaImagen) {
-		fondo = new ImageIcon(rutaImagen);
+		fondo = new ImageIcon(getClass().getResource(rutaImagen));
 	}
 
 	@Override

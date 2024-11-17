@@ -37,7 +37,7 @@ public class ViewGUI extends JFrame {
 		// Header Panel
 		JPanel panelHeader = new JPanel(new BorderLayout());
 		panelHeader.setBackground(new Color(30, 144, 255)); // Azul brillante
-		JLabel titulo = new JLabel("Concecionario Rev & Recharge S.A.S", SwingConstants.CENTER);
+		JLabel titulo = new JLabel("Concesionaro Rev and Recharge", SwingConstants.CENTER);
 		titulo.setFont(new Font("SansSerif", Font.BOLD, 36));
 		titulo.setForeground(Color.WHITE);
 		panelHeader.add(titulo, BorderLayout.CENTER);
@@ -45,7 +45,7 @@ public class ViewGUI extends JFrame {
 		// Logo
 		JLabel l1 = new JLabel();
 		l1.setSize(200, 100);
-		ImageIcon logo = new ImageIcon("Media/Trabajador.png");
+		ImageIcon logo = new ImageIcon("C:\\yo\\TECNICAS II\\LOGO.png");
 		l1.setIcon(new ImageIcon(logo.getImage().getScaledInstance(l1.getWidth(), l1.getHeight(), Image.SCALE_SMOOTH)));
 		panelHeader.add(l1, BorderLayout.WEST);
 

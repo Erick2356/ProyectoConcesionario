@@ -4,14 +4,26 @@ import javax.swing.*;
 import java.awt.*;
 import co.edu.konradlorenz.controller.Controller;
 
+/**
+ * Clase del menu sobre la gestion de clientes y empleados, esta hereda de la
+ * clase JFrame, y se crea el objeto controller
+ */
 public class ClientesEmpleadosWindow extends JFrame {
 	private final Controller controller;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param controller
+	 */
 	public ClientesEmpleadosWindow(Controller controller) {
 		this.controller = controller;
 		initComponents();
 	}
 
+	/**
+	 * Se inicializan los componentes relacionados con la interfaz grafica
+	 */
 	private void initComponents() {
 		setTitle("Gestión de Clientes y Empleados");
 		setSize(800, 500);
@@ -57,6 +69,13 @@ public class ClientesEmpleadosWindow extends JFrame {
 		add(panelButtons, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Clase que retorna y recibe variables, esta se encarga del estilo de los
+	 * botones
+	 * 
+	 * @param text
+	 * @return
+	 */
 	private JButton createStyledButton(String text) {
 		JButton button = new JButton(text);
 		button.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -66,8 +85,15 @@ public class ClientesEmpleadosWindow extends JFrame {
 		return button;
 	}
 
+	/**
+	 * aqui los metodos que piden el entero, String, y muestran mensajes creando
+	 * ventanas.
+	 * 
+	 * @param mensaje
+	 * @return
+	 */
 	public int pedirInt(String mensaje) {
-		
+
 		return Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 	}
 

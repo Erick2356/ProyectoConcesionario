@@ -7,14 +7,26 @@ import co.edu.konradlorenz.controller.Controller;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Clase ViewGui, es la clase principal de la parte de vista del programa, aqui
+ * esta el menu principal que es con lo primero que tendra relacion el usuario,
+ * esta clase hereda de la clase JFrame y tiene un objeto del tipo Controller,
+ * para poder llamarlo y que realice toda la logica del programa
+ */
 public class ViewGUI extends JFrame {
 	private final Controller controller;
 
+	/**
+	 * Constructor, (Recibe variable de tipo controller)
+	 * 
+	 * @param controller
+	 */
 	public ViewGUI(Controller controller) {
 		this.controller = controller;
 		initComponents();
 	}
 
+	// Se inicializan los componentes relacionados con la interfaz grafica
 	private void initComponents() {
 		setTitle("Concesionario - Menú Principal");
 		setSize(800, 720);
@@ -67,6 +79,7 @@ public class ViewGUI extends JFrame {
 		add(panelMenu, BorderLayout.CENTER);
 	}
 
+	// Estilo de los botones
 	private void customizeButton(JButton button) {
 		button.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		button.setBackground(new Color(255, 165, 0)); // Naranja
@@ -75,6 +88,10 @@ public class ViewGUI extends JFrame {
 		button.setBorder(BorderFactory.createLineBorder(new Color(255, 140, 0), 2));
 	}
 
+	/**
+	 * Aqui todos los metodos encargados de llamar a las clases de view que tienen
+	 * los otros menus
+	 */
 	private void openAutomovilesMenu() {
 		new AutomovilesWindow(controller).setVisible(true);
 	}

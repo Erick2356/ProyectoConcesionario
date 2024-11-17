@@ -433,9 +433,29 @@ public class Controller {
 	}
 
 
-	public String mostrarVentas() {
+	public void mostrarVentas() {
+		
+		if (cabeza == null) {
+	        pedir.mostrarMensaje("No hay ventas registradas.");
+	    } else {
+	        ArrayList<String> listaVentas = new ArrayList<>();
+	        Nodo aux = cabeza;
+	        while (aux != null) {
+	            Automovil automovil = aux.getAutomovil(); 
+	            if (automovil != null && automovil.getPrecio() > 0) { 
+	               
+	                listaVentas.add("ID: " + automovil.getId() + 
+	                                ", Cliente: " + automovil.getCliente() + 
+	                                ", Precio Venta: " + automovil.getPrecio());
+	            } else {
+	                listaVentas.add("Automóvil no vendido o datos incompletos en este nodo.");
+	            }
+	            aux = aux.getNext();
+	        }
+	        pedir.mostrarLista(listaVentas, "Lista de Ventas Realizadas");
+	    }
 
-		return "";
+	
 	}
 
 	public void registrarVenta(String clienteId, String automovilId) {
@@ -473,11 +493,51 @@ public class Controller {
 		
 	}
 
-	public void eliminarCliente() {
+	
+	public void eliminarCliente(String id) {
+		if (cabeza == null) {
+	        pedir.mostrarMensaje("No hay clientes registrados para eliminar.");
+	        return;
+	    }
+
+	    Nodo actual = cabeza;
+	    Nodo anterior = null;
+
+	    boolean encontrado = false;
+
+	    while (actual != null) {
+	        Automovil automovil = actual.getAutomovil();
+
+	        if (automovil != null && automovil.getCliente() != null &&
+	            String.valueOf(automovil.getCliente().getCedula()).equals(id)) {
+
+	            encontrado = true;
+
+	            // Si el nodo a eliminar es la cabeza
+	            if (actual == cabeza) {
+	                cabeza = cabeza.getNext();
+	            } else {
+	                // Salta el nodo actual
+	                anterior.setNext(actual.getNext());
+	            }
+
+	            pedir.mostrarMensaje("Cliente con ID " + id + " eliminado correctamente.");
+	            break;
+	        }
+
+	        anterior = actual;
+	        actual = actual.getNext();
+	    }
+
+	    if (!encontrado) {
+	        pedir.mostrarMensaje("Cliente con ID " + id + " no encontrado.");
+	    }
 		
 	}
 
-	public void eliminarEmpleado() {
+	public void eliminarEmpleado(int codigo) {
+		
+
 		
 	}
 
@@ -493,8 +553,32 @@ public class Controller {
 	}
 
 	public String mostrarClientes() {
-		// TODO Auto-generated method stub
-		return null;
+		 
+	    if (cabeza == null) {
+	        return "No hay automóviles registrados para mostrar los clientes.";
+	    }
+
+	    Nodo actual = cabeza;  
+	    StringBuilder clientesInfo = new StringBuilder();  
+
+	    
+	    while (actual != null) {
+	        
+	        Automovil automovil = actual.getAutomovil();  
+
+	        if (automovil != null) {
+	            Cliente cliente = automovil.getCliente();  
+	            if (cliente != null) {
+	                clientesInfo.append(cliente.toString()).append("\n"); 
+	            }
+	        }
+
+	        
+	        actual = actual.getNext();
+	    }
+
+	    return clientesInfo.toString();
+		
 	}
 
 	public void agregarCliente(String id, String nombre) {

@@ -14,9 +14,9 @@ import co.edu.konradlorenz.view.VentasWindow;
  * Clase controller (Logica del programa)
  */
 public class Controller {
-	 private ArrayList<Persona> lista = new ArrayList<>();
-	// private Cliente objCliente = new Cliente();
-	// private Empleado objEmpleado = new Empleado();
+    private ArrayList<Persona> lista = new ArrayList<>();
+    private Cliente objCliente = new Cliente();
+    private Empleado objEmpleado = new Empleado();
 	private Lista objLista = new Lista();
 	private Nodo cabeza;
 	private double total = 0;
@@ -478,10 +478,69 @@ public class Controller {
 	
 	public void eliminarCliente() {
 		
+		if (!objLista.getLista().isEmpty()) {
+	      
+	        int cedula = persona.pedirInt("Ingrese la cédula del cliente a eliminar");
+	        
+	       
+	        Cliente eliminar = null;
+
+	       
+	        for (Persona cliente : objLista.getLista()) {
+	            if (cliente instanceof Cliente) { 
+	                Cliente clienteCast = (Cliente) cliente; 
+	                if (clienteCast.getCedula() == cedula) {
+	                    eliminar = clienteCast;
+	                    break; 
+	                }
+	            }
+	        }
+
+	        
+	        if (eliminar != null) {
+	            
+	            persona.mostrarMensaje("Datos del cliente a eliminar: " + " Nombre: " +eliminar.getNombre() + " Apellidos " + eliminar.getApellidos() + " C.c: " + eliminar.getCedula());
+	            objLista.getLista().remove(eliminar);
+	            persona.mostrarMensaje("Cliente eliminado.");
+	        } else {
+	            persona.mostrarMensaje("Cliente no encontrado.");
+	        }
+	    } else {
+	        persona.mostrarMensaje("La lista está vacía.");
+	    }
 	}
 
 	public void eliminarEmpleado() {
-		
+		if (!objLista.getLista().isEmpty()) {
+		      
+	        int cedula = persona.pedirInt("Ingrese la cédula del Empleado a eliminar");
+	        
+	       
+	        Empleado eliminar = null;
+
+	       
+	        for (Persona empleado : objLista.getLista()) {
+	            if (empleado instanceof Empleado) { 
+	                Empleado cast = (Empleado) empleado; 
+	                if (empleado.getCedula() == cedula) {
+	                    eliminar = cast;
+	                    break; 
+	                }
+	            }
+	        }
+
+	        
+	        if (eliminar != null) {
+	            
+	            persona.mostrarMensaje("Datos del empleado a eliminar: " + " Nombre: " +eliminar.getNombre() + " Apellidos " + eliminar.getApellidos() + " C.c: " + eliminar.getCedula() + " Codigo: " + eliminar.getCodigo());
+	            objLista.getLista().remove(eliminar);
+	            persona.mostrarMensaje("Empleado eliminado.");
+	        } else {
+	            persona.mostrarMensaje("Empleado no encontrado.");
+	        }
+	    } else {
+	        persona.mostrarMensaje("La lista está vacía.");
+	    }
 	}
 
 	public void agregarEmpleado(String id, String nombre) {

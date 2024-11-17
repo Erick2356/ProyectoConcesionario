@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 import co.edu.konradlorenz.controller.Controller;
 
@@ -102,11 +103,6 @@ public class AutomovilesWindow extends JFrame {
 	public int pedirInt(String mensaje) {
 		return Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 	}
-
-	public void mostrarMensaje(String mensaje) {
-		JOptionPane.showMessageDialog(null, mensaje);
-	}
-
 	public String pedirString(String mensaje) {
 		return JOptionPane.showInputDialog(mensaje);
 	}
@@ -114,6 +110,10 @@ public class AutomovilesWindow extends JFrame {
 	public double pedirDouble(String mensaje) {
 		return Double.parseDouble(JOptionPane.showInputDialog(mensaje));
 	}
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(null, mensaje);
+	}
+
 
 	public void mostrarLista(ArrayList<String> listaAutomoviles, String mensaje) {
 		JFrame frame = new JFrame(mensaje);

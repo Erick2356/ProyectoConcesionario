@@ -67,6 +67,7 @@ public class ClientesEmpleadosWindow extends JFrame {
 	}
 
 	public int pedirInt(String mensaje) {
+		
 		return Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 	}
 

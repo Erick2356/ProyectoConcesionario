@@ -120,8 +120,8 @@ public abstract class Automovil implements Interes {
 	 */
 	@Override
 	public String toString() {
-		return "Automovil (\n" + "  ID: " + id + ",\n" + "  Modelo: '" + modelo + "',\n" + "  Marca: '" + marca + "',\n"
+		return "Automovil \n" + "  ID: " + id + ",\n" + "  Modelo: '" + modelo + "',\n" + "  Marca: '" + marca + "',\n"
 				+ "  Motor: '" + motor + "',\n" + "  Color: '" + color + "',\n" + "  Cantidad de puertas: "
-				+ cantidadPuertas + ",\n" + "  Año: " + anio + ",\n" + "  Precio: $" + precio + "\n" + ')';
+				+ cantidadPuertas + ",\n" + "  Año: " + anio + ",\n" + "  Precio: $" + precio + "\n";
 	}
 }

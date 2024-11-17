@@ -33,21 +33,21 @@ public class VentasWindow extends JFrame {
 		panelButtons.setBackground(Color.WHITE);
 
 		JButton btnRegistrarVenta = createStyledButton("Registrar Venta");
-		JButton btnEliminarVenta = createStyledButton("Eliminar Venta");
+//		JButton btnEliminarVenta = createStyledButton("Eliminar Venta");
 		JButton btnMostrarVentas = createStyledButton("Mostrar Todas las Ventas");
 		JButton btnIngresosTotales = createStyledButton("Calcular Ingresos Totales");
 		JButton btnSalir = createStyledButton("Salir");
 
 		panelButtons.add(btnRegistrarVenta);
-		panelButtons.add(btnEliminarVenta);
+//		panelButtons.add(btnEliminarVenta);
 		panelButtons.add(btnMostrarVentas);
 		panelButtons.add(btnIngresosTotales);
 		panelButtons.add(btnSalir);
 
-		btnRegistrarVenta.addActionListener(e -> registrarVenta());
-		btnEliminarVenta.addActionListener(e -> eliminarVenta());
-		btnMostrarVentas.addActionListener(e -> mostrarVentas());
-		btnIngresosTotales.addActionListener(e -> calcularIngresosTotales());
+		btnRegistrarVenta.addActionListener(e -> controller.registrarVenta());
+//		btnEliminarVenta.addActionListener(e -> controller.eliminarVenta());
+		btnMostrarVentas.addActionListener(e -> controller.mostrarVentas());
+		btnIngresosTotales.addActionListener(e -> controller.calcularIngresosTotales());
 		btnSalir.addActionListener(e -> dispose());
 
 		add(panelHeader, BorderLayout.NORTH);
@@ -62,26 +62,20 @@ public class VentasWindow extends JFrame {
 		button.setFocusPainted(false);
 		return button;
 	}
-
-	private void registrarVenta() {
-		String clienteId = JOptionPane.showInputDialog(this, "Ingrese el ID del cliente:");
-		String automovilId = JOptionPane.showInputDialog(this, "Ingrese el ID del automóvil:");
-		if (clienteId != null && automovilId != null) {
-			controller.registrarVenta(clienteId, automovilId);
-		}
+	public int pedirInt(String mensaje) {
+		return Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 	}
 
-	private void eliminarVenta() {
-		int ventaId = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el ID de la venta a eliminar:"));
-		controller.eliminarAutomovilDeVenta(ventaId);
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(null, mensaje);
 	}
 
-	private void mostrarVentas() {
-		String ventas = controller.mostrarVentas();
-		JOptionPane.showMessageDialog(this, ventas, "Ventas Registradas", JOptionPane.INFORMATION_MESSAGE);
+	public String pedirString(String mensaje) {
+		return JOptionPane.showInputDialog(mensaje);
+	}
+	public double pedirDouble(String mensaje) {
+		return Double.parseDouble(JOptionPane.showInputDialog(mensaje));
 	}
 
-	private void calcularIngresosTotales() {
-		// Código comentado en tu clase original por errores.
-	}
+	
 }

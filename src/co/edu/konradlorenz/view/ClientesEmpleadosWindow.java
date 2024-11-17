@@ -46,11 +46,11 @@ public class ClientesEmpleadosWindow extends JFrame {
 		panelButtons.add(btnEliminarEmpleado);
 		panelButtons.add(btnSalir);
 
-		btnAgregarCliente.addActionListener(e -> agregarCliente());
-		btnEliminarCliente.addActionListener(e -> eliminarCliente());
-		btnMostrarClientes.addActionListener(e -> mostrarClientes());
-		btnAgregarEmpleado.addActionListener(e -> agregarEmpleado());
-		btnEliminarEmpleado.addActionListener(e -> eliminarEmpleado());
+		btnAgregarCliente.addActionListener(e -> controller.agregarCliente());
+		btnEliminarCliente.addActionListener(e -> controller.eliminarCliente());
+		btnMostrarClientes.addActionListener(e -> controller.mostrarClientes());
+		btnAgregarEmpleado.addActionListener(e -> controller.agregarEmpleado());
+		btnEliminarEmpleado.addActionListener(e -> controller.eliminarEmpleado());
 		btnSalir.addActionListener(e -> dispose());
 
 		add(panelHeader, BorderLayout.NORTH);
@@ -66,38 +66,16 @@ public class ClientesEmpleadosWindow extends JFrame {
 		return button;
 	}
 
-	private void agregarCliente() {
-		String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del cliente:");
-		String id = JOptionPane.showInputDialog(this, "Ingrese el ID del cliente:");
-		if (nombre != null && id != null) {
-			controller.agregarCliente(id, nombre);
-		}
+	public int pedirInt(String mensaje) {
+		return Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 	}
 
-	private void eliminarCliente() {
-		String id = JOptionPane.showInputDialog(this, "Ingrese el ID del cliente a eliminar:");
-		if (id != null) {
-			controller.eliminarCliente(id);
-		}
+	public void mostrarMensaje(String mensaje) {
+		JOptionPane.showMessageDialog(null, mensaje);
 	}
 
-	private void mostrarClientes() {
-		String clientes = controller.mostrarClientes();
-		JOptionPane.showMessageDialog(this, clientes, "Lista de Clientes", JOptionPane.INFORMATION_MESSAGE);
+	public String pedirString(String mensaje) {
+		return JOptionPane.showInputDialog(mensaje);
 	}
 
-	private void agregarEmpleado() {
-		String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del empleado:");
-		String id = JOptionPane.showInputDialog(this, "Ingrese el ID del empleado:");
-		if (nombre != null && id != null) {
-			controller.agregarEmpleado(id, nombre);
-		}
-	}
-
-	private void eliminarEmpleado() {
-		String id = JOptionPane.showInputDialog(this, "Ingrese el ID del empleado a eliminar:");
-		if (id != null) {
-			controller.eliminarEmpleado(id);
-		}
-	}
 }

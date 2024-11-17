@@ -577,11 +577,15 @@ public class Controller {
 
 	public int calcularIngresosTotales() {
 
-		if (total == 0) {
-			persona.mostrarMensaje("No se han registrado ventas");
-			return 0;
-		}
-		return (int) total;
+		if (total == 0) { 
+	        persona.mostrarMensaje("No se han registrado ventas.");
+	        return 0;
+	    }
+
+	    
+	    persona.mostrarMensaje("El ingreso total acumulado es: $" + total);
+
+	    return (int) total;
 
 	}
 

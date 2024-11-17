@@ -435,25 +435,7 @@ public class Controller {
 
 	public void mostrarVentas() {
 		
-		if (cabeza == null) {
-	        pedir.mostrarMensaje("No hay ventas registradas.");
-	    } else {
-	        ArrayList<String> listaVentas = new ArrayList<>();
-	        Nodo aux = cabeza;
-	        while (aux != null) {
-	            Automovil automovil = aux.getAutomovil(); 
-	            if (automovil != null && automovil.getPrecio() > 0) { 
-	               
-	                listaVentas.add("ID: " + automovil.getId() + 
-	                                ", Cliente: " + automovil.getCliente() + 
-	                                ", Precio Venta: " + automovil.getPrecio());
-	            } else {
-	                listaVentas.add("Automóvil no vendido o datos incompletos en este nodo.");
-	            }
-	            aux = aux.getNext();
-	        }
-	        pedir.mostrarLista(listaVentas, "Lista de Ventas Realizadas");
-	    }
+		
 
 	
 	}
@@ -514,31 +496,9 @@ public class Controller {
 	}
 
 	public String mostrarClientes() {
+		return null;
 		 
-	    if (cabeza == null) {
-	        return "No hay automóviles registrados para mostrar los clientes.";
-	    }
-
-	    Nodo actual = cabeza;  
-	    StringBuilder clientesInfo = new StringBuilder();  
-
-	    
-	    while (actual != null) {
-	        
-	        Automovil automovil = actual.getAutomovil();  
-
-	        if (automovil != null) {
-	            Cliente cliente = automovil.getCliente();  
-	            if (cliente != null) {
-	                clientesInfo.append(cliente.toString()).append("\n"); 
-	            }
-	        }
-
-	        
-	        actual = actual.getNext();
-	    }
-
-	    return clientesInfo.toString();
+	  
 		
 	}
 

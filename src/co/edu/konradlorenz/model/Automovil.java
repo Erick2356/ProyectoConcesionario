@@ -34,7 +34,7 @@ public abstract class Automovil implements Interes {
 	 * @param precio
 	 */
 	public Automovil(int id, String modelo, String marca, String motor, String color, int cantidadPuertas, int anio,
-			double precio, Cliente cliente) {
+			double precio) {
 		this.id = id;
 		this.modelo = modelo;
 		this.marca = marca;
@@ -43,7 +43,6 @@ public abstract class Automovil implements Interes {
 		this.cantidadPuertas = cantidadPuertas;
 		this.anio = anio;
 		this.precio = precio;
-		 this.cliente = cliente;
 	}
 
 	/**
@@ -113,14 +112,6 @@ public abstract class Automovil implements Interes {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
 	}
 
 	/**

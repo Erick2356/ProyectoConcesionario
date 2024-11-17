@@ -2,7 +2,7 @@ package co.edu.konradlorenz.controller;
 
 /**
  * Clase main, contiene el metodo main en donde se inicializa el objeto
- * controller y se llama al metodo run
+ * controller, el objeto mainWindow y se llama al metodo setVisible para comenzar la interfaz grafica
  */
 import co.edu.konradlorenz.view.ViewGUI;
 

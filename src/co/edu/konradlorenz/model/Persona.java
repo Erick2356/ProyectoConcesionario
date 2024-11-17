@@ -53,7 +53,8 @@ public abstract class Persona {
 	 */
 	@Override
 	public String toString() {
-		return "Persona [nombre=" + nombre + ", apellidos=" + apellidos + ", cedula=" + cedula + "]";
+		return "Persona \n" + "  nombre: " + nombre + ",\n" + "  Apellidos: " + apellidos + ",\n" + "  cedula: "
+				+ cedula + "\n";
 	}
 
 }

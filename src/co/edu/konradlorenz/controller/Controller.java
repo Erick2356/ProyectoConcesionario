@@ -1,11 +1,6 @@
 package co.edu.konradlorenz.controller;
 
 import java.util.ArrayList;
-import java.util.Map;
-
-import javax.swing.JOptionPane;
-
-//import java.util.ArrayList;
 import co.edu.konradlorenz.model.*;
 import co.edu.konradlorenz.view.AutomovilesWindow;
 import co.edu.konradlorenz.view.ClientesEmpleadosWindow;
@@ -20,18 +15,12 @@ public class Controller {
 	private Cliente objCliente = new Cliente();
 	private Empleado objEmpleado = new Empleado();
 	private Lista objLista = new Lista();
-	private Nodo cabeza;
+	private Nodo cabeza;// Estructura de datos listas enlazadas
 	private double total = 0;
-	private AutomovilesWindow pedir = new AutomovilesWindow(null);
+	private AutomovilesWindow pedir = new AutomovilesWindow(null); // pedir alguna variable, utilizar todos los metodos
+																	// de AutomovilesWindow
 	private VentasWindow ventas = new VentasWindow(null);
 	private ClientesEmpleadosWindow persona = new ClientesEmpleadosWindow(null);
-
-	/**
-	 * Metodo run
-	 */
-	public void run() {
-
-	}// termina el metodo run
 
 	/**
 	 * Estructura de datos lista, por nodos
@@ -41,10 +30,10 @@ public class Controller {
 	}
 
 	/**
-	 * Metodo que no retorna ni pide ningun parametro
+	 * Metodo que no retorna pero si pide una variable de tipo entera
 	 */
 	public void agregarAutomovil(int opcion) {
-//		AutomovilesWindow pedir = new AutomovilesWindow(null);
+
 		int id = pedir.pedirInt("Ingrese ID:");
 		String modelo = pedir.pedirString("Ingrese Modelo");
 		String marca = pedir.pedirString("Ingrese Marca");
@@ -97,8 +86,6 @@ public class Controller {
 
 		}
 
-//		View.mostrarMensaje("Automovil agregado exitosamente");
-
 	}
 
 	/**
@@ -106,18 +93,15 @@ public class Controller {
 	 * los automoviles añadidos al consesionario
 	 */
 	public void mostrarAutomovil() {
-		if (cabeza == null) {
-//			View.mostrarMensaje("No hay automoviles");
+		if (cabeza == null) {// Verifica si existen automoviles en la lista enlazada
 			pedir.mostrarMensaje("No hay Auntomoviles");
 		} else {
 			ArrayList<String> listaAutomoviles = new ArrayList<>();
 			Nodo aux = cabeza;
 			while (aux != null) {
 				Automovil automovil = aux.getAutomovil();
-//				View.mostrarMensaje(automovil.toString());
 				if (automovil != null) {
 					listaAutomoviles.add(automovil.toString());
-//				En busca de mostrar los elementos de una forma mas ideal
 				} else {
 					listaAutomoviles.add("Automóvil no definido en este nodo.");
 				}
@@ -134,7 +118,6 @@ public class Controller {
 	 */
 	public void registrarVenta() {
 		if (cabeza == null) {// Verifica si la lista de automoviles esta llena
-			// View.mostrarMensaje("No hay automóviles disponibles para venta.");
 			pedir.mostrarMensaje("No hay automóviles disponibles para venta.");
 			return;
 		}
@@ -146,31 +129,22 @@ public class Controller {
 		}
 
 		if (actual == null) {// Verifica si el id coincide con algun vehiculo
-//			View.mostrarMensaje("Automóvil no encontrado con ID: " + id);
 			ventas.mostrarMensaje("Automóvil no encontrado con ID:" + id);
 			return;
 		}
 
-//		View.mostrarMensaje("El vehículo a vender es: " + actual.getAutomovil().toString());
-//		View.mostrarMensaje("Ingrese la forma de pago: ");
 		ventas.mostrarMensaje("El vehículo a vender es: " + actual.getAutomovil().toString());
 		int forma = ventas
 				.pedirInt("ingrese la forma de pago (ingrese 1 para pagar al contado o 2 para pago a credito):");
 
 		double precio = actual.getAutomovil().getPrecio();
 		if (forma == 1) {// Si es al contado
-//			View.mostrarMensaje("El precio a pagar: " + precio);
 
 		} else if (forma == 2) {// si es a credito
 
-//			View.mostrarMensaje("Precio del Vehículo: " + precio);
-//			View.mostrarMensaje("Ingrese el número de cuotas:");
 			double cuotas = pedir.pedirDouble("Ingrese El Numero de Cuotas");
 			double interes = pedir.pedirDouble("Ingrese Intereses");
 			double montoTotal = actual.getAutomovil().montoTotal(precio, interes);
-//			View.mostrarMensaje("Interés total acumulado: " + interes);
-//			View.mostrarMensaje("Valor de cuota mensual: " + actual.getAutomovil().calcularValorDecuota(montoTotal, cuotas));
-//			View.mostrarMensaje("Valor total a pagar: " + montoTotal);
 			precio = montoTotal;
 		}
 
@@ -178,7 +152,6 @@ public class Controller {
 		registro.add(actual.getAutomovil().toString());
 
 		eliminarAutomovilDeVenta(id);
-//		View.mostrarMensaje("Venta Exitosa.");
 		ventas.mostrarMensaje("Venta Exitosa.");
 
 	}
@@ -189,11 +162,9 @@ public class Controller {
 	 */
 	public void eliminarAutomovil() {
 		if (cabeza == null) {// Verifica si la lista esta vacia
-//			View.mostrarMensaje("No hay automoviles");
 			pedir.mostrarMensaje("No hay automoviles en la lista");
 			return;
 		}
-//		View.mostrarMensaje("Ingrese id del automovil a eliminar");
 		int idd = pedir.pedirInt("Ingrese ID");
 		if (cabeza.getAutomovil().getId() == idd) {
 			cabeza = cabeza.next;
@@ -205,12 +176,10 @@ public class Controller {
 			actual = actual.next;
 		}
 		if (actual.next == null) {
-//			View.mostrarMensaje("No se encontro ningun automovil con ID" + idd);
 			pedir.mostrarMensaje("No se encontro ningun automovil con ID" + idd);
 			return;
 		}
 		actual.setNext(actual.next.next);// Apunta el nodo al siguiente objeto de la lista para eliminarlo
-//		View.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito");
 		pedir.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito");
 
 	}
@@ -224,14 +193,11 @@ public class Controller {
 	public void eliminarAutomovilDeVenta(int ventaId) {
 
 		if (cabeza == null) {// Verifica si existe el automovil a eliminar
-//			View.mostrarMensaje("No hay automóviles para eliminar.");
 			pedir.mostrarMensaje("No hay automóviles para eliminar.");
 			return;
 		}
-//           int ventaId = ventas.pedirInt("Ingrese el ID del Vehiculo:");
 		if (cabeza.getAutomovil().getId() == ventaId) {
 			cabeza = cabeza.getNext();// Elimina el automovil apuntando la cabeza del nodo al siguiente elemento
-//			View.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado exitosamente.");
 			pedir.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado exitosamente.");
 			return;
 		}
@@ -242,11 +208,9 @@ public class Controller {
 		}
 
 		if (actual.getNext() == null) {
-//			View.mostrarMensaje("No se encontró ningún automóvil con ID " + ventaId);
 			pedir.mostrarMensaje("No se encontró ningún automóvil con ID " + ventaId);
 		} else {
 			actual.setNext(actual.getNext().getNext());
-//			View.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado después de la venta.");
 			pedir.mostrarMensaje("Automóvil con ID " + ventaId + " eliminado después de la venta.");
 		}
 	}
@@ -270,27 +234,17 @@ public class Controller {
 		}
 
 		if (actual == null) {// Verifica si existe un automovil con ese id
-//			View.mostrarMensaje("No se encontró ningún automóvil con ID " + id);
 			pedir.mostrarMensaje("No se encontró ningún automóvil con ID " + id);
 			return;
 		}
 		Automovil automod = actual.getAutomovil();
-//		View.mostrarMensaje("Automovil encontrado, digite los nuevos valores");
-//		View.mostrarMensaje("Introduzca nuevo id");
 		int nuevoId = pedir.pedirInt("Ingrese ID:");
-//		View.mostrarMensaje("Introduzca nuevo modelo");
 		String nuevoModelo = pedir.pedirString("Ingrese Modelo");
-//		View.mostrarMensaje("Introduzca nueva marca");
 		String nuevaMarca = pedir.pedirString("Ingrese Marca");
-//		View.mostrarMensaje("Introduzca nuevo motor");
 		String nuevoMotor = pedir.pedirString("Ingrese Motor");
-//		View.mostrarMensaje("Introduzca nuevo color");
 		String nuevoColor = pedir.pedirString("Ingrese Color");
-//		View.mostrarMensaje("Introduzca nueva cantidad de puertas");
 		int nuevaPuertas = pedir.pedirInt("Ingrese Numero de Puertas");
-//		View.mostrarMensaje("Introduzca nuevo año");
 		int nuevoAnio = pedir.pedirInt("Ingrese Año");
-//		View.mostrarMensaje("Introduzca nuevo precio");
 		double nuevoPrecio = pedir.pedirDouble("Ingrese Precio");
 		/**
 		 * Se cambian los valores del automovil utilizando los metodos setter del
@@ -307,29 +261,21 @@ public class Controller {
 
 		if (automod instanceof Camioneta) {// Si es de tipo camioneta
 			Camioneta camioneta = (Camioneta) automod;
-//			View.mostrarMensaje("Introduzca nueva capacidad de carga");
 			camioneta.setCapacidadCarga(pedir.pedirInt("Ingrese Capacidad"));// Cambia la capacidad de carga
-//			View.mostrarMensaje("Introduzca nuevo tipo (tracción)");
 			camioneta.setTipo(pedir.pedirString("Ingrese tipo de Traccion"));// Cambia el tipo de traccion
 
 		} else if (automod instanceof Electrico) {// SI es un automovil electrico
 			Electrico electrico = (Electrico) automod;
-//			View.mostrarMensaje("Introduzca nueva autonomía");
 			electrico.setAutonomia(pedir.pedirInt("Ingrese Autonomia"));// Cambia la autonomia
-//			View.mostrarMensaje("Introduzca nuevo tipo de batería");
 			electrico.setTipoBateria(pedir.pedirString("Ingrese Tipo de bateria"));// Cambia el tipo de bateria
-//			View.mostrarMensaje("Introduzca nuevo tiempo de carga");
 			electrico.setTiempoCarga(Integer.parseInt("Ingrese Tiempo de Carga"));// Cambia el tiempo de carga
 
 		} else if (automod instanceof Motocicleta) {// Si es una motocicleta
 			Motocicleta motocicleta = (Motocicleta) automod;
-//			View.mostrarMensaje("Introduzca nuevo cilindraje");
 			motocicleta.setCilindraje(pedir.pedirInt("Ingrese Cilindraje"));// Cambia el cilindraje
-//			View.mostrarMensaje("Introduzca nuevo tipo de motocicleta");
 			motocicleta.setTipoMoto(pedir.pedirString("Ingrese tipo de moto"));// Cambia el tipo de motocicleta
 		}
 		pedir.mostrarMensaje("Automovil modificado");
-//		View.mostrarMensaje("Automóvil modificado exitosamente.");
 	}
 
 	/**
@@ -341,7 +287,6 @@ public class Controller {
 	public void buscarAutomovilAnio() {
 
 		if (cabeza == null) {// Verficia si la lista esta vacia
-//			View.mostrarMensaje("No hay automóviles.");
 			pedir.mostrarMensaje("No hay automóviles.");
 			return;
 		}
@@ -351,7 +296,6 @@ public class Controller {
 		while (actual != null) {
 			Automovil automovil = actual.getAutomovil();
 			if (automovil.getAnio() == anio) {
-//				View.mostrarMensaje(automovil.toString());
 				pedir.mostrarMensaje(automovil.toString());
 				encontrado = true;
 			}
@@ -359,7 +303,6 @@ public class Controller {
 		}
 		if (!encontrado) {// Verifica si existen automoviles dentro de la lista que coincidan con el año
 							// ingresado
-//			View.mostrarMensaje("No se encontró ningún automóvil del año " + anio);
 			pedir.mostrarMensaje("No se encontró ningún automóvil del año " + anio);
 		}
 	}
@@ -369,14 +312,10 @@ public class Controller {
 	 * cliente a una lista
 	 */
 	public void agregarCliente() {
-//		View.mostrarMensaje("Ingrese los datos del cliente:");
 		String n, f;
 		int t;
-//		View.mostrarMensaje("Ingrese el nombre:");
 		n = (persona.pedirString("Ingrese el nombre"));
-//		View.mostrarMensaje("Ingrese el apellido: ");
 		f = persona.pedirString("Ingrese el apellido");
-//		View.mostrarMensaje("Ingrese la cedula: ");
 		t = persona.pedirInt("Ingrese Cedula");
 		objLista.setListaPersona(new Cliente(n, f, t));// Se crea el objeto cliente con las variables recibidas por
 														// teclado anteriormente
@@ -386,16 +325,11 @@ public class Controller {
 	 * Metodo que no recibe ni retorna ninguna variable, agrega un empleado
 	 */
 	public void agregarEmpleado() {
-//		View.mostrarMensaje("Ingrese los datos del empleado: ");
 		String n, f;
 		int t, l;
-//		View.mostrarMensaje("Ingrese el nombre:");
 		n = persona.pedirString("Ingrese Nombre");
-//		View.mostrarMensaje("Ingrese el apellido: ");
 		f = persona.pedirString("Ingrese Apellido");
-//		View.mostrarMensaje("Ingrese la cedula: ");
 		t = persona.pedirInt("Ingrese cedula");
-//		View.mostrarMensaje("Ingrese el codigo");
 		l = persona.pedirInt("Ingrese Codigo");
 		objLista.setListaPersona(new Empleado(n, f, t, l));// Se crea el objeto Empleado que hereda de persona con las
 															// variables pedidas por teclado anteriormente
@@ -408,8 +342,7 @@ public class Controller {
 	public void obtenerClientes() {
 		for (Object cliente : objLista.getLista()) {// Por cada objeto de tipo cliente el la lista de personas
 			if (cliente instanceof Cliente) {
-//				View.mostrarMensaje(cliente.toString());
-
+				pedir.mostrarMensaje(cliente.toString());
 			}
 		}
 	}
@@ -421,7 +354,7 @@ public class Controller {
 	public void obtenerEmpleados() {
 		for (Object empleado : objLista.getLista()) {// Por cada objeto de tipo empleado en la lista de personas
 			if ((empleado instanceof Empleado)) {
-//				View.mostrarMensaje(empleado.toString());
+				pedir.mostrarMensaje(empleado.toString());
 
 			}
 		}
@@ -440,29 +373,31 @@ public class Controller {
 		return total;
 	}
 
+	/**
+	 * Metodo que no recibe ni retorna ninguna variable, este muestra la lista de
+	 * ventas
+	 */
 	public void mostrarVentas() {
 
 		if (registro.isEmpty()) {
-
 			pedir.mostrarMensaje("Lista Vacia");
-
 		} else {
-
-			pedir.mostrarLista(registro, "Lista de ventas");
-
+			pedir.mostrarLista(registro, "Lista de ventas");// LLama al metodo mostrarLista en GUI
 		}
-
 	}
 
+	/**
+	 * Metodo que no recibe ni retorna ninguna variable, este elimina un cliente
+	 */
 	public void eliminarCliente() {
 
-		if (!objLista.getLista().isEmpty()) {
+		if (!objLista.getLista().isEmpty()) {// Verifica si la lista de clientes esta llena
 
 			int cedula = persona.pedirInt("Ingrese la cédula del cliente a eliminar");
 
 			Cliente eliminar = null;
 
-			for (Persona cliente : objLista.getLista()) {
+			for (Persona cliente : objLista.getLista()) {// Por cada objeto de tipo cliente en la lista, entonces..
 				if (cliente instanceof Cliente) {
 					Cliente clienteCast = (Cliente) cliente;
 					if (clienteCast.getCedula() == cedula) {
@@ -486,6 +421,10 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * Metodo que no recibe ni retorna, este elimina un empleado teniendo la misma
+	 * logica que el de elminar cliente
+	 */
 	public void eliminarEmpleado() {
 		if (!objLista.getLista().isEmpty()) {
 
@@ -518,6 +457,13 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * Netodo que no retorna pero si recibe dos variables de tipo String, estas son
+	 * el id y el nombre para agregar un Empleado
+	 * 
+	 * @param id
+	 * @param nombre
+	 */
 	public void agregarEmpleado(String id, String nombre) {
 		String n, f;
 		int t, l;
@@ -525,10 +471,16 @@ public class Controller {
 		f = (pedir.pedirString("Ingrese apellido"));
 		t = pedir.pedirInt("Ingrese la cedula");
 		l = pedir.pedirInt("Ingrese el código");
-		objLista.setListaPersona(new Empleado(n, f, t, l));
+		objLista.setListaPersona(new Empleado(n, f, t, l));// Se utilizan los setters para añadir al objeto de tipo
+															// empleado a la lista
 
 	}
 
+	/**
+	 * Metodo que no recibe ni retorna ninguna variable, este muestra la lista de
+	 * objetos de tipo clientes, llamando al metodo toString de cada uno
+	 * 
+	 */
 	public void mostrarClientes() {
 		if (!objLista.getLista().isEmpty()) {
 			persona.mostrarMensaje("Clientes registrados:");
@@ -544,6 +496,14 @@ public class Controller {
 
 	}
 
+	/**
+	 * Metodo que no retorna pero si recibe dos variables de tipo String, estas son
+	 * el id y el nombre, utiliza la misma logica que agregarEmpleado pero en este
+	 * caso se añaden objetos de tipo cliente a la lista de clientes
+	 * 
+	 * @param id
+	 * @param nombre
+	 */
 	public void agregarCliente(String id, String nombre) {
 		String n, f;
 		int t;
@@ -554,6 +514,12 @@ public class Controller {
 
 	}
 
+	/**
+	 * Metodo que no recibe pero si retorna una variable de tipo entero, esta es el
+	 * ingreso total que tiene el concesionario, sumando todas las ventas
+	 * 
+	 * @return
+	 */
 	public int calcularIngresosTotales() {
 
 		if (total == 0) {

@@ -15,16 +15,16 @@ import co.edu.konradlorenz.view.VentasWindow;
  * Clase controller (Logica del programa)
  */
 public class Controller {
-    private ArrayList<Persona> lista = new ArrayList<>();
-    private Cliente objCliente = new Cliente();
-    private Empleado objEmpleado = new Empleado();
+	private ArrayList<Persona> lista = new ArrayList<>();
+	private Cliente objCliente = new Cliente();
+	private Empleado objEmpleado = new Empleado();
 	private Lista objLista = new Lista();
 	private Nodo cabeza;
 	private double total = 0;
-    private AutomovilesWindow pedir = new AutomovilesWindow(null);
-    private VentasWindow ventas = new VentasWindow(null);
-    private ClientesEmpleadosWindow persona = new ClientesEmpleadosWindow(null);
-    
+	private AutomovilesWindow pedir = new AutomovilesWindow(null);
+	private VentasWindow ventas = new VentasWindow(null);
+	private ClientesEmpleadosWindow persona = new ClientesEmpleadosWindow(null);
+
 	/**
 	 * Metodo run
 	 */
@@ -42,37 +42,37 @@ public class Controller {
 	/**
 	 * Metodo que no retorna ni pide ningun parametro
 	 */
-	public void agregarAutomovil(int opcion) { 
+	public void agregarAutomovil(int opcion) {
 //		AutomovilesWindow pedir = new AutomovilesWindow(null);
-        int id = pedir.pedirInt("Ingrese ID:");
-        String modelo = pedir.pedirString("Ingrese Modelo");
-        String marca = pedir.pedirString("Ingrese Marca");
-        String motor = pedir.pedirString("Ingrese Motor");
-        String color = pedir.pedirString("Ingrese Color");
-        int puertas = pedir.pedirInt("Ingrese Cantidad de Puertas");
-        int anio = pedir.pedirInt("Ingrese Año");
-        double precio = pedir.pedirDouble("Ingrese Precio");
-        Automovil nAutomovil = null;
+		int id = pedir.pedirInt("Ingrese ID:");
+		String modelo = pedir.pedirString("Ingrese Modelo");
+		String marca = pedir.pedirString("Ingrese Marca");
+		String motor = pedir.pedirString("Ingrese Motor");
+		String color = pedir.pedirString("Ingrese Color");
+		int puertas = pedir.pedirInt("Ingrese Cantidad de Puertas");
+		int anio = pedir.pedirInt("Ingrese Año");
+		double precio = pedir.pedirDouble("Ingrese Precio");
+		Automovil nAutomovil = null;
 		switch (opcion) {
 		case 1: // Si el automovil es tipo camioneta
-			 int capacidad = pedir.pedirInt("Ingrese la Capacidad");
-             String traccion = pedir.pedirString("Ingrese Traccion");
-            nAutomovil = new Camioneta(id, modelo, marca, motor, color, puertas, anio, precio, capacidad, traccion);
-             break;
-			
+			int capacidad = pedir.pedirInt("Ingrese la Capacidad");
+			String traccion = pedir.pedirString("Ingrese Traccion");
+			nAutomovil = new Camioneta(id, modelo, marca, motor, color, puertas, anio, precio, capacidad, traccion);
+			break;
 
 		case 2: // Si el tipo es electrico
-    		 int autonomia = pedir.pedirInt("Ingrese autonomia");
-            String bateria = pedir.pedirString("Ingrese Tipo de Bateria");
-            int tiempoCarga = pedir.pedirInt("Ingrese el tiempo de Carga");
-          nAutomovil = new Electrico(id, modelo, marca, motor, color, puertas, anio, precio, autonomia, bateria, tiempoCarga);
-            
+			int autonomia = pedir.pedirInt("Ingrese autonomia");
+			String bateria = pedir.pedirString("Ingrese Tipo de Bateria");
+			int tiempoCarga = pedir.pedirInt("Ingrese el tiempo de Carga");
+			nAutomovil = new Electrico(id, modelo, marca, motor, color, puertas, anio, precio, autonomia, bateria,
+					tiempoCarga);
+
 			break;
 
 		case 3: // Si es una motocicleta
-			  int cilindraje = pedir.pedirInt("Ingrese Cilindraje");
-              String tipoMoto = pedir.pedirString("Ingrese tipo de Moto");
-             nAutomovil = new Motocicleta(id, modelo, marca, motor, color, puertas, anio, precio, cilindraje, tipoMoto);
+			int cilindraje = pedir.pedirInt("Ingrese Cilindraje");
+			String tipoMoto = pedir.pedirString("Ingrese tipo de Moto");
+			nAutomovil = new Motocicleta(id, modelo, marca, motor, color, puertas, anio, precio, cilindraje, tipoMoto);
 			break;
 
 		default:
@@ -114,12 +114,12 @@ public class Controller {
 			while (aux != null) {
 				Automovil automovil = aux.getAutomovil();
 //				View.mostrarMensaje(automovil.toString());
-				if(automovil != null) {
-				listaAutomoviles.add(automovil.toString());
+				if (automovil != null) {
+					listaAutomoviles.add(automovil.toString());
 //				En busca de mostrar los elementos de una forma mas ideal
-			}else {
-				 listaAutomoviles.add("Automóvil no definido en este nodo."); 
-			}
+				} else {
+					listaAutomoviles.add("Automóvil no definido en este nodo.");
+				}
 				aux = aux.getNext();
 
 			}
@@ -133,12 +133,11 @@ public class Controller {
 	 */
 	public void registrarVenta() {
 		if (cabeza == null) {// Verifica si la lista de automoviles esta llena
-			//View.mostrarMensaje("No hay automóviles disponibles para venta.");
+			// View.mostrarMensaje("No hay automóviles disponibles para venta.");
 			pedir.mostrarMensaje("No hay automóviles disponibles para venta.");
 			return;
 		}
 
-		
 		int id = pedir.pedirInt("Ingrese ID:");
 		Nodo actual = cabeza;
 		while (actual != null && actual.getAutomovil().getId() != id) {
@@ -154,7 +153,8 @@ public class Controller {
 //		View.mostrarMensaje("El vehículo a vender es: " + actual.getAutomovil().toString());
 //		View.mostrarMensaje("Ingrese la forma de pago: ");
 		ventas.mostrarMensaje("El vehículo a vender es: " + actual.getAutomovil().toString());
-		int forma = ventas.pedirInt("ingrese la forma de pago:");
+		int forma = ventas
+				.pedirInt("ingrese la forma de pago (ingrese 1 para pagar al contado o 2 para pago a credito):");
 
 		double precio = actual.getAutomovil().getPrecio();
 		if (forma == 1) {// Si es al contado
@@ -207,7 +207,7 @@ public class Controller {
 		}
 		actual.setNext(actual.next.next);// Apunta el nodo al siguiente objeto de la lista para eliminarlo
 //		View.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito");
-        pedir.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito");
+		pedir.mostrarMensaje("Automovil con ID" + idd + " eliminado con exito");
 
 	}
 
@@ -218,7 +218,7 @@ public class Controller {
 	 * @param ventaId
 	 */
 	public void eliminarAutomovilDeVenta(int ventaId) {
-		
+
 		if (cabeza == null) {// Verifica si existe el automovil a eliminar
 //			View.mostrarMensaje("No hay automóviles para eliminar.");
 			pedir.mostrarMensaje("No hay automóviles para eliminar.");
@@ -253,13 +253,13 @@ public class Controller {
 	 * 
 	 * @param id
 	 */
-	
+
 	public void modificarAutomovil() {
 		if (cabeza == null) {// Verifica si la lista de automoviles esta vacia
 			pedir.mostrarMensaje("No hay automoviles en la lista");
 			return;
 		}
-          int id = pedir.pedirInt("Ingrese El ID del vehiculo");
+		int id = pedir.pedirInt("Ingrese El ID del vehiculo");
 		Nodo actual = cabeza;
 		while (actual != null && actual.getAutomovil().getId() != id) {
 			actual = actual.getNext();
@@ -277,7 +277,7 @@ public class Controller {
 //		View.mostrarMensaje("Introduzca nuevo modelo");
 		String nuevoModelo = pedir.pedirString("Ingrese Modelo");
 //		View.mostrarMensaje("Introduzca nueva marca");
-		String nuevaMarca =  pedir.pedirString("Ingrese Marca");
+		String nuevaMarca = pedir.pedirString("Ingrese Marca");
 //		View.mostrarMensaje("Introduzca nuevo motor");
 		String nuevoMotor = pedir.pedirString("Ingrese Motor");
 //		View.mostrarMensaje("Introduzca nuevo color");
@@ -324,7 +324,7 @@ public class Controller {
 //			View.mostrarMensaje("Introduzca nuevo tipo de motocicleta");
 			motocicleta.setTipoMoto(pedir.pedirString("Ingrese tipo de moto"));// Cambia el tipo de motocicleta
 		}
-          pedir.mostrarMensaje("Automovil modificado");
+		pedir.mostrarMensaje("Automovil modificado");
 //		View.mostrarMensaje("Automóvil modificado exitosamente.");
 	}
 
@@ -335,7 +335,7 @@ public class Controller {
 	 * @param anio
 	 */
 	public void buscarAutomovilAnio() {
-		 
+
 		if (cabeza == null) {// Verficia si la lista esta vacia
 //			View.mostrarMensaje("No hay automóviles.");
 			pedir.mostrarMensaje("No hay automóviles.");
@@ -389,9 +389,9 @@ public class Controller {
 //		View.mostrarMensaje("Ingrese el apellido: ");
 		f = persona.pedirString("Ingrese Apellido");
 //		View.mostrarMensaje("Ingrese la cedula: ");
-		t =  persona.pedirInt("Ingrese cedula");
+		t = persona.pedirInt("Ingrese cedula");
 //		View.mostrarMensaje("Ingrese el codigo");
-		l =  persona.pedirInt("Ingrese Codigo");
+		l = persona.pedirInt("Ingrese Codigo");
 		objLista.setListaPersona(new Empleado(n, f, t, l));// Se crea el objeto Empleado que hereda de persona con las
 															// variables pedidas por teclado anteriormente
 	}
@@ -421,6 +421,7 @@ public class Controller {
 			}
 		}
 	}
+
 	/**
 	 * Metodo que recibe una variable de tipo double(El ingreso) y retorna una
 	 * variable de tipo double (el total), el metodo calcula el total de ingresos en
@@ -434,12 +435,8 @@ public class Controller {
 		return total;
 	}
 
-
 	public void mostrarVentas() {
-		
-		
 
-	
 	}
 
 	public void registrarVenta(String clienteId, String automovilId) {
@@ -458,8 +455,8 @@ public class Controller {
 			return;
 		}
 
-		
-		int forma = pedir.pedirInt("Ingrese forma de pago:");// Pide al usuario la forma de pago, si es al contado o a credito
+		int forma = pedir.pedirInt("Ingrese forma de pago:");// Pide al usuario la forma de pago, si es al contado o a
+																// credito
 
 		double precio = actual.getAutomovil().getPrecio();
 		if (forma == 1) {// Si es al contado
@@ -474,75 +471,71 @@ public class Controller {
 
 		totalIngresos(precio);
 		eliminarAutomovilDeVenta(id);
-		
+
 	}
 
-	
 	public void eliminarCliente() {
-		
+
 		if (!objLista.getLista().isEmpty()) {
-	      
-	        int cedula = persona.pedirInt("Ingrese la cédula del cliente a eliminar");
-	        
-	       
-	        Cliente eliminar = null;
 
-	       
-	        for (Persona cliente : objLista.getLista()) {
-	            if (cliente instanceof Cliente) { 
-	                Cliente clienteCast = (Cliente) cliente; 
-	                if (clienteCast.getCedula() == cedula) {
-	                    eliminar = clienteCast;
-	                    break; 
-	                }
-	            }
-	        }
+			int cedula = persona.pedirInt("Ingrese la cédula del cliente a eliminar");
 
-	        
-	        if (eliminar != null) {
-	            
-	            persona.mostrarMensaje("Datos del cliente a eliminar: " + " Nombre: " +eliminar.getNombre() + " Apellidos " + eliminar.getApellidos() + " C.c: " + eliminar.getCedula());
-	            objLista.getLista().remove(eliminar);
-	            persona.mostrarMensaje("Cliente eliminado.");
-	        } else {
-	            persona.mostrarMensaje("Cliente no encontrado.");
-	        }
-	    } else {
-	        persona.mostrarMensaje("La lista está vacía.");
-	    }
+			Cliente eliminar = null;
+
+			for (Persona cliente : objLista.getLista()) {
+				if (cliente instanceof Cliente) {
+					Cliente clienteCast = (Cliente) cliente;
+					if (clienteCast.getCedula() == cedula) {
+						eliminar = clienteCast;
+						break;
+					}
+				}
+			}
+
+			if (eliminar != null) {
+
+				persona.mostrarMensaje("Datos del cliente a eliminar: " + " Nombre: " + eliminar.getNombre()
+						+ " Apellidos " + eliminar.getApellidos() + " C.c: " + eliminar.getCedula());
+				objLista.getLista().remove(eliminar);
+				persona.mostrarMensaje("Cliente eliminado.");
+			} else {
+				persona.mostrarMensaje("Cliente no encontrado.");
+			}
+		} else {
+			persona.mostrarMensaje("La lista está vacía.");
+		}
 	}
 
 	public void eliminarEmpleado() {
 		if (!objLista.getLista().isEmpty()) {
-		      
-	        int cedula = persona.pedirInt("Ingrese la cédula del Empleado a eliminar");
-	        
-	       
-	        Empleado eliminar = null;
 
-	       
-	        for (Persona empleado : objLista.getLista()) {
-	            if (empleado instanceof Empleado) { 
-	                Empleado cast = (Empleado) empleado; 
-	                if (empleado.getCedula() == cedula) {
-	                    eliminar = cast;
-	                    break; 
-	                }
-	            }
-	        }
+			int cedula = persona.pedirInt("Ingrese la cédula del Empleado a eliminar");
 
-	        
-	        if (eliminar != null) {
-	            
-	            persona.mostrarMensaje("Datos del empleado a eliminar: " + " Nombre: " +eliminar.getNombre() + " Apellidos " + eliminar.getApellidos() + " C.c: " + eliminar.getCedula() + " Codigo: " + eliminar.getCodigo());
-	            objLista.getLista().remove(eliminar);
-	            persona.mostrarMensaje("Empleado eliminado.");
-	        } else {
-	            persona.mostrarMensaje("Empleado no encontrado.");
-	        }
-	    } else {
-	        persona.mostrarMensaje("La lista está vacía.");
-	    }
+			Empleado eliminar = null;
+
+			for (Persona empleado : objLista.getLista()) {
+				if (empleado instanceof Empleado) {
+					Empleado cast = (Empleado) empleado;
+					if (empleado.getCedula() == cedula) {
+						eliminar = cast;
+						break;
+					}
+				}
+			}
+
+			if (eliminar != null) {
+
+				persona.mostrarMensaje("Datos del empleado a eliminar: " + " Nombre: " + eliminar.getNombre()
+						+ " Apellidos " + eliminar.getApellidos() + " C.c: " + eliminar.getCedula() + " Codigo: "
+						+ eliminar.getCodigo());
+				objLista.getLista().remove(eliminar);
+				persona.mostrarMensaje("Empleado eliminado.");
+			} else {
+				persona.mostrarMensaje("Empleado no encontrado.");
+			}
+		} else {
+			persona.mostrarMensaje("La lista está vacía.");
+		}
 	}
 
 	public void agregarEmpleado(String id, String nombre) {
@@ -550,26 +543,25 @@ public class Controller {
 		int t, l;
 		n = (pedir.pedirString("Ingrese nombre"));
 		f = (pedir.pedirString("Ingrese apellido"));
-		t =  pedir.pedirInt("Ingrese la cedula");
+		t = pedir.pedirInt("Ingrese la cedula");
 		l = pedir.pedirInt("Ingrese el código");
 		objLista.setListaPersona(new Empleado(n, f, t, l));
-		
+
 	}
 
 	public void mostrarClientes() {
-		if (!objLista.getLista().isEmpty()) { 
-	        persona.mostrarMensaje("Clientes registrados:");
-	        for (Object obj : objLista.getLista()) {
-	            if (obj instanceof Cliente) { 
-	                Cliente cliente = (Cliente) obj;
-	                persona.mostrarMensaje(cliente.toString()); 
-	            }
-	        }
-	    } else {
-	        persona.mostrarMensaje("No hay clientes registrados.");
-	    }
-	  
-		
+		if (!objLista.getLista().isEmpty()) {
+			persona.mostrarMensaje("Clientes registrados:");
+			for (Object obj : objLista.getLista()) {
+				if (obj instanceof Cliente) {
+					Cliente cliente = (Cliente) obj;
+					persona.mostrarMensaje(cliente.toString());
+				}
+			}
+		} else {
+			persona.mostrarMensaje("No hay clientes registrados.");
+		}
+
 	}
 
 	public void agregarCliente(String id, String nombre) {
@@ -579,20 +571,17 @@ public class Controller {
 		f = (persona.pedirString("Ingrese apellido"));
 		t = persona.pedirInt("Ingrese la cedula");
 		objLista.setListaPersona(new Cliente(n, f, t));
-		
+
 	}
 
 	public int calcularIngresosTotales() {
-		
-		if (total == 0) { 
-	        persona.mostrarMensaje("No se han registrado ventas");
-	        return 0; 
-	    }
-	    return (int) total;
-	
-		
-	}
 
-	
+		if (total == 0) {
+			persona.mostrarMensaje("No se han registrado ventas");
+			return 0;
+		}
+		return (int) total;
+
+	}
 
 }

@@ -36,6 +36,13 @@ public class VentasWindow extends JFrame {
 		titulo.setForeground(Color.WHITE);
 		panelHeader.add(titulo);
 
+		// Logo
+		JLabel l1 = new JLabel();
+		l1.setSize(200, 100);
+		ImageIcon logo = new ImageIcon("C:\\yo\\TECNICAS II\\LOGO.png");
+		l1.setIcon(new ImageIcon(logo.getImage().getScaledInstance(l1.getWidth(), l1.getHeight(), Image.SCALE_SMOOTH)));
+		panelHeader.add(l1, BorderLayout.WEST);
+
 		// Buttons Panel
 		JPanel panelButtons = new JPanel();
 		panelButtons.setLayout(new GridLayout(3, 2, 20, 20));

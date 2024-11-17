@@ -50,8 +50,8 @@ public class ViewGUI extends JFrame {
 		panelHeader.add(l1, BorderLayout.WEST);
 
 		// Main Menu Panel
-		JPanel panelMenu = new JPanel();
-		panelMenu.setBackground(Color.WHITE);
+		PanelConFondo panelMenu = new PanelConFondo("C:\\yo\\TECNICAS II\\IMAGEN FONDO.jpg");
+		panelMenu.setBackground(Color.DARK_GRAY);
 		panelMenu.setLayout(new GridLayout(5, 1, 20, 20));
 		panelMenu.setBorder(BorderFactory.createEmptyBorder(50, 200, 50, 200));
 
@@ -82,10 +82,10 @@ public class ViewGUI extends JFrame {
 	// Estilo de los botones
 	private void customizeButton(JButton button) {
 		button.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		button.setBackground(new Color(255, 165, 0)); // Naranja
+		button.setBackground(Color.GRAY);
 		button.setForeground(Color.WHITE);
 		button.setFocusPainted(false);
-		button.setBorder(BorderFactory.createLineBorder(new Color(255, 140, 0), 2));
+		button.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
 	}
 
 	/**

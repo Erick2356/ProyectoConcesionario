@@ -4,9 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -54,6 +56,13 @@ public class AutomovilesWindow extends JFrame {
 		titulo.setFont(new Font("Arial", Font.BOLD, 24));
 		titulo.setForeground(Color.WHITE);
 		panelHeader.add(titulo);
+
+		// Logo
+		JLabel l1 = new JLabel();
+		l1.setSize(200, 100);
+		ImageIcon logo = new ImageIcon("C:\\yo\\TECNICAS II\\LOGO.png");
+		l1.setIcon(new ImageIcon(logo.getImage().getScaledInstance(l1.getWidth(), l1.getHeight(), Image.SCALE_SMOOTH)));
+		panelHeader.add(l1, BorderLayout.WEST);
 		// BOTONES
 		JPanel panelButtons = new JPanel();
 		panelButtons.setLayout(new GridLayout(3, 2, 20, 20));

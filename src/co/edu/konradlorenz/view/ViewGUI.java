@@ -25,7 +25,7 @@ public class ViewGUI extends JFrame {
 		// Header Panel
 		JPanel panelHeader = new JPanel(new BorderLayout());
 		panelHeader.setBackground(new Color(30, 144, 255)); // Azul brillante
-		JLabel titulo = new JLabel("Proyecto Técnicas II", SwingConstants.CENTER);
+		JLabel titulo = new JLabel("Concecionario Rev & Recharge S.A.S", SwingConstants.CENTER);
 		titulo.setFont(new Font("SansSerif", Font.BOLD, 36));
 		titulo.setForeground(Color.WHITE);
 		panelHeader.add(titulo, BorderLayout.CENTER);

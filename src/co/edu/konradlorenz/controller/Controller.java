@@ -176,11 +176,11 @@ public class Controller {
 
 		totalIngresos(precio);
 		registro.add(actual.getAutomovil().toString());
-		
+
 		eliminarAutomovilDeVenta(id);
 //		View.mostrarMensaje("Venta Exitosa.");
 		ventas.mostrarMensaje("Venta Exitosa.");
-		
+
 	}
 
 	/**
@@ -441,27 +441,18 @@ public class Controller {
 	}
 
 	public void mostrarVentas() {
-		
-		if(registro.isEmpty()) {
-			
-			pedir.mostrarMensaje("Lista Vacia");
-			
-		}else {
-			
-			pedir.mostrarLista(registro, "Lista de ventas");
-			
-			
-		}
-		
-		
-	}
-		
-		
-		
-			
-			
 
-	
+		if (registro.isEmpty()) {
+
+			pedir.mostrarMensaje("Lista Vacia");
+
+		} else {
+
+			pedir.mostrarLista(registro, "Lista de ventas");
+
+		}
+
+	}
 
 	public void eliminarCliente() {
 
@@ -565,15 +556,14 @@ public class Controller {
 
 	public int calcularIngresosTotales() {
 
-		if (total == 0) { 
-	        persona.mostrarMensaje("No se han registrado ventas.");
-	        return 0;
-	    }
+		if (total == 0) {
+			persona.mostrarMensaje("No se han registrado ventas.");
+			return 0;
+		}
 
-	    
-	    persona.mostrarMensaje("El ingreso total acumulado es: $" + total);
+		persona.mostrarMensaje("El ingreso total acumulado es: $" + total);
 
-	    return (int) total;
+		return (int) total;
 
 	}
 

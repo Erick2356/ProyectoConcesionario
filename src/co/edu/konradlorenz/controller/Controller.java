@@ -494,50 +494,11 @@ public class Controller {
 	}
 
 	
-	public void eliminarCliente(String id) {
-		if (cabeza == null) {
-	        pedir.mostrarMensaje("No hay clientes registrados para eliminar.");
-	        return;
-	    }
-
-	    Nodo actual = cabeza;
-	    Nodo anterior = null;
-
-	    boolean encontrado = false;
-
-	    while (actual != null) {
-	        Automovil automovil = actual.getAutomovil();
-
-	        if (automovil != null && automovil.getCliente() != null &&
-	            String.valueOf(automovil.getCliente().getCedula()).equals(id)) {
-
-	            encontrado = true;
-
-	            // Si el nodo a eliminar es la cabeza
-	            if (actual == cabeza) {
-	                cabeza = cabeza.getNext();
-	            } else {
-	                // Salta el nodo actual
-	                anterior.setNext(actual.getNext());
-	            }
-
-	            pedir.mostrarMensaje("Cliente con ID " + id + " eliminado correctamente.");
-	            break;
-	        }
-
-	        anterior = actual;
-	        actual = actual.getNext();
-	    }
-
-	    if (!encontrado) {
-	        pedir.mostrarMensaje("Cliente con ID " + id + " no encontrado.");
-	    }
+	public void eliminarCliente() {
 		
 	}
 
-	public void eliminarEmpleado(int codigo) {
-		
-
+	public void eliminarEmpleado() {
 		
 	}
 

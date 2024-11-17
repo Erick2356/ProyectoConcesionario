@@ -44,7 +44,7 @@ public class VentasWindow extends JFrame {
 		panelHeader.add(l1, BorderLayout.WEST);
 
 		// Buttons Panel
-		JPanel panelButtons = new JPanel();
+		PanelConFondo panelButtons = new PanelConFondo("/co/edu/konradlorenz/view/IMAGENES/IMAGEN FONDO 2.jpg");
 		panelButtons.setLayout(new GridLayout(3, 2, 20, 20));
 		panelButtons.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 		panelButtons.setBackground(Color.WHITE);

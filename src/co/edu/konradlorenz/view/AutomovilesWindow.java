@@ -1,15 +1,25 @@
 package co.edu.konradlorenz.view;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 
 import co.edu.konradlorenz.controller.Controller;
 
 public class AutomovilesWindow extends JFrame {
-
 	private final Controller controller;
 
 	public AutomovilesWindow(Controller controller) {
@@ -21,23 +31,33 @@ public class AutomovilesWindow extends JFrame {
 		setTitle("Gestión de Automóviles");
 		setSize(800, 500);
 		setLocationRelativeTo(null);
+		setLayout(new BorderLayout());
 
-		JPanel panel = new JPanel();
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 150));
+		JPanel panelHeader = new JPanel();
+		panelHeader.setBackground(new Color(70, 130, 180)); // Azul acero
+		JLabel titulo = new JLabel("Gestión de Automóviles", SwingConstants.CENTER);
+		titulo.setFont(new Font("Arial", Font.BOLD, 24));
+		titulo.setForeground(Color.WHITE);
+		panelHeader.add(titulo);
 
-		JButton btnAgregarAutomovil = new JButton("Agregar Automóvil");
-		JButton btnEliminarAutomovil = new JButton("Eliminar Automóvil");
-		JButton btnModificarAutomovil = new JButton("Modificar Automóvil");
-		JButton btnMostrarAutomoviles = new JButton("Mostrar Automóviles");
-		JButton btnBuscarAutomoviles = new JButton("Buscar Automóviles por Año");
-		JButton btnSalir = new JButton("Salir");
+		JPanel panelButtons = new JPanel();
+		panelButtons.setLayout(new GridLayout(3, 2, 20, 20));
+		panelButtons.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+		panelButtons.setBackground(Color.WHITE);
 
-		panel.add(btnAgregarAutomovil);
-		panel.add(btnEliminarAutomovil);
-		panel.add(btnModificarAutomovil);
-		panel.add(btnMostrarAutomoviles);
-		panel.add(btnBuscarAutomoviles);
-		panel.add(btnSalir);
+		JButton btnAgregarAutomovil = createStyledButton("Agregar Automóvil");
+		JButton btnEliminarAutomovil = createStyledButton("Eliminar Automóvil");
+		JButton btnModificarAutomovil = createStyledButton("Modificar Automóvil");
+		JButton btnMostrarAutomoviles = createStyledButton("Mostrar Automóviles");
+		JButton btnBuscarAutomoviles = createStyledButton("Buscar Automóviles por Año");
+		JButton btnSalir = createStyledButton("Salir");
+
+		panelButtons.add(btnAgregarAutomovil);
+		panelButtons.add(btnEliminarAutomovil);
+		panelButtons.add(btnModificarAutomovil);
+		panelButtons.add(btnMostrarAutomoviles);
+		panelButtons.add(btnBuscarAutomoviles);
+		panelButtons.add(btnSalir);
 
 		btnAgregarAutomovil.addActionListener(e -> agregarAutomovil());
 		btnEliminarAutomovil.addActionListener(e -> controller.eliminarAutomovil());
@@ -45,8 +65,18 @@ public class AutomovilesWindow extends JFrame {
 		btnMostrarAutomoviles.addActionListener(e -> controller.mostrarAutomovil());
 		btnBuscarAutomoviles.addActionListener(e -> controller.buscarAutomovilAnio());
 		btnSalir.addActionListener(e -> dispose());
-		add(panel);
 
+		add(panelHeader, BorderLayout.NORTH);
+		add(panelButtons, BorderLayout.CENTER);
+	}
+
+	private JButton createStyledButton(String text) {
+		JButton button = new JButton(text);
+		button.setFont(new Font("SansSerif", Font.BOLD, 14));
+		button.setBackground(new Color(255, 215, 0)); // Oro
+		button.setForeground(Color.DARK_GRAY);
+		button.setFocusPainted(false);
+		return button;
 	}
 
 	private void agregarAutomovil() {

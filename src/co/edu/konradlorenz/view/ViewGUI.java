@@ -5,8 +5,7 @@ import javax.swing.*;
 import co.edu.konradlorenz.controller.Controller;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
 
 public class ViewGUI extends JFrame {
 	private final Controller controller;
@@ -21,81 +20,59 @@ public class ViewGUI extends JFrame {
 		setSize(800, 720);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setLayout(new BorderLayout());
 
-		JPanel panel1 = new JPanel();
+		// Header Panel
+		JPanel panelHeader = new JPanel(new BorderLayout());
+		panelHeader.setBackground(new Color(30, 144, 255)); // Azul brillante
+		JLabel titulo = new JLabel("Proyecto Técnicas II", SwingConstants.CENTER);
+		titulo.setFont(new Font("SansSerif", Font.BOLD, 36));
+		titulo.setForeground(Color.WHITE);
+		panelHeader.add(titulo, BorderLayout.CENTER);
 
-		panel1.setLayout(null);
-
-		JLabel titulo = new JLabel("Proyecto Tecnicas II", SwingConstants.CENTER);
-		titulo.setFont(new Font("Times New Roman", Font.BOLD, 40));
-		titulo.setBounds(-80, 40, 500, 150);
-
-		panel1.add(titulo);
-
+		// Logo
 		JLabel l1 = new JLabel();
-		l1.setSize(300, 200);
-
+		l1.setSize(200, 100);
 		ImageIcon logo = new ImageIcon("Media/Trabajador.png");
+		l1.setIcon(new ImageIcon(logo.getImage().getScaledInstance(l1.getWidth(), l1.getHeight(), Image.SCALE_SMOOTH)));
+		panelHeader.add(l1, BorderLayout.WEST);
 
-		Icon imagen = new ImageIcon(
-				logo.getImage().getScaledInstance(l1.getWidth(), l1.getHeight(), Image.SCALE_DEFAULT));
-
-		l1.setIcon(imagen);
-
-		l1.setBounds(350, 10, l1.getWidth(), l1.getHeight());
-
-		panel1.add(l1);
-
-		panel1.setBackground(Color.white);
-
-		panel1.setBounds(50, 10, 700, 200);
-
-		JPanel panel2 = new JPanel();
-		panel2.setLayout(null);
-
-		panel2.setBackground(Color.black);
+		// Main Menu Panel
+		JPanel panelMenu = new JPanel();
+		panelMenu.setBackground(Color.WHITE);
+		panelMenu.setLayout(new GridLayout(5, 1, 20, 20));
+		panelMenu.setBorder(BorderFactory.createEmptyBorder(50, 200, 50, 200));
 
 		JButton btnGestionAutomoviles = new JButton("Gestionar Automóviles");
-
-		btnGestionAutomoviles.setBackground(Color.white);
-		btnGestionAutomoviles.setBounds(245, 100, 200, 40);
-
 		JButton btnVentas = new JButton("Ventas");
-
-		btnVentas.setBackground(Color.white);
-		btnVentas.setBounds(290, 170, 100, 40);
 		JButton btnClientesEmpleados = new JButton("Gestionar Clientes y Empleados");
-
-		btnClientesEmpleados.setBackground(Color.white);
-		btnClientesEmpleados.setBounds(200, 240, 300, 40);
-
 		JButton btnSalir = new JButton("Salir");
 
-		btnSalir.setBackground(Color.white);
+		customizeButton(btnGestionAutomoviles);
+		customizeButton(btnVentas);
+		customizeButton(btnClientesEmpleados);
+		customizeButton(btnSalir);
 
-		btnSalir.setBounds(300, 310, 80, 40);
-
-		btnSalir.setToolTipText("Salir del programa");
-
-		panel2.add(btnGestionAutomoviles);
-		panel2.add(btnVentas);
-		panel2.add(btnClientesEmpleados);
-		panel2.add(btnSalir);
+		panelMenu.add(btnGestionAutomoviles);
+		panelMenu.add(btnVentas);
+		panelMenu.add(btnClientesEmpleados);
+		panelMenu.add(btnSalir);
 
 		btnGestionAutomoviles.addActionListener(e -> openAutomovilesMenu());
 		btnVentas.addActionListener(e -> openVentasMenu());
 		btnClientesEmpleados.addActionListener(e -> openClientesEmpleadosMenu());
 		btnSalir.addActionListener(e -> System.exit(0));
 
-		panel2.setBounds(50, 250, 700, 500);
+		add(panelHeader, BorderLayout.NORTH);
+		add(panelMenu, BorderLayout.CENTER);
+	}
 
-		JPanel panel3 = new JPanel();
-
-		panel3.setBackground(Color.white);
-
-		add(panel1);
-		add(panel2);
-		add(panel3);
+	private void customizeButton(JButton button) {
+		button.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		button.setBackground(new Color(255, 165, 0)); // Naranja
+		button.setForeground(Color.WHITE);
+		button.setFocusPainted(false);
+		button.setBorder(BorderFactory.createLineBorder(new Color(255, 140, 0), 2));
 	}
 
 	private void openAutomovilesMenu() {

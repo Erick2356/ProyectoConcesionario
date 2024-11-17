@@ -5,86 +5,99 @@ import java.awt.*;
 import co.edu.konradlorenz.controller.Controller;
 
 public class ClientesEmpleadosWindow extends JFrame {
-	private final Controller controller;
+    private final Controller controller;
 
-	public ClientesEmpleadosWindow(Controller controller) {
-		this.controller = controller;
-		initComponents();
-	}
+    public ClientesEmpleadosWindow(Controller controller) {
+        this.controller = controller;
+        initComponents();
+    }
 
-	private void initComponents() {
-		setTitle("Gestión de Clientes y Empleados");
-		setSize(800, 500);
-		setLocationRelativeTo(null);
+    private void initComponents() {
+        setTitle("Gestión de Clientes y Empleados");
+        setSize(800, 500);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
 
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
+        // Header Panel
+        JPanel panelHeader = new JPanel();
+        panelHeader.setBackground(new Color(70, 130, 180)); // Azul acero
+        JLabel titulo = new JLabel("Gestión de Clientes y Empleados", SwingConstants.CENTER);
+        titulo.setFont(new Font("Arial", Font.BOLD, 24));
+        titulo.setForeground(Color.WHITE);
+        panelHeader.add(titulo);
 
-		JButton btnAgregarCliente = new JButton("Agregar Cliente");
+        // Buttons Panel
+        JPanel panelButtons = new JPanel();
+        panelButtons.setLayout(new GridLayout(3, 2, 20, 20));
+        panelButtons.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        panelButtons.setBackground(Color.WHITE);
 
-		btnAgregarCliente.setBounds(50, 100, 200, 40);
-		JButton btnEliminarCliente = new JButton("Eliminar Cliente");
-		btnEliminarCliente.setBounds(300, 100, 200, 40);
-		JButton btnMostrarClientes = new JButton("Mostrar Clientes");
-		btnMostrarClientes.setBounds(550, 100, 200, 40);
-		JButton btnAgregarEmpleado = new JButton("Agregar Empleado");
-		btnAgregarEmpleado.setBounds(100, 190, 200, 40);
+        JButton btnAgregarCliente = createStyledButton("Agregar Cliente");
+        JButton btnEliminarCliente = createStyledButton("Eliminar Cliente");
+        JButton btnMostrarClientes = createStyledButton("Mostrar Clientes");
+        JButton btnAgregarEmpleado = createStyledButton("Agregar Empleado");
+        JButton btnEliminarEmpleado = createStyledButton("Eliminar Empleado");
+        JButton btnSalir = createStyledButton("Salir");
 
-		JButton btnEliminarEmpleado = new JButton("Eliminar Empleado");
-		btnEliminarEmpleado.setBounds(450, 190, 200, 40);
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.setBounds(340, 290, 100, 40);
+        panelButtons.add(btnAgregarCliente);
+        panelButtons.add(btnEliminarCliente);
+        panelButtons.add(btnMostrarClientes);
+        panelButtons.add(btnAgregarEmpleado);
+        panelButtons.add(btnEliminarEmpleado);
+        panelButtons.add(btnSalir);
 
-		panel.add(btnAgregarCliente);
-		panel.add(btnEliminarCliente);
-		panel.add(btnMostrarClientes);
-		panel.add(btnAgregarEmpleado);
-		panel.add(btnEliminarEmpleado);
-		panel.add(btnSalir);
+        btnAgregarCliente.addActionListener(e -> agregarCliente());
+        btnEliminarCliente.addActionListener(e -> eliminarCliente());
+        btnMostrarClientes.addActionListener(e -> mostrarClientes());
+        btnAgregarEmpleado.addActionListener(e -> agregarEmpleado());
+        btnEliminarEmpleado.addActionListener(e -> eliminarEmpleado());
+        btnSalir.addActionListener(e -> dispose());
 
-		btnAgregarCliente.addActionListener(e -> agregarCliente());
-		btnEliminarCliente.addActionListener(e -> eliminarCliente());
-		btnMostrarClientes.addActionListener(e -> mostrarClientes());
-		btnAgregarEmpleado.addActionListener(e -> agregarEmpleado());
-		btnEliminarEmpleado.addActionListener(e -> eliminarEmpleado());
-		btnSalir.addActionListener(e -> dispose());
-		panel.setBackground(Color.black);
+        add(panelHeader, BorderLayout.NORTH);
+        add(panelButtons, BorderLayout.CENTER);
+    }
 
-		add(panel);
-	}
+    private JButton createStyledButton(String text) {
+        JButton button = new JButton(text);
+        button.setFont(new Font("SansSerif", Font.BOLD, 14));
+        button.setBackground(new Color(100, 149, 237)); // Azul cielo
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        return button;
+    }
 
-	private void agregarCliente() {
-		String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del cliente:");
-		String id = JOptionPane.showInputDialog(this, "Ingrese el ID del cliente:");
-		if (nombre != null && id != null) {
-			controller.agregarCliente(id, nombre);
-		}
-	}
+    private void agregarCliente() {
+        String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del cliente:");
+        String id = JOptionPane.showInputDialog(this, "Ingrese el ID del cliente:");
+        if (nombre != null && id != null) {
+            controller.agregarCliente(id, nombre);
+        }
+    }
 
-	private void eliminarCliente() {
-		String id = JOptionPane.showInputDialog(this, "Ingrese el ID del cliente a eliminar:");
-		if (id != null) {
-			controller.eliminarCliente(id);
-		}
-	}
+    private void eliminarCliente() {
+        String id = JOptionPane.showInputDialog(this, "Ingrese el ID del cliente a eliminar:");
+        if (id != null) {
+            controller.eliminarCliente(id);
+        }
+    }
 
-	private void mostrarClientes() {
-		String clientes = controller.mostrarClientes();
-		JOptionPane.showMessageDialog(this, clientes, "Lista de Clientes", JOptionPane.INFORMATION_MESSAGE);
-	}
+    private void mostrarClientes() {
+        String clientes = controller.mostrarClientes();
+        JOptionPane.showMessageDialog(this, clientes, "Lista de Clientes", JOptionPane.INFORMATION_MESSAGE);
+    }
 
-	private void agregarEmpleado() {
-		String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del empleado:");
-		String id = JOptionPane.showInputDialog(this, "Ingrese el ID del empleado:");
-		if (nombre != null && id != null) {
-			controller.agregarEmpleado(id, nombre);
-		}
-	}
+    private void agregarEmpleado() {
+        String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del empleado:");
+        String id = JOptionPane.showInputDialog(this, "Ingrese el ID del empleado:");
+        if (nombre != null && id != null) {
+            controller.agregarEmpleado(id, nombre);
+        }
+    }
 
-	private void eliminarEmpleado() {
-		String id = JOptionPane.showInputDialog(this, "Ingrese el ID del empleado a eliminar:");
-		if (id != null) {
-			controller.eliminarEmpleado(id);
-		}
-	}
+    private void eliminarEmpleado() {
+        String id = JOptionPane.showInputDialog(this, "Ingrese el ID del empleado a eliminar:");
+        if (id != null) {
+            controller.eliminarEmpleado(id);
+        }
+    }
 }

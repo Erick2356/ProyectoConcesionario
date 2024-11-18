@@ -542,9 +542,44 @@ public class Controller {
                 }
                 return Integer.parseInt(input); 
             } catch (NumberFormatException e) {
-                pedir.mostrarMensaje("Por favor, ingresar un dato invalido.");
+                pedir.mostrarMensaje("Por favor, ingresar un dato valido.");
+            }catch (Exception e) {
+				// TODO: handle exception
+            	pedir.mostrarMensaje("Error de otro tipo");
+			}
+        }
+    }
+	
+	public String pedirSoloLetras(String mensaje) {
+        while (true) { 
+            String string = pedir.pedirString(mensaje);
+            if (string == null) { 
+                pedir.mostrarMensaje("Se cancelo la operacion.");
+                return null; 
             }
+            if (validar(string)) { 
+                return string; 
+            }
+            pedir.mostrarMensaje("Error: Ingrese solo letras (sin números ni caracteres especiales).");
         }
     }
 
+	private boolean validar(String input) {
+       
+        return input.matches("[a-zA-Z]+");
+    }
+	public Double pedirDouble(String mensaje) {
+        while (true) { 
+            String input = pedir.pedirString(mensaje);
+            if (input == null) { 
+                System.out.println("Operación cancelada.");
+                return null; 
+            }
+            try {
+                return Double.parseDouble(input); 
+            } catch (NumberFormatException e) {
+                pedir.mostrarMensaje("Ingrese datos válidos.");
+            }
+        }
+    }
 }

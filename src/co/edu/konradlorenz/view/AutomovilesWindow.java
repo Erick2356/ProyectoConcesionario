@@ -186,4 +186,5 @@ public class AutomovilesWindow extends JFrame {
 	 public String pedirInput(String mensaje) {
 	        return JOptionPane.showInputDialog(mensaje);
 	    }
+	 
 }

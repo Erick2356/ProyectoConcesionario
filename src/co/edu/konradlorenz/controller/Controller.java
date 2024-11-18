@@ -39,28 +39,28 @@ public class Controller {
 		String marca = pedir.pedirString("Ingrese Marca");
 		String motor = pedir.pedirString("Ingrese Motor");
 		String color = pedir.pedirString("Ingrese Color");
-		int puertas = pedir.pedirInt("Ingrese Cantidad de Puertas");
-		int anio = pedir.pedirInt("Ingrese Año");
+		int puertas = pedirInt("Ingrese Cantidad de Puertas");
+		int anio = pedirInt("Ingrese Año");
 		double precio = pedir.pedirDouble("Ingrese Precio");
 		Automovil nAutomovil = null;
 		switch (opcion) {
 		case 1: // Si el automovil es tipo camioneta
-			int capacidad = pedir.pedirInt("Ingrese la Capacidad");
+			int capacidad = pedirInt("Ingrese la Capacidad");
 			String traccion = pedir.pedirString("Ingrese Traccion");
 			nAutomovil = new Camioneta(id, modelo, marca, motor, color, puertas, anio, precio, capacidad, traccion);
 			break;
 
 		case 2: // Si el tipo es electrico
-			int autonomia = pedir.pedirInt("Ingrese autonomia");
+			int autonomia = pedirInt("Ingrese autonomia");
 			String bateria = pedir.pedirString("Ingrese Tipo de Bateria");
-			int tiempoCarga = pedir.pedirInt("Ingrese el tiempo de Carga");
+			int tiempoCarga = pedirInt("Ingrese el tiempo de Carga");
 			nAutomovil = new Electrico(id, modelo, marca, motor, color, puertas, anio, precio, autonomia, bateria,
 					tiempoCarga);
 
 			break;
 
 		case 3: // Si es una motocicleta
-			int cilindraje = pedir.pedirInt("Ingrese Cilindraje");
+			int cilindraje = pedirInt("Ingrese Cilindraje");
 			String tipoMoto = pedir.pedirString("Ingrese tipo de Moto");
 			nAutomovil = new Motocicleta(id, modelo, marca, motor, color, puertas, anio, precio, cilindraje, tipoMoto);
 			break;
@@ -122,7 +122,7 @@ public class Controller {
 			return;
 		}
 
-		int id = pedir.pedirInt("Ingrese ID:");
+		int id = pedirInt("Ingrese ID:");
 		Nodo actual = cabeza;
 		while (actual != null && actual.getAutomovil().getId() != id) {
 			actual = actual.getNext();
@@ -134,8 +134,7 @@ public class Controller {
 		}
 
 		ventas.mostrarMensaje("El vehículo a vender es: " + actual.getAutomovil().toString());
-		int forma = ventas
-				.pedirInt("ingrese la forma de pago (ingrese 1 para pagar al contado o 2 para pago a credito):");
+		int forma = pedirInt("ingrese la forma de pago (ingrese 1 para pagar al contado o 2 para pago a credito):");
 
 		double precio = actual.getAutomovil().getPrecio();
 		if (forma == 1) {// Si es al contado
@@ -165,7 +164,7 @@ public class Controller {
 			pedir.mostrarMensaje("No hay automoviles en la lista");
 			return;
 		}
-		int idd = pedir.pedirInt("Ingrese ID");
+		int idd = pedirInt("Ingrese ID");
 		if (cabeza.getAutomovil().getId() == idd) {
 			cabeza = cabeza.next;
 			return;
@@ -227,7 +226,7 @@ public class Controller {
 			pedir.mostrarMensaje("No hay automoviles en la lista");
 			return;
 		}
-		int id = pedir.pedirInt("Ingrese El ID del vehiculo");
+		int id = pedirInt("Ingrese El ID del vehiculo");
 		Nodo actual = cabeza;
 		while (actual != null && actual.getAutomovil().getId() != id) {
 			actual = actual.getNext();
@@ -238,13 +237,13 @@ public class Controller {
 			return;
 		}
 		Automovil automod = actual.getAutomovil();
-		int nuevoId = pedir.pedirInt("Ingrese ID:");
+		int nuevoId = pedirInt("Ingrese ID:");
 		String nuevoModelo = pedir.pedirString("Ingrese Modelo");
 		String nuevaMarca = pedir.pedirString("Ingrese Marca");
 		String nuevoMotor = pedir.pedirString("Ingrese Motor");
 		String nuevoColor = pedir.pedirString("Ingrese Color");
-		int nuevaPuertas = pedir.pedirInt("Ingrese Numero de Puertas");
-		int nuevoAnio = pedir.pedirInt("Ingrese Año");
+		int nuevaPuertas = pedirInt("Ingrese Numero de Puertas");
+		int nuevoAnio = pedirInt("Ingrese Año");
 		double nuevoPrecio = pedir.pedirDouble("Ingrese Precio");
 		/**
 		 * Se cambian los valores del automovil utilizando los metodos setter del
@@ -261,12 +260,12 @@ public class Controller {
 
 		if (automod instanceof Camioneta) {// Si es de tipo camioneta
 			Camioneta camioneta = (Camioneta) automod;
-			camioneta.setCapacidadCarga(pedir.pedirInt("Ingrese Capacidad"));// Cambia la capacidad de carga
+			camioneta.setCapacidadCarga(pedirInt("Ingrese Capacidad"));// Cambia la capacidad de carga
 			camioneta.setTipo(pedir.pedirString("Ingrese tipo de Traccion"));// Cambia el tipo de traccion
 
 		} else if (automod instanceof Electrico) {// SI es un automovil electrico
 			Electrico electrico = (Electrico) automod;
-			electrico.setAutonomia(pedir.pedirInt("Ingrese Autonomia"));// Cambia la autonomia
+			electrico.setAutonomia(pedirInt("Ingrese Autonomia"));// Cambia la autonomia
 			electrico.setTipoBateria(pedir.pedirString("Ingrese Tipo de bateria"));// Cambia el tipo de bateria
 			electrico.setTiempoCarga(Integer.parseInt("Ingrese Tiempo de Carga"));// Cambia el tiempo de carga
 
@@ -290,7 +289,7 @@ public class Controller {
 			pedir.mostrarMensaje("No hay automóviles.");
 			return;
 		}
-		int anio = pedir.pedirInt("Ingrese el año del vehiculo");
+		int anio = pedirInt("Ingrese el año del vehiculo");
 		boolean encontrado = false;
 		Nodo actual = cabeza;
 		while (actual != null) {
@@ -316,7 +315,7 @@ public class Controller {
 		int t;
 		n = (persona.pedirString("Ingrese el nombre"));
 		f = persona.pedirString("Ingrese el apellido");
-		t = persona.pedirInt("Ingrese Cedula");
+		t = pedirInt("Ingrese Cedula");
 		objLista.setListaPersona(new Cliente(n, f, t));// Se crea el objeto cliente con las variables recibidas por
 														// teclado anteriormente
 	}
@@ -329,8 +328,8 @@ public class Controller {
 		int t, l;
 		n = persona.pedirString("Ingrese Nombre");
 		f = persona.pedirString("Ingrese Apellido");
-		t = persona.pedirInt("Ingrese cedula");
-		l = persona.pedirInt("Ingrese Codigo");
+		t = pedirInt("Ingrese cedula");
+		l = pedirInt("Ingrese Codigo");
 		objLista.setListaPersona(new Empleado(n, f, t, l));// Se crea el objeto Empleado que hereda de persona con las
 															// variables pedidas por teclado anteriormente
 	}
@@ -469,8 +468,8 @@ public class Controller {
 		int t, l;
 		n = (pedir.pedirString("Ingrese nombre"));
 		f = (pedir.pedirString("Ingrese apellido"));
-		t = pedir.pedirInt("Ingrese la cedula");
-		l = pedir.pedirInt("Ingrese el código");
+		t = pedirInt("Ingrese la cedula");
+		l = pedirInt("Ingrese el código");
 		objLista.setListaPersona(new Empleado(n, f, t, l));// Se utilizan los setters para añadir al objeto de tipo
 															// empleado a la lista
 
@@ -509,7 +508,7 @@ public class Controller {
 		int t;
 		n = (persona.pedirString("Ingrese nombre"));
 		f = (persona.pedirString("Ingrese apellido"));
-		t = persona.pedirInt("Ingrese la cedula");
+		t = pedirInt("Ingrese la cedula");
 		objLista.setListaPersona(new Cliente(n, f, t));
 
 	}

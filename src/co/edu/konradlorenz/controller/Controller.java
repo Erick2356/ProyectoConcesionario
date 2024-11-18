@@ -35,24 +35,24 @@ public class Controller {
 	public void agregarAutomovil(int opcion) {
 
 		int id = pedirInt("Ingrese ID:");
-		String modelo = pedir.pedirString("Ingrese Modelo");
-		String marca = pedir.pedirString("Ingrese Marca");
-		String motor = pedir.pedirString("Ingrese Motor");
-		String color = pedir.pedirString("Ingrese Color");
+		String modelo = pedirSoloLetras("Ingrese Modelo");
+		String marca = pedirSoloLetras("Ingrese Marca");
+		String motor = pedirSoloLetras("Ingrese Motor");
+		String color = pedirSoloLetras("Ingrese Color");
 		int puertas = pedirInt("Ingrese Cantidad de Puertas");
 		int anio = pedirInt("Ingrese Año");
-		double precio = pedir.pedirDouble("Ingrese Precio");
+		double precio = pedirDouble("Ingrese Precio");
 		Automovil nAutomovil = null;
 		switch (opcion) {
 		case 1: // Si el automovil es tipo camioneta
 			int capacidad = pedirInt("Ingrese la Capacidad");
-			String traccion = pedir.pedirString("Ingrese Traccion");
+			String traccion = pedirSoloLetras("Ingrese Traccion");
 			nAutomovil = new Camioneta(id, modelo, marca, motor, color, puertas, anio, precio, capacidad, traccion);
 			break;
 
 		case 2: // Si el tipo es electrico
 			int autonomia = pedirInt("Ingrese autonomia");
-			String bateria = pedir.pedirString("Ingrese Tipo de Bateria");
+			String bateria = pedirSoloLetras("Ingrese Tipo de Bateria");
 			int tiempoCarga = pedirInt("Ingrese el tiempo de Carga");
 			nAutomovil = new Electrico(id, modelo, marca, motor, color, puertas, anio, precio, autonomia, bateria,
 					tiempoCarga);
@@ -61,7 +61,7 @@ public class Controller {
 
 		case 3: // Si es una motocicleta
 			int cilindraje = pedirInt("Ingrese Cilindraje");
-			String tipoMoto = pedir.pedirString("Ingrese tipo de Moto");
+			String tipoMoto = pedirSoloLetras("Ingrese tipo de Moto");
 			nAutomovil = new Motocicleta(id, modelo, marca, motor, color, puertas, anio, precio, cilindraje, tipoMoto);
 			break;
 
@@ -141,8 +141,8 @@ public class Controller {
 
 		} else if (forma == 2) {// si es a credito
 
-			double cuotas = pedir.pedirDouble("Ingrese El Numero de Cuotas");
-			double interes = pedir.pedirDouble("Ingrese Intereses");
+			double cuotas = pedirDouble("Ingrese El Numero de Cuotas");
+			double interes = pedirDouble("Ingrese Intereses");
 			double montoTotal = actual.getAutomovil().montoTotal(precio, interes);
 			precio = montoTotal;
 		}
@@ -238,13 +238,13 @@ public class Controller {
 		}
 		Automovil automod = actual.getAutomovil();
 		int nuevoId = pedirInt("Ingrese ID:");
-		String nuevoModelo = pedir.pedirString("Ingrese Modelo");
-		String nuevaMarca = pedir.pedirString("Ingrese Marca");
-		String nuevoMotor = pedir.pedirString("Ingrese Motor");
-		String nuevoColor = pedir.pedirString("Ingrese Color");
+		String nuevoModelo = pedirSoloLetras("Ingrese Modelo");
+		String nuevaMarca = pedirSoloLetras("Ingrese Marca");
+		String nuevoMotor = pedirSoloLetras("Ingrese Motor");
+		String nuevoColor = pedirSoloLetras("Ingrese Color");
 		int nuevaPuertas = pedirInt("Ingrese Numero de Puertas");
 		int nuevoAnio = pedirInt("Ingrese Año");
-		double nuevoPrecio = pedir.pedirDouble("Ingrese Precio");
+		double nuevoPrecio = pedirDouble("Ingrese Precio");
 		/**
 		 * Se cambian los valores del automovil utilizando los metodos setter del
 		 * objeto, se le añaden los datos recibidos por consola que se encuentran arriba
@@ -261,18 +261,18 @@ public class Controller {
 		if (automod instanceof Camioneta) {// Si es de tipo camioneta
 			Camioneta camioneta = (Camioneta) automod;
 			camioneta.setCapacidadCarga(pedirInt("Ingrese Capacidad"));// Cambia la capacidad de carga
-			camioneta.setTipo(pedir.pedirString("Ingrese tipo de Traccion"));// Cambia el tipo de traccion
+			camioneta.setTipo(pedirSoloLetras("Ingrese tipo de Traccion"));// Cambia el tipo de traccion
 
 		} else if (automod instanceof Electrico) {// SI es un automovil electrico
 			Electrico electrico = (Electrico) automod;
 			electrico.setAutonomia(pedirInt("Ingrese Autonomia"));// Cambia la autonomia
-			electrico.setTipoBateria(pedir.pedirString("Ingrese Tipo de bateria"));// Cambia el tipo de bateria
+			electrico.setTipoBateria(pedirSoloLetras("Ingrese Tipo de bateria"));// Cambia el tipo de bateria
 			electrico.setTiempoCarga(Integer.parseInt("Ingrese Tiempo de Carga"));// Cambia el tiempo de carga
 
 		} else if (automod instanceof Motocicleta) {// Si es una motocicleta
 			Motocicleta motocicleta = (Motocicleta) automod;
-			motocicleta.setCilindraje(pedir.pedirInt("Ingrese Cilindraje"));// Cambia el cilindraje
-			motocicleta.setTipoMoto(pedir.pedirString("Ingrese tipo de moto"));// Cambia el tipo de motocicleta
+			motocicleta.setCilindraje(pedirInt("Ingrese Cilindraje"));// Cambia el cilindraje
+			motocicleta.setTipoMoto(pedirSoloLetras("Ingrese tipo de moto"));// Cambia el tipo de motocicleta
 		}
 		pedir.mostrarMensaje("Automovil modificado");
 	}
@@ -313,8 +313,8 @@ public class Controller {
 	public void agregarCliente() {
 		String n, f;
 		int t;
-		n = (persona.pedirString("Ingrese el nombre"));
-		f = persona.pedirString("Ingrese el apellido");
+		n = (pedirSoloLetras("Ingrese el nombre"));
+		f = pedirSoloLetras("Ingrese el apellido");
 		t = pedirInt("Ingrese Cedula");
 		objLista.setListaPersona(new Cliente(n, f, t));// Se crea el objeto cliente con las variables recibidas por
 														// teclado anteriormente
@@ -326,8 +326,8 @@ public class Controller {
 	public void agregarEmpleado() {
 		String n, f;
 		int t, l;
-		n = persona.pedirString("Ingrese Nombre");
-		f = persona.pedirString("Ingrese Apellido");
+		n = pedirSoloLetras("Ingrese Nombre");
+		f = pedirSoloLetras("Ingrese Apellido");
 		t = pedirInt("Ingrese cedula");
 		l = pedirInt("Ingrese Codigo");
 		objLista.setListaPersona(new Empleado(n, f, t, l));// Se crea el objeto Empleado que hereda de persona con las
@@ -466,8 +466,8 @@ public class Controller {
 	public void agregarEmpleado(String id, String nombre) {
 		String n, f;
 		int t, l;
-		n = (pedir.pedirString("Ingrese nombre"));
-		f = (pedir.pedirString("Ingrese apellido"));
+		n = (pedirSoloLetras("Ingrese nombre"));
+		f = (pedirSoloLetras("Ingrese apellido"));
 		t = pedirInt("Ingrese la cedula");
 		l = pedirInt("Ingrese el código");
 		objLista.setListaPersona(new Empleado(n, f, t, l));// Se utilizan los setters para añadir al objeto de tipo
@@ -506,8 +506,8 @@ public class Controller {
 	public void agregarCliente(String id, String nombre) {
 		String n, f;
 		int t;
-		n = (persona.pedirString("Ingrese nombre"));
-		f = (persona.pedirString("Ingrese apellido"));
+		n = (pedirSoloLetras("Ingrese nombre"));
+		f = (pedirSoloLetras("Ingrese apellido"));
 		t = pedirInt("Ingrese la cedula");
 		objLista.setListaPersona(new Cliente(n, f, t));
 

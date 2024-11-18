@@ -60,11 +60,12 @@ public class AutomovilesWindow extends JFrame {
 		// Logo
 		JLabel l1 = new JLabel();
 		l1.setSize(200, 100);
-		ImageIcon logo = new ImageIcon("C:\\yo\\TECNICAS II\\LOGO.png");
+		ImageIcon logo = new ImageIcon("/ProyectoConcesionario/src/co/edu/konradlorenz/view/IMAGENES/LOGO.png");
 		l1.setIcon(new ImageIcon(logo.getImage().getScaledInstance(l1.getWidth(), l1.getHeight(), Image.SCALE_SMOOTH)));
 		panelHeader.add(l1, BorderLayout.WEST);
 		// BOTONES
-		PanelConFondo panelButtons = new PanelConFondo("/co/edu/konradlorenz/view/IMAGENES/IMAGEN FONDO AUTOMOVILES.jpg");
+		PanelConFondo panelButtons = new PanelConFondo(
+				"/co/edu/konradlorenz/view/IMAGENES/IMAGEN FONDO AUTOMOVILES.jpg");
 		panelButtons.setLayout(new GridLayout(3, 2, 20, 20));
 		panelButtons.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
 		panelButtons.setBackground(Color.WHITE);

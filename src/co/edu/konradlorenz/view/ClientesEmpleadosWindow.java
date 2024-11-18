@@ -41,7 +41,7 @@ public class ClientesEmpleadosWindow extends JFrame {
 		// Logo
 		JLabel l1 = new JLabel();
 		l1.setSize(200, 100);
-		ImageIcon logo = new ImageIcon("C:\\yo\\TECNICAS II\\ProyectoConcesionario\\src\\co\\edu\\konradlorenz\\view\\IMAGENES\\LOGO.png");
+		ImageIcon logo = new ImageIcon("/ProyectoConcesionario/src/co/edu/konradlorenz/view/IMAGENES/LOGO.png");
 		l1.setIcon(new ImageIcon(logo.getImage().getScaledInstance(l1.getWidth(), l1.getHeight(), Image.SCALE_SMOOTH)));
 		panelHeader.add(l1, BorderLayout.WEST);
 

@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -142,6 +143,7 @@ public class AutomovilesWindow extends JFrame {
 	 * @return
 	 */
 	public int pedirInt(String mensaje) {
+	
 		return Integer.parseInt(JOptionPane.showInputDialog(mensaje));
 	}
 
@@ -180,4 +182,8 @@ public class AutomovilesWindow extends JFrame {
 
 		frame.setVisible(true);
 	}
+
+	 public String pedirInput(String mensaje) {
+	        return JOptionPane.showInputDialog(mensaje);
+	    }
 }

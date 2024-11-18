@@ -34,7 +34,7 @@ public class Controller {
 	 */
 	public void agregarAutomovil(int opcion) {
 
-		int id = pedir.pedirInt("Ingrese ID:");
+		int id = pedirInt("Ingrese ID:");
 		String modelo = pedir.pedirString("Ingrese Modelo");
 		String marca = pedir.pedirString("Ingrese Marca");
 		String motor = pedir.pedirString("Ingrese Motor");
@@ -532,5 +532,20 @@ public class Controller {
 		return (int) total;
 
 	}
+	
+	public int pedirInt(String mensaje) {
+        while (true) { 
+            try {
+                String input = pedir.pedirInput(mensaje); 
+                if (input == null) { 
+                   pedir.mostrarMensaje("Se cancelo la operacion.");
+                    return -1;
+                }
+                return Integer.parseInt(input); 
+            } catch (NumberFormatException e) {
+                pedir.mostrarMensaje("Por favor, ingresar un dato invalido.");
+            }
+        }
+    }
 
 }
